@@ -129,7 +129,20 @@ Enregistrez et exécutez votre fichier. Qu'observez-vous ? Que fait Python exact
 
 **Exercice :** Modifiez le code contenu dans le fichier :code:`TP1.py` pour qu'à l'exécution il affiche la table de 7 après avoir fait les calculs.
 
-:download:`Solution <sol/tablede7.py>`.
+.. admonition:: Solution
+   :class: dropdown; tip
+
+    .. code-block:: python
+    
+        print(1*7)
+        print(2*7)
+        print(3*7)
+        print(4*7)
+        print(5*7)
+        print(7*7)
+        print(8*7)
+        print(9*7)
+        print(10*7)
 
 
 **Exercice :** Remplacez le code du fichier :code:`TP1.py` par :

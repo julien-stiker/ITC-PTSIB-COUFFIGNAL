@@ -484,7 +484,22 @@ s’appelle le <strong>“prompt”</strong> ou <strong>l”invite de commande�
 <p>Contrairement à ce qui se passe dans le shell, lorsqu’on exécute le code contenu dans un fichier Python effectue les calculs mais ne les affiche pas. Pour les afficher il faut le demander à l’aide de la commande <code class="code docutils literal notranslate"><span class="pre">print</span></code>.</p>
 </div>
 <p><strong>Exercice :</strong> Modifiez le code contenu dans le fichier <code class="code docutils literal notranslate"><span class="pre">TP1.py</span></code> pour qu’à l’exécution il affiche la table de 7 après avoir fait les calculs.</p>
-<p><code class="xref download docutils literal notranslate"><span class="pre">Solution</span></code>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">9</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
 <p><strong>Exercice :</strong> Remplacez le code du fichier <code class="code docutils literal notranslate"><span class="pre">TP1.py</span></code> par :</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot;* 7 = &quot;</span><span class="p">,</span> <span class="n">i</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
@@ -2382,26 +2397,26 @@ Voici un exemple de docstring :</p>
 
 <span class="gp">In [174]: </span><span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
 <span class="gh">Out[174]: </span><span class="go"></span>
-<span class="go">[-66,</span>
-<span class="go"> -93,</span>
-<span class="go"> 15,</span>
-<span class="go"> -27,</span>
-<span class="go"> -59,</span>
-<span class="go"> 74,</span>
-<span class="go"> 100,</span>
-<span class="go"> -21,</span>
-<span class="go"> 57,</span>
-<span class="go"> -13,</span>
-<span class="go"> -81,</span>
-<span class="go"> -37,</span>
-<span class="go"> 14,</span>
-<span class="go"> 90,</span>
-<span class="go"> -89,</span>
-<span class="go"> -6,</span>
+<span class="go">[74,</span>
 <span class="go"> -39,</span>
-<span class="go"> -9,</span>
-<span class="go"> 82,</span>
-<span class="go"> 90]</span>
+<span class="go"> -12,</span>
+<span class="go"> 9,</span>
+<span class="go"> 7,</span>
+<span class="go"> 27,</span>
+<span class="go"> 69,</span>
+<span class="go"> -78,</span>
+<span class="go"> -40,</span>
+<span class="go"> 53,</span>
+<span class="go"> 41,</span>
+<span class="go"> -55,</span>
+<span class="go"> 76,</span>
+<span class="go"> -49,</span>
+<span class="go"> -35,</span>
+<span class="go"> 36,</span>
+<span class="go"> 96,</span>
+<span class="go"> -14,</span>
+<span class="go"> 87,</span>
+<span class="go"> 79]</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -2968,7 +2983,7 @@ entre 0 et 1. Elle est accessible après avoir fait <code class="code docutils l
 <span class="gp">   .....: </span>
 
 <span class="gp">In [219]: </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimation de pi/4 (</span><span class="si">{}</span><span class="s2">) : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">4.0</span><span class="p">,</span><span class="n">echantillons_dans_le_cercle</span><span class="o">/</span><span class="n">M</span><span class="p">))</span>
-<span class="go">Estimation de pi/4 (0.7853981633974483) : 0.776</span>
+<span class="go">Estimation de pi/4 (0.7853981633974483) : 0.783</span>
 </pre></div>
 </div>
 </div></blockquote>
