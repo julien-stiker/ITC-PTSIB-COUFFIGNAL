@@ -749,7 +749,7 @@ Entrées-sorties
         
     Pour en savoir plus sur les entrées-sorties c'est par `ici <https://docs.python.org/fr/3/tutorial/inputoutput.html#>`_.
 
-**Exercice :** Ecrire dans un fichier :code:`TP1-exercice17.py` un programme qui demande à l'utilisateur son nom, son prénom et son année de naissance et qui retourne le résultat suivant sous la forme :
+**Exercice :** Ecrire dans un fichier un programme qui demande à l'utilisateur son nom, son prénom et son année de naissance et qui retourne le résultat suivant sous la forme :
 
 	.. code-block:: python
 	
@@ -770,7 +770,7 @@ Entrées-sorties
 
 
 
-**Exercice :** Ecrire dans un fichier :code:`TP1-exercice18.py` un programme qui demande à l'utilisateur le rayon d'une sphère et qui retourne le résultat suivant sous la forme :
+**Exercice :** Ecrire dans un fichier un programme qui demande à l'utilisateur le rayon d'une sphère et qui retourne le résultat suivant sous la forme :
 
 	.. code-block:: python
 
@@ -792,7 +792,7 @@ Entrées-sorties
         print(f"Une boule de rayon {rayon} cm a pour volume : {v} cm3.")
 
 
-**Exercice :** Ecrire dans un fichier :code:`TP1-exercice19.py` un programme qui demande à l'utilisateur son nom et son prénom et qui retourne ses initiales.
+**Exercice :** Ecrire dans un fichier un programme qui demande à l'utilisateur son nom et son prénom et qui retourne ses initiales.
 
 
 .. admonition:: Solution
