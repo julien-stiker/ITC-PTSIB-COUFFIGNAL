@@ -45,9 +45,9 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -152,11 +152,11 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/julien-stiker/TP-PTSIB-21-22"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Dépôt source"><i
                     class="fab fa-github"></i>dépôt</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/julien-stiker/TP-PTSIB-21-22/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Ouvrez un problème"><i class="fas fa-lightbulb"></i>signaler un problème</button></a>
         
@@ -211,6 +211,26 @@
 <span class="go">                                                     \::::/    /              \:::\____\        </span>
 <span class="go">                                                      \::/    /                \::/    /        </span>
 <span class="go">                                                       \/____/                  \/____/         </span>
+<span class="go">                                                                                                </span>
+
+
+<span class="gp">In [3]: </span><span class="kn">from</span> <span class="nn">cowpy</span> <span class="kn">import</span> <span class="n">cow</span>
+
+<span class="gp">In [4]: </span><span class="n">cheese</span> <span class="o">=</span> <span class="n">cow</span><span class="o">.</span><span class="n">Moose</span><span class="p">()</span>
+
+<span class="gp">In [5]: </span><span class="n">msg</span> <span class="o">=</span> <span class="n">cheese</span><span class="o">.</span><span class="n">milk</span><span class="p">(</span><span class="s2">&quot;Welcome Bob!&quot;</span><span class="p">)</span>
+
+<span class="gp">In [6]: </span><span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="go"> ______________ </span>
+<span class="go">&lt; Welcome Bob! &gt;</span>
+<span class="go"> -------------- </span>
+<span class="go">  \</span>
+<span class="go">   \   \_\_    _/_/</span>
+<span class="go">    \      \__/</span>
+<span class="go">           (oo)\_______</span>
+<span class="go">           (__)\       )\/\</span>
+<span class="go">               ||----w |</span>
+<span class="go">               ||     ||</span>
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">
@@ -221,8 +241,8 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "julien-stiker/TP-PTSIB-21-22",
+            ref: "gh-pages",
         },
         codeMirrorConfig: {
             theme: "abcdef",

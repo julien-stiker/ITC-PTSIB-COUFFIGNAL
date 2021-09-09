@@ -1230,7 +1230,8 @@ Boucle :code:`for`
         for chiffre in chaine: somme2 += int(chiffre)
         somme2
         
-        
+
+
 
 
 Les fonctions
@@ -2301,7 +2302,20 @@ Les listes
     
         [elt in l if test(elt)]
          
+**Exercice :** Ecrire une fonction :code:`chr_pos(l:list[str], c:str, n:int)->list[str]` qui prend comme argument une liste :code:`l` de mots, un caractère :code:`c` et un entier :code:`n` et qui retourne la liste des mots de :code:`l` qui ont le cracatère :code:`c` en position :code:`n`.
 
+
+.. admonition:: Solution
+   :class: dropdown; tip
+   
+    .. code-block:: python
+        
+        def chr_pos(l:list[str], c:str, n:int)->list[str]:
+            rep = []
+            for mot in l:
+                if len(mot) > n and mot[n] == c:
+                    rep.append(mot)
+            return rep
 
 
 Les tuples
@@ -2734,3 +2748,19 @@ Les dictionnaires
                 
             return score
   
+**Exercice :** Ecrire une fonction :code:`creat_dict_pos(l:list[str])->list[str]`, qui prend comme argument une liste de mots et qui retourne le dictionnaire dont les clefs sont les tuples :code:`('c',n)` et les valeurs la liste des mots de :code:`l` qui comporte le caractère :code:`c` en position :code:`n`. Quel est l'intérêt de cette fonction par rapport à :code:`chr_pos` (codée plus haut) ?
+
+.. admonition:: Solution
+   :class: dropdown; tip
+   
+    .. code-block:: python
+        
+        def create_dic(mots):
+            pos = {}
+            for mot in mots:
+            for i in range(len(mot)):
+                if (mot[i], i) in pos:
+                    pos[(mot[i],i)].append(mot)
+                else:
+                     pos[(mot[i], i)] = [mot]
+            return pos
