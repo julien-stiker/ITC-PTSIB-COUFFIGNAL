@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TP2 : Des modules, des tests et un peu de complexité &#8212; Les TP d informatique en PTSI-B</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="TP1 : La reprise" href="TP1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Les TP d informatique en PTSI-B</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Les TP d’informatique en PTSI-B au lycée Coufignal
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP1.html">
+   TP1 : La reprise
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   TP2 : Des modules, des tests et un peu de complexité
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Basculer la navigation" aria-controls="site-navigation"
+                title="Basculer la navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Téléchargez cette page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/TP2.rst"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Télécharger le fichier source" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimer au format PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/julien-stiker/TP-PTSIB-21-22"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Dépôt source"><i
+                    class="fab fa-github"></i>dépôt</button></a>
+        <a class="issues-button"
+            href="https://github.com/julien-stiker/TP-PTSIB-21-22/issues/new?title=Issue%20on%20page%20%2FTP2.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Ouvrez un problème"><i class="fas fa-lightbulb"></i>signaler un problème</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Mode plein écran"
+        title="Mode plein écran"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenu
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#utiliser-des-modules">
+   Utiliser des modules
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generalites">
+     Généralités
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#des-exemples-de-modules">
+     Des exemples de modules
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#des-tests">
+   Des tests
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#un-peu-de-complexite">
+   Un peu de complexité
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#un-premier-exemple">
+     Un premier exemple
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#un-second-exemple">
+     Un second exemple
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#un-troisieme-exemple">
+     Un troisième exemple
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="tp2-des-modules-des-tests-et-un-peu-de-complexite">
+<h1>TP2 : Des modules, des tests et un peu de complexité<a class="headerlink" href="#tp2-des-modules-des-tests-et-un-peu-de-complexite" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Les objectifs du TP :</strong></p>
+<ul class="simple">
+<li><p>Importer correctement des modules.</p></li>
+<li><p>Ecrire des tests pour vérifier la correction de ses fonctions.</p></li>
+<li><p>Avoir des notions de la complexité de ses algorithmes.</p></li>
+</ul>
+</div>
+<div class="html-toggle section" id="utiliser-des-modules">
+<h2>Utiliser des modules<a class="headerlink" href="#utiliser-des-modules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="generalites">
+<h3>Généralités<a class="headerlink" href="#generalites" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lorsque vous fermez et réouvrez un IDLE tout ce que vous avez déclaré lors de votre précédente session est perdu. C’est pourquoi pour rédiger des programmes plus longs, vous utilisez des <em>script</em>, c’est-à-dire des fichiers ayant pour extension <code class="code docutils literal notranslate"><span class="pre">.py</span></code>.</p>
+<p>Plus votre programme grandit plus vous serez amené à le découper en plusieurs fichiers, ce qui d’ailleurs vous permettra de réutiliser des fonctions écrites pour un programme dans un autre sans avoir à les recopier.</p>
+<p>Un tel fichier est appelé un <em>module</em>. Un module peut contenir des définitions.</p>
+</div>
+<p><strong>Exercice :</strong> Dans votre répertoire créez un dossier <code class="code docutils literal notranslate"><span class="pre">intro_module</span></code>, puis dans l’IDLE créez un premier fichier <code class="code docutils literal notranslate"><span class="pre">functions.py</span></code> contenant :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span>
+
+<span class="k">def</span> <span class="nf">cube</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="n">square</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Dans un second fichier <code class="code docutils literal notranslate"><span class="pre">main.py</span></code> copiez :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">functions</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">functions</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Maintenant interprétez <code class="code docutils literal notranslate"><span class="pre">main.py</span></code>. Vous pouvez remarquer que vous avez eu accès à la fonction <code class="code docutils literal notranslate"><span class="pre">square</span></code> contenue dans le fichier <code class="code docutils literal notranslate"><span class="pre">functions.py</span></code>. Pour faire appel à cette fonction nous avons préfixé son nom par le nom du module qui la contient : <code class="code docutils literal notranslate"><span class="pre">functions.square</span></code>.</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les importations de modules doivent se faire au début de votre fichier principal, à raison d’une importation par ligne.</p>
+<p>Le nom de certains modules étant très long on peut les importer avec un nom plus petit en utilisant <code class="code docutils literal notranslate"><span class="pre">as</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">module_au_nom_trop_long</span> <span class="k">as</span> <span class="nn">mnl</span>
+</pre></div>
+</div>
+<p>Dans ca cas on préfixera le nom des fonctions par <code class="code docutils literal notranslate"><span class="pre">mnl</span></code>.</p>
+<p>Comme un module peut comporter un nombre très important de fonctions, et qu’il peut arriver que vous n’ayez besoin que de l’une ou l’autre, il est possible de n’importe que celles dont vous avez besoin :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">cube</span>
+</pre></div>
+</div>
+<p>Dans ca cas, il ne sera pas besoin de préfixer leurs noms pour les appeler.</p>
+<p>Enfin, il reste un possibilité d’importer toutes les fonctions d’un module, sans avoir à préfixer leur nom lors de l’appel :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>Mais, ça rend votre code moins lisible et risque de provoquer des problèmes si vous importez deux modules qui contiennent des fonctions ayant le même nom.</p>
+<p>Pour tout savoir sur les modules c’est par <a class="reference external" href="https://docs.python.org/fr/3/tutorial/modules.html">ici</a></p>
+</div>
+<a class="reference internal image-reference" href="_images/antigravity.png"><img alt="_images/antigravity.png" class="align-center" src="_images/antigravity.png" style="width: 414.40000000000003px; height: 470.40000000000003px;" /></a>
+<p>Vous pouvez essayer d’importer le même module pour voir ce qui se passe.</p>
+</div>
+<div class="section" id="des-exemples-de-modules">
+<h3>Des exemples de modules<a class="headerlink" href="#des-exemples-de-modules" title="Permalink to this headline">¶</a></h3>
+<p><strong>Le module :</strong> <code class="code docutils literal notranslate"><span class="pre">random</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Dans ce module vous trouverez de nombreuses fonctions qui permettent de simuler des phénomènes aléatoires. Pour voir l’ensemble des fonctions contenues dans un module on peut utiliser la fonction <code class="code docutils literal notranslate"><span class="pre">help</span></code>.</p>
+</div>
+<p><strong>Exercice :</strong> Dans une console, importez le module <code class="code docutils literal notranslate"><span class="pre">random</span></code> et utilisez la commande <code class="code docutils literal notranslate"><span class="pre">help</span></code> pour obtenir la liste des fonctions qu’il contient.</p>
+<blockquote>
+<div><p>Que font les fonctions <code class="code docutils literal notranslate"><span class="pre">randint</span></code>, <code class="code docutils literal notranslate"><span class="pre">choice</span></code>, <code class="code docutils literal notranslate"><span class="pre">random</span></code> et <code class="code docutils literal notranslate"><span class="pre">shuffle</span></code> ?</p>
+<p>Quelle est la différence en la fonction <code class="code docutils literal notranslate"><span class="pre">choices</span></code> et la fonction <code class="code docutils literal notranslate"><span class="pre">sample</span></code> ?</p>
+</div></blockquote>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<p>La première simule un tirage avec répétition (on remet l’objet tiré avant de retirer) alors que la seconde simule un tirage sans répétition (comme si on tirer les éléments en même temps).</p>
+</div>
+<p><strong>Exercice :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">chifoumi()</span></code> qui retourne un élément au hasard de la liste <code class="code docutils literal notranslate"><span class="pre">liste</span> <span class="pre">=</span> <span class="pre">[</span> <span class="pre">&quot;Pierre&quot;,</span> <span class="pre">&quot;Caillou&quot;,</span> <span class="pre">&quot;Ciseaux&quot;]</span></code>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">choice</span>
+
+<span class="gp">In [2]: </span><span class="k">def</span> <span class="nf">chifoumi</span><span class="p">()</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="gp">   ...: </span>    <span class="n">liste</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;Pierre&quot;</span><span class="p">,</span> <span class="s2">&quot;Caillou&quot;</span><span class="p">,</span> <span class="s2">&quot;Ciseaux&quot;</span><span class="p">]</span>
+<span class="gp">   ...: </span>    <span class="k">return</span> <span class="n">choice</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [3]: </span><span class="n">chifoumi</span><span class="p">()</span>
+<span class="gh">Out[3]: </span><span class="go">&#39;Ciseaux&#39;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">pwd_generator(Alpha,</span> <span class="pre">alpha,</span> <span class="pre">digit,</span> <span class="pre">spe)</span></code> qui prend comme arguments les cinq entiers <code class="code docutils literal notranslate"><span class="pre">Alpha</span></code>, <code class="code docutils literal notranslate"><span class="pre">alpha</span></code>, <code class="code docutils literal notranslate"><span class="pre">digit</span></code> et <code class="code docutils literal notranslate"><span class="pre">spe</span></code> et qui retourne un mot de passe sous forme d’une chaîne de caractères comportant :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">Alpha</span></code> lettres majuscules</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">alpha</span></code> lettres minuscules</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">digit</span></code> chiffres</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">spe</span></code> caractères parmi <a class="reference external" href="mailto:#&#37;&#52;&#48;$%?_">#<span>&#64;</span>$%?_</a></p></li>
+</ul>
+</div></blockquote>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">choices</span><span class="p">,</span> <span class="n">shuffle</span>
+
+<span class="k">def</span> <span class="nf">pwd_generator</span><span class="p">(</span><span class="n">Alpha</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">digit</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">spe</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+    <span class="n">lettres</span> <span class="o">=</span> <span class="s2">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span>
+    <span class="n">Lettres</span> <span class="o">=</span> <span class="n">lettres</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">chiffres</span> <span class="o">=</span> <span class="s2">&quot;0123456789&quot;</span>
+    <span class="n">speciaux</span> <span class="o">=</span> <span class="s2">&quot;#@$%?_&quot;</span>
+
+    <span class="n">pwd</span> <span class="o">=</span> <span class="n">choices</span><span class="p">(</span><span class="n">Lettres</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">Alpha</span><span class="p">)</span>
+    <span class="n">pwd</span> <span class="o">+=</span> <span class="n">choices</span><span class="p">(</span><span class="n">lettres</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">pwd</span> <span class="o">+=</span> <span class="n">choices</span><span class="p">(</span><span class="n">chiffres</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">digit</span><span class="p">)</span>
+    <span class="n">pwd</span> <span class="o">+=</span> <span class="n">choices</span><span class="p">(</span><span class="n">speciaux</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">spe</span><span class="p">)</span>
+    <span class="n">shuffle</span><span class="p">(</span><span class="n">pwd</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pwd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Le module :</strong> <code class="code docutils literal notranslate"><span class="pre">time</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ce module contient de nombreuses fonctions relatives au temps comme son nom l’indique.</p>
+</div>
+<p><strong>Exercice :</strong> Que font les fonctions <code class="code docutils literal notranslate"><span class="pre">time</span></code>, <code class="code docutils literal notranslate"><span class="pre">time_ns</span></code>, <code class="code docutils literal notranslate"><span class="pre">ctime</span></code>,  <code class="code docutils literal notranslate"><span class="pre">perf_counter</span></code> et <code class="code docutils literal notranslate"><span class="pre">perf_counter_ns</span></code> ?</p>
+<p><strong>Exercice :</strong> Combien de temps Python met-il pour créer une liste de <span class="math notranslate nohighlight">\(10^6\)</span> entiers pseudo-aléatoires compris entre <span class="math notranslate nohighlight">\(10^3\)</span> et <span class="math notranslate nohighlight">\(10^5\)</span>? Même question pour des listes de tailles <span class="math notranslate nohighlight">\(10^7\)</span> et <span class="math notranslate nohighlight">\(10^8\)</span>. Ecrivez une fonction.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter</span>
+
+<span class="gp">In [5]: </span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+
+<span class="gp">In [6]: </span><span class="k">def</span> <span class="nf">time_it</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">float</span><span class="p">:</span>
+<span class="gp">   ...: </span>    <span class="n">t1</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+<span class="gp">   ...: </span>    <span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+<span class="gp">   ...: </span>    <span class="n">t2</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+<span class="gp">   ...: </span>    <span class="k">return</span> <span class="n">t2</span><span class="o">-</span><span class="n">t1</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [7]: </span><span class="n">time_it</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="gh">Out[7]: </span><span class="go">0.37254129198845476</span>
+
+<span class="gp">In [8]: </span><span class="n">time_it</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">)</span>
+<span class="gh">Out[8]: </span><span class="go">3.73250687494874</span>
+
+<span class="gp">In [9]: </span><span class="n">time_it</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span>
+<span class="gh">Out[9]: </span><span class="go">0.03671329200733453</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Le module :</strong> <code class="code docutils literal notranslate"><span class="pre">matplotlib</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ce module offre de nombreux moyens de représenter graphiquement des données. Vous trouverez toute sa documentation <a class="reference external" href="https://matplotlib.org">ici</a>.</p>
+<p>Nous allons nous contenter d’un minuscule aperçu des fonctions proposées par ce module.</p>
+</div>
+<p><strong>Exercice :</strong> Copier-coller le code suivant, et essayez de comprendre chaque ligne de commande.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Un exemple&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Les y&#39;</span><span class="p">,</span> <span class="s1">&#39;Les z&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Exercice :</strong> Tracer le temps mis par Python pour créer une liste de <code class="code docutils literal notranslate"><span class="pre">n</span></code> entiers pseudo-aléatoires compris entre <span class="math notranslate nohighlight">\(10^3\)</span> et <span class="math notranslate nohighlight">\(10^5\)</span> en fonction de <code class="code docutils literal notranslate"><span class="pre">n</span></code>, pour <code class="code docutils literal notranslate"><span class="pre">n</span></code> allant de <span class="math notranslate nohighlight">\(10^5\)</span> à <span class="math notranslate nohighlight">\(10^6\)</span> par pas de <span class="math notranslate nohighlight">\(10^5\)</span>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">time_it</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">float</span><span class="p">:</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+    <span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">t2</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">t2</span><span class="o">-</span><span class="n">t1</span>
+
+<span class="c1"># Création des tableaux de valeurs</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">time_it</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+
+<span class="c1"># Préparation du graphique</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Temps de création d&#39;une liste aléatoire en fonction de sa longueur&quot;</span><span class="p">)</span>
+
+<span class="c1"># Affichage</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="des-tests">
+<h2>Des tests<a class="headerlink" href="#des-tests" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lorsque l’on a écrit une fonction on souhaite souvent la tester pour voir si elle fonctionne bien comme c’était prévu.</p>
+<p>Dans la vraie vie, un developpeur est obligé de fournir des tests qui prouvent que ce qu’il a programmé fonctionne bien et s’intègre bien au projet sur lequel il travaille.</p>
+<p>Il faut donc automatiser les tests, pour ça on recourt aux <em>tests unitaires</em>, c’est ce que j’utilise pour corriger vos DM. Python offre de nombreux modules pour écrire des test unitaires. Nous allons en utiliser un qui est très pratique, facile à mettre en oeuvre et qui ne demande pas de connaissance particulière. Il s’agit de <code class="code docutils literal notranslate"><span class="pre">doctests</span></code>, dont vous trouverez toute la documentation <cite>ici &lt;https://docs.python.org/3/library/doctest.html&gt;_</cite>.</p>
+<p>Avec <code class="code docutils literal notranslate"><span class="pre">doctest</span></code> on peut écrire des tests dans la docstring de la fonction.</p>
+<p>Imaginons que j’ai écrit la fonction suivante :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculate the sum of a and b</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a, b : two objects of the same class which are summable.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        the sum of a and b</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Si j’utilise ma fonction dans la console de l’IDLE, je m’attends à obtenir les résultats suivants :</p>
+<blockquote>
+<div><div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="mf">5.</span><span class="p">,</span><span class="mf">3.</span><span class="p">)</span>
+<span class="go">8.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="s1">&#39; World!&#39;</span><span class="p">)</span>
+<span class="go">&#39;Hello World!&#39;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Pour tester si ma fonction retourne bien ce que je veux il me suffit d’ajouter ces résulats à la docstring de ma fonction et d’importer le module <code class="code docutils literal notranslate"><span class="pre">doctests</span></code>, puis d’ajouter à la fin de mon script les lignes suivantes :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculate the sum of a and b</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a, b : two objects of the same class which are summable.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        the sum of a and b</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">    &gt;&gt;&gt; add(5,3)</span>
+<span class="sd">    8</span>
+
+<span class="sd">    &gt;&gt;&gt; add(5.,3.)</span>
+<span class="sd">    8.0</span>
+
+<span class="sd">    &gt;&gt;&gt; add(&#39;Hello&#39;,&#39; World!&#39;)</span>
+<span class="sd">    &#39;Hello World!&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">doctest</span>
+    <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Copier-coller ce code dans un fichier puis intérprétez le. Que se passe-t-il ?</p>
+<p>Maintenant modifier les lignes :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">8</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>en</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Puis intérprétez à nouveau votre script. Qu’obtenez-vous ?</p>
+<p>La liste des tests que vous souhaitez faire passer à votre fonction peut être longue. Dans ce cas il est plus judicieux de les placer dans un fichier texte (extension <code class="code docutils literal notranslate"><span class="pre">.txt</span></code>) et de faire appel à <code class="code docutils literal notranslate"><span class="pre">doctest.testfile()</span></code> à la place de <code class="code docutils literal notranslate"><span class="pre">doctest.testmod()</span></code>.</p>
+<p>Imaginons que mon script se nomme <code class="code docutils literal notranslate"><span class="pre">add_function.py</span></code> et contienne :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculate the sum of a and b</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a, b : two objects of the same class which are summable.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        the sum of a and b</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">doctest</span>
+    <span class="n">doctest</span><span class="o">.</span><span class="n">testfile</span><span class="p">(</span><span class="s2">&quot;add_examples.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Alors mon fichier texte <code class="code docutils literal notranslate"><span class="pre">add_examples.txt</span></code> pourrait être :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">essai_mod</span> <span class="kn">import</span> <span class="n">add</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">8</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="mf">5.</span><span class="p">,</span><span class="mf">3.</span><span class="p">)</span>
+<span class="go">8.0</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="s1">&#39; World!&#39;</span><span class="p">)</span>
+<span class="go">&#39;Hello World!&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="go">&lt;class &#39;int&#39;&gt;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mf">2.</span><span class="p">,</span><span class="mf">3.</span><span class="p">))</span>
+<span class="go">&lt;class &#39;float&#39;&gt;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39; World!&#39;</span><span class="p">))</span> <span class="o">==</span> <span class="nb">str</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Faites un copier-coller du script et du fichier texte, puis essayez le script.</p>
+</div>
+<p><strong>Exercice :</strong> Ecrire un jeu de tests pour la fonction <code class="code docutils literal notranslate"><span class="pre">fibo</span></code> que vous avez programmée dans le TP1.</p>
+<p><strong>Exercice :</strong> Ecrire un jeu de tests pour la fonction <code class="code docutils literal notranslate"><span class="pre">is_palindrome</span></code> que vous avez programmée dans le TP1.</p>
+<p><strong>Exercice :</strong> Ecrire un jeu de tests pour la fonction <code class="code docutils literal notranslate"><span class="pre">largest_growing_sub_list</span></code> que vous avez programmée dans le TP1.</p>
+<p><strong>Exercice :</strong> Ecrire un jeu de tests pour la fonction <code class="code docutils literal notranslate"><span class="pre">creat_dict_pos</span></code> que vous avez programmée dans le TP1.</p>
+</div>
+<div class="section" id="un-peu-de-complexite">
+<h2>Un peu de complexité<a class="headerlink" href="#un-peu-de-complexite" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Plusieurs algorithmes peuvent répondre à un même problème. Il est naturel de chercher lequel est le plus efficace. Il y a deux notions d’efficacité qui nous intéressent : la rapidité et le besoin de ressource en mémoire. On parle de <em>complexité temporelle</em> et de <em>complexité spatiale</em>.</p>
+<p>On va commencer par observer des complexité temporelles différentes pour réoudre un même problème.</p>
+<p>Pour ça, nous allons utiliser les fonctions suivantes :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+
+<span class="c1"># Cette fonction, un peu particulière, permet de mesurer</span>
+<span class="c1"># le temps d&#39;éxécution d&#39;une fonction :code:`f`.</span>
+
+
+<span class="k">def</span> <span class="nf">timing</span><span class="p">(</span><span class="n">f</span><span class="p">:</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span><span class="n">Any</span><span class="p">])</span><span class="o">-&gt;</span><span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Measure execution time in s</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        f : a function</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        a float that is the time in s to perform f</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="n">time1</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">time2</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">time2</span><span class="o">-</span><span class="n">time1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrap</span>
+
+<span class="c1"># Des fonctions statistiques pour traiter les données</span>
+<span class="c1"># avant de les afficher.</span>
+
+<span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="n">l</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span><span class="o">-&gt;</span><span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the mean value of the list of float l.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        l : a list of float</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        a float that the mean value of l.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">std_deviation</span><span class="p">(</span><span class="n">l</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span><span class="o">-&gt;</span><span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the standard deviation of l.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        l : a list of float</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        a float that is the standard deviation of l.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">mean</span><span class="p">([</span><span class="n">k</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">l</span><span class="p">])</span><span class="o">-</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">l</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">traitement</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ???</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">std_deviation</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mean</span><span class="p">([</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">l</span> <span class="k">if</span> <span class="n">m</span><span class="o">-</span><span class="n">e</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="o">+</span><span class="n">e</span><span class="p">])</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>La première fonction <code class="code docutils literal notranslate"><span class="pre">timing()</span></code> est un peu particulière, c’est ce que l’on appelle un <em>décorateur</em> et vous n’avez pas à savoir en écrire ni même comprendre comme ça fonctionne, mais voilà comment on l’utilise pour mesurer le temps d’exécution d’une fonction :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@timing</span>
+<span class="k">def</span> <span class="nf">ma_fonction_a_mesurer</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>On a dit qu’on a décoré notre fonction, et maintenant quand nous appelerons <code class="code docutils literal notranslate"><span class="pre">ma_fonction_a_mesurer(n)</span></code> ce qui sera retourner sera le temps d’exécution en seconde :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ma_fonction_a_mesurer</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">3.334018401801586e-06</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ma_fonction_a_mesurer</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="go">4.417030140757561e-06</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ma_fonction_a_mesurer</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="go">3.5499921068549156e-05</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ma_fonction_a_mesurer</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="go">0.7475648750551045</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ma_fonction_a_mesurer</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">30.249255042057484</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Donc il faut environ 30 secondes pour calculer <code class="code docutils literal notranslate"><span class="pre">ma_fonction_a_mesurer(10**7)</span></code>.</p>
+</div>
+<div class="section" id="un-premier-exemple">
+<h3>Un premier exemple<a class="headerlink" href="#un-premier-exemple" title="Permalink to this headline">¶</a></h3>
+<p><strong>Exercice :</strong> Voici deux fonctions qui calculent la même chose :</p>
+<blockquote>
+<div><blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">power</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">*=</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">r</span>
+
+<span class="k">def</span> <span class="nf">quick_power</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="k">while</span> <span class="n">k</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">*=</span> <span class="n">y</span>
+        <span class="n">k</span> <span class="o">//=</span> <span class="mi">2</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Q1 :</strong> Que calculent-elles ? Si c’est évident pour la première, ca l’est moins pour la seconde mais essayez les pour vous convaincre.</p>
+<p><strong>Q2 :</strong> Utilisez les fonctions données plus haut pour tracer sur un même graphique les temps d’exécution de ses deux fonctions, en fonction de <code class="code docutils literal notranslate"><span class="pre">n</span></code>, pour calculer <code class="code docutils literal notranslate"><span class="pre">power(2,n)</span></code> et <code class="code docutils literal notranslate"><span class="pre">quick_power(2,n)</span></code> pour <code class="code docutils literal notranslate"><span class="pre">n</span></code> allant de <span class="math notranslate nohighlight">\(1\)</span> et <span class="math notranslate nohighlight">\(500\)</span> par pas de <span class="math notranslate nohighlight">\(20\)</span>.</p>
+<p>Pour améliorer le rendu, pour chaque valeur de <code class="code docutils literal notranslate"><span class="pre">n</span></code> vous procèderez à <span class="math notranslate nohighlight">\(30\)</span> mesures puis vous appliquerez la fonction <code class="code docutils literal notranslate"><span class="pre">traitement</span></code> à la liste <code class="code docutils literal notranslate"><span class="pre">l</span></code> de ces dix mesures et placerez le point de coordonnées <span class="math notranslate nohighlight">\((n,\text{traitement}(l))\)</span>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Décoration des fonctions</span>
+<span class="nd">@timing</span>
+<span class="k">def</span> <span class="nf">quick_power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="k">while</span> <span class="n">k</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">*=</span> <span class="n">y</span>
+        <span class="n">k</span> <span class="o">//=</span> <span class="mi">2</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">r</span>
+
+
+<span class="nd">@timing</span>
+<span class="k">def</span> <span class="nf">power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">rep</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">rep</span> <span class="o">*=</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">rep</span>
+
+
+<span class="c1"># Création des listes</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">traitement</span><span class="p">([</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">)])</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">traitement</span><span class="p">([</span><span class="n">quick_power</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">)])</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+
+<span class="c1"># Préparation des graphes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;power&#39;</span><span class="p">,</span> <span class="s1">&#39;quick_power&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="c1"># Affichage</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/expo_quick_expo.png"><img alt="_images/expo_quick_expo.png" class="align-center" src="_images/expo_quick_expo.png" style="width: 512.0px; height: 384.0px;" /></a>
+</div>
+<p><strong>Q3 :</strong> Si on note <span class="math notranslate nohighlight">\(T_{\text{expo}}(n)\)</span> et <span class="math notranslate nohighlight">\(T_{\text{q_expo}}(n)\)</span> les fonctions qui donnent les temps d’exécution des fonctions <code class="code docutils literal notranslate"><span class="pre">expo(2,n)</span></code> et <code class="code docutils literal notranslate"><span class="pre">quick_expo(2,n)</span></code> en fonction de <span class="math notranslate nohighlight">\(n\)</span>. Comment qualiferiez-vous leurs courbes représentatives ?</p>
+<p>Conclusion ? Quelle est la fonction la plus efficace en terme de temps ?</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><p>Il semble que <span class="math notranslate nohighlight">\(T_{\textrm{expo}}(n)\)</span> soit une fonction linéaire et que <span class="math notranslate nohighlight">\(T_{\textrm{q_expo}}(n)\)</span> soit une fonction logarithme au vu de leurs courbes.</p>
+<p>Donc <code class="code docutils literal notranslate"><span class="pre">quick_expo</span></code> est bien plus rapide.</p>
+</div></blockquote>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="un-second-exemple">
+<h3>Un second exemple<a class="headerlink" href="#un-second-exemple" title="Permalink to this headline">¶</a></h3>
+<p><strong>Exercice :</strong> On considère la fonction suivante :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">minmax</span><span class="p">(</span><span class="n">t</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span><span class="o">-&gt;</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">M</span><span class="p">:</span> <span class="n">M</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">M</span>
+</pre></div>
+</div>
+<p><strong>Q1 :</strong> Que détermine cette fonction ?</p>
+<p><strong>Q2 :</strong> Nous souhaitons déterminer son efficacité temporelle. Quel va être le paramètre en fonction duquel nous allons exprimer son temps d’exécution <span class="math notranslate nohighlight">\(T\)</span>?</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><p>La taille de la liste <code class="code docutils literal notranslate"><span class="pre">t</span></code> est le bon paramètre.</p>
+</div></blockquote>
+</div>
+<p><strong>Q3 :</strong> Créer une liste <code class="code docutils literal notranslate"><span class="pre">tests</span></code> qui contient des listes <code class="code docutils literal notranslate"><span class="pre">l_n</span></code> de <span class="math notranslate nohighlight">\(20\)</span> listes de <span class="math notranslate nohighlight">\(n\)</span> entiers pseudo-aléatoires compris entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(10^5\)</span>, pour <span class="math notranslate nohighlight">\(n\)</span> allant de <span class="math notranslate nohighlight">\(10\)</span> à <span class="math notranslate nohighlight">\(10000\)</span> par pas de <span class="math notranslate nohighlight">\(50\)</span>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+
+<span class="n">tests</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100000</span><span class="p">)</span> <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">tests</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Q4 :</strong> Tracer sur un graphique le temps d’exécution de la fonction <code class="code docutils literal notranslate"><span class="pre">minmax(t)</span></code> en fonction de la longueur de <code class="code docutils literal notranslate"><span class="pre">t</span></code>. Pour améliorer le rendu vous utiliserez la fonction <code class="code docutils literal notranslate"><span class="pre">traitement</span></code>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># On décore la fonction</span>
+<span class="nd">@timing</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">minmax</span><span class="p">(</span><span class="n">t</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span><span class="o">-&gt;</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">M</span><span class="p">:</span> <span class="n">M</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">M</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">traitement</span><span class="p">([</span><span class="n">minmax</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">l</span><span class="p">])</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Tps d&#39;exécution de minmax(t)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<a class="reference internal image-reference" href="_images/temps_minimax.png"><img alt="_images/temps_minimax.png" class="align-center" src="_images/temps_minimax.png" style="width: 512.0px; height: 384.0px;" /></a>
+</div>
+<p><strong>Q5 :</strong> D’après son graphe, comment varie <span class="math notranslate nohighlight">\(T(n)\)</span> en fonction de <span class="math notranslate nohighlight">\(n\)</span> ?</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(T(n)\)</span> semble être linéaire.</p>
+</div></blockquote>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="un-troisieme-exemple">
+<h3>Un troisième exemple<a class="headerlink" href="#un-troisieme-exemple" title="Permalink to this headline">¶</a></h3>
+<p><strong>Exercice :</strong> On considère la fonction suivante qui trie un tableau de nombres entiers :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tri_pi</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">rep</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">rep</span><span class="p">:</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">rep</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+             <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">rep</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p><strong>Q1 :</strong> Essayer cette fonction pour vous convaincre qu’elle trie bien un tableau.</p>
+<p><strong>Q2 :</strong> Nous souhaitons déterminer son efficacité temporelle. Quel va être le paramètre en fonction duquel nous allons exprimer son temps d’exécution <span class="math notranslate nohighlight">\(T\)</span>?</p>
+<p><strong>Q3 :</strong> Créer une liste <code class="code docutils literal notranslate"><span class="pre">tests</span></code> qui contient des listes <code class="code docutils literal notranslate"><span class="pre">l_n</span></code> de <span class="math notranslate nohighlight">\(20\)</span> listes de <span class="math notranslate nohighlight">\(n\)</span> entiers pseudo-aléatoires compris entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(100\)</span>, pour <span class="math notranslate nohighlight">\(n\)</span> allant de <span class="math notranslate nohighlight">\(10\)</span> à <span class="math notranslate nohighlight">\(2000\)</span> par pas de <span class="math notranslate nohighlight">\(100\)</span>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tests</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">tests</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Q4 :</strong> Tracer sur un graphique le temps d’exécution de la fonction <code class="code docutils literal notranslate"><span class="pre">tri_pi(t)</span></code> en fonction de la longueur de <code class="code docutils literal notranslate"><span class="pre">t</span></code>. Pour améliorer le rendu vous utiliserez la fonction <code class="code docutils literal notranslate"><span class="pre">traitement</span></code>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># On décore la fonction</span>
+
+<span class="nd">@timing</span>
+<span class="k">def</span> <span class="nf">tri_pi</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+    <span class="n">rep</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">rep</span><span class="p">:</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">rep</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+             <span class="k">if</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">rep</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># On prépare et on affiche le graphe</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">traitement</span><span class="p">([</span><span class="n">tri_pi</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">l</span><span class="p">])</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/temps_tri_pi.png"><img alt="_images/temps_tri_pi.png" class="align-center" src="_images/temps_tri_pi.png" style="width: 512.0px; height: 384.0px;" /></a>
+</div>
+<p><strong>Q5 :</strong> D’après son graphe, comment varie <span class="math notranslate nohighlight">\(T(n)\)</span> en fonction de <span class="math notranslate nohighlight">\(n\)</span> ?</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(T(n)\)</span>, c’est-à-dire être une fonction polynomiale de degré 2.</p>
+</div></blockquote>
+</div>
+<p><strong>Q6 :</strong> Le module <code class="code docutils literal notranslate"><span class="pre">numpy</span></code> offre une fonction qui permet de trouver le polynôme de degré 2 qui s’approche le plus de <span class="math notranslate nohighlight">\(T\)</span>. Voilà comment l’utiliser :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]],[</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="code docutils literal notranslate"><span class="pre">z</span></code> est un tableau qui contient les trois coefficients du polynôme que l’on cherche, et <code class="code docutils literal notranslate"><span class="pre">p</span></code> représente cette fonction. Les coefficients que l’on trouve dépendent de l’ordinateur sur lequel on fait trouner notre script.</p>
+<p>Modifier le code précédent pour tracer sur un même graphique la fonction <span class="math notranslate nohighlight">\(T\)</span> et la fonction <code class="code docutils literal notranslate"><span class="pre">p</span></code>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/tri_pi2.png"><img alt="_images/tri_pi2.png" class="align-center" src="_images/tri_pi2.png" style="width: 512.0px; height: 384.0px;" /></a>
+<p>Comme on ne voit presque aucune différence j’ai décalé les graphes pour obtenir :</p>
+<a class="reference internal image-reference" href="_images/tri_pi3.png"><img alt="_images/tri_pi3.png" class="align-center" src="_images/tri_pi3.png" style="width: 512.0px; height: 384.0px;" /></a>
+</div></blockquote>
+</div>
+<p><strong>Q7 :</strong> Utiliser la fonction <code class="code docutils literal notranslate"><span class="pre">p</span></code> pour estimer le temps nécessaire pour trier des tableaux de taille <span class="math notranslate nohighlight">\(10^5\)</span>, <span class="math notranslate nohighlight">\(10^6\)</span> et <span class="math notranslate nohighlight">\(10^8\)</span>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">p</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">)))</span>
+<span class="go">0:06:42.663611</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">p</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)))</span>
+<span class="go">11:11:14.948871</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">p</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">8</span><span class="p">)))</span>
+<span class="go">4661 days, 13:28:56.312128</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">4661</span> <span class="o">/</span><span class="mi">365</span>
+<span class="go">12.76986301369863</span>
+</pre></div>
+</div>
+<p>Autrement dit, il faudrait 12 ans pour trier un tableau de taille <span class="math notranslate nohighlight">\(10^8\)</span> sur mon ordinateur.</p>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "julien-stiker/TP-PTSIB-21-22",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="TP1.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">TP1 : La reprise</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          Par J.stiker<br/>
+        
+            &copy; droits d'auteur 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
