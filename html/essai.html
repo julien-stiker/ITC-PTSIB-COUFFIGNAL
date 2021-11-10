@@ -4,8 +4,9 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Les TP d’informatique en PTSI-B au lycée Coufignal &#8212; Les TP d informatique en PTSI-B</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>TP2 : Des modules, des tests et un peu de complexité &#8212; Les TP d informatique en PTSI-B</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -23,7 +24,7 @@
 
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,16 +43,17 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="TP1 : La reprise" href="TP1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -70,10 +72,6 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
@@ -83,11 +81,11 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
    Les TP d’informatique en PTSI-B au lycée Coufignal
   </a>
  </li>
@@ -144,9 +142,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/intro.rst"><button type="button"
+        <a class="dropdown-buttons" href="_sources/essai.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Télécharger le fichier source" data-toggle="tooltip"
-                data-placement="left">.rst</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimer au format PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -164,7 +162,7 @@
                 data-toggle="tooltip" data-placement="left" title="Dépôt source"><i
                     class="fab fa-github"></i>dépôt</button></a>
         <a class="issues-button"
-            href="https://github.com/julien-stiker/TP-PTSIB-21-22/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/julien-stiker/TP-PTSIB-21-22/issues/new?title=Issue%20on%20page%20%2Fessai.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Ouvrez un problème"><i class="fas fa-lightbulb"></i>signaler un problème</button></a>
         
@@ -180,11 +178,49 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/julien-stiker/TP-PTSIB-21-22/gh-pages?urlpath=tree/root/essai.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="lancement Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/julien-stiker/TP-PTSIB-21-22/blob/gh-pages/root/essai.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="lancement Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="lancement Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenu
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#les-modules">
+   Les modules
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -193,57 +229,54 @@
         
               <div>
                 
-  <div class="section" id="les-tp-d-informatique-en-ptsi-b-au-lycee-coufignal">
-<h1>Les TP d’informatique en PTSI-B au lycée Coufignal<a class="headerlink" href="#les-tp-d-informatique-en-ptsi-b-au-lycee-coufignal" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">art</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="gp">In [2]: </span><span class="n">tprint</span><span class="p">(</span><span class="s2">&quot;PTSI&quot;</span><span class="p">,</span> <span class="s2">&quot;alpha&quot;</span><span class="p">)</span>
-<span class="go">          _____                _____                    _____                    _____          </span>
-<span class="go">         /\    \              /\    \                  /\    \                  /\    \         </span>
-<span class="go">        /::\    \            /::\    \                /::\    \                /::\    \        </span>
-<span class="go">       /::::\    \           \:::\    \              /::::\    \               \:::\    \       </span>
-<span class="go">      /::::::\    \           \:::\    \            /::::::\    \               \:::\    \      </span>
-<span class="go">     /:::/\:::\    \           \:::\    \          /:::/\:::\    \               \:::\    \     </span>
-<span class="go">    /:::/__\:::\    \           \:::\    \        /:::/__\:::\    \               \:::\    \    </span>
-<span class="go">   /::::\   \:::\    \          /::::\    \       \:::\   \:::\    \              /::::\    \   </span>
-<span class="go">  /::::::\   \:::\    \        /::::::\    \    ___\:::\   \:::\    \    ____    /::::::\    \  </span>
-<span class="go"> /:::/\:::\   \:::\____\      /:::/\:::\    \  /\   \:::\   \:::\    \  /\   \  /:::/\:::\    \ </span>
-<span class="go">/:::/  \:::\   \:::|    |    /:::/  \:::\____\/::\   \:::\   \:::\____\/::\   \/:::/  \:::\____\</span>
-<span class="go">\::/    \:::\  /:::|____|   /:::/    \::/    /\:::\   \:::\   \::/    /\:::\  /:::/    \::/    /</span>
-<span class="go"> \/_____/\:::\/:::/    /   /:::/    / \/____/  \:::\   \:::\   \/____/  \:::\/:::/    / \/____/ </span>
-<span class="go">          \::::::/    /   /:::/    /            \:::\   \:::\    \       \::::::/    /          </span>
-<span class="go">           \::::/    /   /:::/    /              \:::\   \:::\____\       \::::/____/           </span>
-<span class="go">            \::/____/    \::/    /                \:::\  /:::/    /        \:::\    \           </span>
-<span class="go">             ~~           \/____/                  \:::\/:::/    /          \:::\    \          </span>
-<span class="go">                                                    \::::::/    /            \:::\    \         </span>
-<span class="go">                                                     \::::/    /              \:::\____\        </span>
-<span class="go">                                                      \::/    /                \::/    /        </span>
-<span class="go">                                                       \/____/                  \/____/         </span>
-<span class="go">                                                                                                </span>
-
-
-<span class="gp">In [3]: </span><span class="kn">from</span> <span class="nn">cowpy</span> <span class="kn">import</span> <span class="n">cow</span>
-
-<span class="gp">In [4]: </span><span class="n">cheese</span> <span class="o">=</span> <span class="n">cow</span><span class="o">.</span><span class="n">Moose</span><span class="p">()</span>
-
-<span class="gp">In [5]: </span><span class="n">msg</span> <span class="o">=</span> <span class="n">cheese</span><span class="o">.</span><span class="n">milk</span><span class="p">(</span><span class="s2">&quot;Welcome Bob!&quot;</span><span class="p">)</span>
-
-<span class="gp">In [6]: </span><span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<span class="go"> ______________ </span>
-<span class="go">&lt; Welcome Bob! &gt;</span>
-<span class="go"> -------------- </span>
-<span class="go">  \</span>
-<span class="go">   \   \_\_    _/_/</span>
-<span class="go">    \      \__/</span>
-<span class="go">           (oo)\_______</span>
-<span class="go">           (__)\       )\/\</span>
-<span class="go">               ||----w |</span>
-<span class="go">               ||     ||</span>
+  <section id="tp2-des-modules-des-tests-et-un-peu-de-complexite">
+<h1>TP2 : Des modules, des tests et un peu de complexité<a class="headerlink" href="#tp2-des-modules-des-tests-et-un-peu-de-complexite" title="Permalink to this headline">¶</a></h1>
+<div class="dropdown admonition note">
+<p class="admonition-title">Note</p>
+<p>The note body will be hidden!</p>
+</div>
+<section id="les-modules">
+<h2>Les modules<a class="headerlink" href="#les-modules" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight" id="equation-my-math-ref">
+<span class="eqno">()<a class="headerlink" href="#equation-my-math-ref" title="Permalink to this equation">¶</a></span>\[w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}\]</div>
+<div class="math notranslate nohighlight">
+\[
+  \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">essai</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="p">):</span>
+    <span class="k">return</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<div class="toctree-wrapper compound">
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cowpy</span> <span class="kn">import</span> <span class="n">cow</span>
+<span class="n">cheese</span> <span class="o">=</span> <span class="n">cow</span><span class="o">.</span><span class="n">Moose</span><span class="p">()</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="n">cheese</span><span class="o">.</span><span class="n">milk</span><span class="p">(</span><span class="s2">&quot;Welcome Bob!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ______________ 
+&lt; Welcome Bob! &gt;
+ -------------- 
+  \
+   \   \_\_    _/_/
+    \      \__/
+           (oo)\_______
+           (__)\       )\/\
+               ||----w |
+               ||     ||
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -268,27 +301,14 @@
               </div>
               
         
+        <div class='prev-next-bottom'>
             
 
-
-
-<div class='prev-next-bottom'>
-    
-     <div id="next">
-        <a class="right-next" href="TP1.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">TP1 : La reprise</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
+        </div>
         
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         
