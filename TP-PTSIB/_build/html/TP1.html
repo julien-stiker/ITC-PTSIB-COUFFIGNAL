@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TP1 : La reprise &#8212; Les TP d informatique en PTSI-B</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -24,7 +23,7 @@
 
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -43,15 +42,15 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="TP2 : Des modules, des tests et un peu de complexité" href="TP2.html" />
@@ -74,6 +73,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
@@ -83,7 +86,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -188,7 +191,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contenu
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#environnement-de-travail">
@@ -348,7 +351,7 @@
         
               <div>
                 
-  <section id="tp1-la-reprise">
+  <div class="section" id="tp1-la-reprise">
 <h1>TP1 : La reprise<a class="headerlink" href="#tp1-la-reprise" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -358,9 +361,9 @@
 <li><p>Réviser les bases de Python : Syntaxe, type, variables, branchements conditionnels, boucles et fonctions.</p></li>
 </ul>
 </div>
-<section class="html-toggle" id="environnement-de-travail">
+<div class="html-toggle section" id="environnement-de-travail">
 <h2>Environnement de travail<a class="headerlink" href="#environnement-de-travail" title="Permalink to this headline">¶</a></h2>
-<section id="dans-windows">
+<div class="section" id="dans-windows">
 <h3>Dans Windows<a class="headerlink" href="#dans-windows" title="Permalink to this headline">¶</a></h3>
 <p>Dans l’ordre :</p>
 <blockquote>
@@ -370,8 +373,8 @@
 <li><p>Dans ce dossier, créer un dossier TP1 qui contiendra les fichiers de ce TP.</p></li>
 </ol>
 </div></blockquote>
-</section>
-<section id="dans-l-idle">
+</div>
+<div class="section" id="dans-l-idle">
 <h3>Dans l’IDLE<a class="headerlink" href="#dans-l-idle" title="Permalink to this headline">¶</a></h3>
 <p>Lancez l’IDLE, Python 3. La fenêtre qui s’ouvre s’appelle <strong>“Python Shell”</strong> et ressemble peu ou prou à ça :</p>
 <a class="reference internal image-reference" href="_images/PythonShell.png"><img alt="_images/PythonShell.png" class="align-center" src="_images/PythonShell.png" style="width: 924.0px; height: 588.0px;" /></a>
@@ -512,8 +515,8 @@ s’appelle le <strong>“prompt”</strong> ou <strong>l”invite de commande�
 </pre></div>
 </div>
 <p>Enregistrez et exécutez le avec Python 3. Magique non ? Que signifie ce code d’après vous ?</p>
-</section>
-<section class="html-toggle" id="dans-spyder">
+</div>
+<div class="html-toggle section" id="dans-spyder">
 <h3>Dans Spyder<a class="headerlink" href="#dans-spyder" title="Permalink to this headline">¶</a></h3>
 <p>Lancez Spyder. La fenêtre qui s’ouvre ressemble à ça :</p>
 <a class="reference internal image-reference" href="_images/Spyder.jpg"><img alt="_images/Spyder.jpg" class="align-center" src="_images/Spyder.jpg" style="width: 931.1999999999999px; height: 571.1999999999999px;" /></a>
@@ -550,11 +553,11 @@ s’appelle le <strong>“prompt”</strong> ou <strong>l”invite de commande�
 <li><p><em>F5</em> : Exécuter.</p></li>
 </ul>
 </div>
-</section>
-</section>
-<section class="html-toggle" id="variables-et-affectations">
+</div>
+</div>
+<div class="html-toggle section" id="variables-et-affectations">
 <span id="toggle-test-link"></span><h2>Variables et Affectations<a class="headerlink" href="#variables-et-affectations" title="Permalink to this headline">¶</a></h2>
-<section id="litteraux">
+<div class="section" id="litteraux">
 <h3>Littéraux<a class="headerlink" href="#litteraux" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -585,8 +588,8 @@ s’appelle le <strong>“prompt”</strong> ou <strong>l”invite de commande�
 <li><p>Les dictionnaires <code class="code docutils literal notranslate"><span class="pre">dict</span></code></p></li>
 </ul>
 </div></blockquote>
-</section>
-<section id="id1">
+</div>
+<div class="section" id="id1">
 <h3>Variables et affectations<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>L’identifiant d’un objet est assez contraignant à utiliser. On a alors recourt aux variables.</p>
 <div class="admonition note">
@@ -675,7 +678,7 @@ s’appelle le <strong>“prompt”</strong> ou <strong>l”invite de commande�
 <span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-3-7ce9b32fbafc&gt;&quot;</span><span class="gt">, line </span><span class="mi">1</span>
 <span class="g g-Whitespace">    </span><span class="mi">2</span> <span class="o">=</span> <span class="n">a</span>
     <span class="o">^</span>
-<span class="ne">SyntaxError</span>: cannot assign to literal
+<span class="ne">SyntaxError</span>: cannot assign to literal here. Maybe you meant &#39;==&#39; instead of &#39;=&#39;?
 </pre></div>
 </div>
 </div>
@@ -802,9 +805,9 @@ s’appelle le <strong>“prompt”</strong> ou <strong>l”invite de commande�
 <p class="admonition-title">Solution</p>
 <p><code class="code docutils literal notranslate"><span class="pre">1</span></code></p>
 </div>
-</section>
-</section>
-<section class="html-toggle" id="types-de-donnees-simples">
+</div>
+</div>
+<div class="html-toggle section" id="types-de-donnees-simples">
 <span id="id2"></span><h2>Types de données simples<a class="headerlink" href="#types-de-donnees-simples" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -843,7 +846,7 @@ s’appelle le <strong>“prompt”</strong> ou <strong>l”invite de commande�
 <div><a class="reference internal image-reference" href="_images/ExplorateurDeVariables.png"><img alt="_images/ExplorateurDeVariables.png" class="align-center" src="_images/ExplorateurDeVariables.png" style="width: 656.0px; height: 270.0px;" /></a>
 </div></blockquote>
 </div>
-<section id="les-nombres">
+<div class="section" id="les-nombres">
 <h3>Les nombres<a class="headerlink" href="#les-nombres" title="Permalink to this headline">¶</a></h3>
 <p>En Python il y a essentiellement quatre types de nombres :</p>
 <blockquote>
@@ -928,8 +931,8 @@ s’appelle le <strong>“prompt”</strong> ou <strong>l”invite de commande�
 <li><p>Les flottants sont utiles pour repr ́esenter des grandeurs physiques par exemple comme la vitesse, la temperature, le temps, etc…, dont seuls les premiers chiffres sont significatifs.</p></li>
 </ul>
 </div>
-</section>
-<section id="chaines-de-caracteres">
+</div>
+<div class="section" id="chaines-de-caracteres">
 <h3>Chaînes de caractères<a class="headerlink" href="#chaines-de-caracteres" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1116,8 +1119,8 @@ s’appelle le <strong>“prompt”</strong> ou <strong>l”invite de commande�
 </pre></div>
 </div>
 </div>
-</section>
-<section id="les-booleens">
+</div>
+<div class="section" id="les-booleens">
 <h3>Les booléens<a class="headerlink" href="#les-booleens" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1229,8 +1232,8 @@ s’appelle le <strong>“prompt”</strong> ou <strong>l”invite de commande�
 </div>
 </div></blockquote>
 </div>
-</section>
-<section id="conversion-de-types">
+</div>
+<div class="section" id="conversion-de-types">
 <h3>Conversion de types<a class="headerlink" href="#conversion-de-types" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1253,9 +1256,9 @@ float(True) ; int(False) ; str(1.23) ; bool(1.23) ; float(False)
 </pre></div>
 </div>
 </div></blockquote>
-</section>
-</section>
-<section class="html-toggle" id="entrees-sorties">
+</div>
+</div>
+<div class="html-toggle section" id="entrees-sorties">
 <h2>Entrées-sorties<a class="headerlink" href="#entrees-sorties" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1333,10 +1336,10 @@ float(True) ; int(False) ; str(1.23) ; bool(1.23) ; float(False)
 </pre></div>
 </div>
 </div>
-</section>
-<section id="structures-de-controle">
+</div>
+<div class="section" id="structures-de-controle">
 <h2>Structures de contrôle<a class="headerlink" href="#structures-de-controle" title="Permalink to this headline">¶</a></h2>
-<section id="instruction-conditionnelle">
+<div class="section" id="instruction-conditionnelle">
 <h3>Instruction conditionnelle<a class="headerlink" href="#instruction-conditionnelle" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1484,8 +1487,8 @@ On ne mélange pas les espaces et les tabulations !</p>
 </div>
 </div></blockquote>
 </div>
-</section>
-<section id="boucle-while">
+</div>
+<div class="section" id="boucle-while">
 <h3>Boucle <code class="code docutils literal notranslate"><span class="pre">while</span></code><a class="headerlink" href="#boucle-while" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1623,8 +1626,8 @@ Le modifier pour obtenir la division euclidienne de <code class="code docutils l
 </div>
 </div></blockquote>
 </div>
-</section>
-<section id="boucle-for">
+</div>
+<div class="section" id="boucle-for">
 <h3>Boucle <code class="code docutils literal notranslate"><span class="pre">for</span></code><a class="headerlink" href="#boucle-for" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1749,11 +1752,11 @@ Le modifier pour obtenir la division euclidienne de <code class="code docutils l
 </div>
 </div></blockquote>
 </div>
-</section>
-</section>
-<section id="les-fonctions">
+</div>
+</div>
+<div class="section" id="les-fonctions">
 <h2>Les fonctions<a class="headerlink" href="#les-fonctions" title="Permalink to this headline">¶</a></h2>
-<section id="definition-et-appels">
+<div class="section" id="definition-et-appels">
 <h3>Définition et appels<a class="headerlink" href="#definition-et-appels" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2082,8 +2085,8 @@ Voici un exemple de docstring :</p>
 <p class="admonition-title">Note</p>
 <p>Une fonction peut renvoyer des données de tout <code class="code docutils literal notranslate"><span class="pre">type</span></code>.</p>
 </div>
-</section>
-<section id="arguments">
+</div>
+<div class="section" id="arguments">
 <h3>Arguments<a class="headerlink" href="#arguments" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2314,8 +2317,8 @@ Voici un exemple de docstring :</p>
 </div>
 </div></blockquote>
 </div>
-</section>
-<section id="les-lambda">
+</div>
+<div class="section" id="les-lambda">
 <h3>Les lambda<a class="headerlink" href="#les-lambda" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2333,11 +2336,11 @@ Voici un exemple de docstring :</p>
 </pre></div>
 </div>
 </div>
-</section>
-</section>
-<section id="types-de-donnees-composees">
+</div>
+</div>
+<div class="section" id="types-de-donnees-composees">
 <h2>Types de données composées<a class="headerlink" href="#types-de-donnees-composees" title="Permalink to this headline">¶</a></h2>
-<section id="les-listes">
+<div class="section" id="les-listes">
 <h3>Les listes<a class="headerlink" href="#les-listes" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2403,26 +2406,26 @@ Voici un exemple de docstring :</p>
 
 <span class="gp">In [174]: </span><span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
 <span class="gh">Out[174]: </span><span class="go"></span>
-<span class="go">[-87,</span>
-<span class="go"> 75,</span>
-<span class="go"> 6,</span>
-<span class="go"> -62,</span>
-<span class="go"> 12,</span>
-<span class="go"> -71,</span>
-<span class="go"> 66,</span>
-<span class="go"> -64,</span>
-<span class="go"> -99,</span>
+<span class="go">[-72,</span>
 <span class="go"> 54,</span>
-<span class="go"> -55,</span>
+<span class="go"> -98,</span>
+<span class="go"> 61,</span>
+<span class="go"> 11,</span>
+<span class="go"> 42,</span>
+<span class="go"> 67,</span>
+<span class="go"> -14,</span>
 <span class="go"> 37,</span>
-<span class="go"> 81,</span>
-<span class="go"> 98,</span>
-<span class="go"> 33,</span>
-<span class="go"> -70,</span>
-<span class="go"> 79,</span>
+<span class="go"> 39,</span>
+<span class="go"> 46,</span>
+<span class="go"> -6,</span>
+<span class="go"> -60,</span>
+<span class="go"> 74,</span>
+<span class="go"> 12,</span>
+<span class="go"> 41,</span>
 <span class="go"> -88,</span>
-<span class="go"> -44,</span>
-<span class="go"> -4]</span>
+<span class="go"> 12,</span>
+<span class="go"> -89,</span>
+<span class="go"> 96]</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -2801,8 +2804,8 @@ Voici un exemple de docstring :</p>
 </div>
 </div></blockquote>
 </div>
-</section>
-<section id="les-tuples">
+</div>
+<div class="section" id="les-tuples">
 <h3>Les tuples<a class="headerlink" href="#les-tuples" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3003,7 +3006,7 @@ entre 0 et 1. Elle est accessible après avoir fait <code class="code docutils l
 <span class="gp">   .....: </span>
 
 <span class="gp">In [219]: </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimation de pi/4 (</span><span class="si">{}</span><span class="s2">) : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">4.0</span><span class="p">,</span><span class="n">echantillons_dans_le_cercle</span><span class="o">/</span><span class="n">M</span><span class="p">))</span>
-<span class="go">Estimation de pi/4 (0.7853981633974483) : 0.792</span>
+<span class="go">Estimation de pi/4 (0.7853981633974483) : 0.769</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -3012,8 +3015,8 @@ entre 0 et 1. Elle est accessible après avoir fait <code class="code docutils l
 <p class="admonition-title">Note</p>
 <p>L’avantage d’un tuple sur une liste est qu’il est <a class="reference external" href="https://docs.python.org/3/glossary.html#term-hashable">hashable</a> .</p>
 </div>
-</section>
-<section id="les-dictionnaires">
+</div>
+<div class="section" id="les-dictionnaires">
 <h3>Les dictionnaires<a class="headerlink" href="#les-dictionnaires" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3268,9 +3271,9 @@ entre 0 et 1. Elle est accessible après avoir fait <code class="code docutils l
 </div>
 </div></blockquote>
 </div>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -3295,16 +3298,36 @@ entre 0 et 1. Elle est accessible après avoir fait <code class="code docutils l
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">Les TP d’informatique en PTSI-B au lycée Coufignal</a>
-    <a class='right-next' id="next-link" href="TP2.html" title="next page">TP2 : Des modules, des tests et un peu de complexité</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Les TP d’informatique en PTSI-B au lycée Coufignal</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="TP2.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">TP2 : Des modules, des tests et un peu de complexité</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

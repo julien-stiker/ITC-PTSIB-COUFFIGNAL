@@ -1,5 +1,4 @@
 
-
 ****************************************************
 TP2 : Des modules, des tests et un peu de complexité
 ****************************************************
@@ -103,7 +102,7 @@ Des exemples de modules
    
    La première simule un tirage avec répétition (on remet l'objet tiré avant de retirer) alors que la seconde simule un tirage sans répétition (comme si on tirer les éléments en même temps).
 
-**Exercice :** Ecrire une fonction :code:`chifoumi()` qui retourne un élément au hasard de la liste :code:`liste = [ "Papier", "Caillou", "Ciseaux"]`. 
+**Exercice :** Ecrire une fonction :code:`chifoumi()` qui retourne un élément au hasard de la liste :code:`liste = [ "Pierre", "Caillou", "Ciseaux"]`. 
 
 
 .. admonition:: Solution
