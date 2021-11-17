@@ -1990,7 +1990,7 @@ Les listes
 **Exercice :** Essayer les méthodes :code:`append`, :code:`extend`, :code:`count`, :code:`insert`, :code:`remove`, :code:`reverse` et :code:`sort`, après avoir lu leur documentation grâce à :code:`help(list)`.
 
 
-**Exercice :** Ecrire une fonction une fonction :code:`swap(l:list, i:int, j:int)` qui ne retourne rien, mais qui échange dans la liste :code:`l` les éléménts en position :code:`i` et :code`j` , après avoir vérifié que :code:`i`et :code:`j` sont des indices valables.
+**Exercice :** Ecrire une procédure :code:`swap(l:list, i:int, j:int)` , i.e. une fonction qui ne retourne rien, mais qui échange dans la liste :code:`l` les éléménts en position :code:`i` et :code:`j` , après avoir vérifié que :code:`i` et :code:`j` sont des indices valables.
 
 
 

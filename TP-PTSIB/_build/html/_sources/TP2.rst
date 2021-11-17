@@ -48,7 +48,7 @@ Généralités
 
 .. note:: Les importations de modules doivent se faire au début de votre fichier principal, à raison d'une importation par ligne.
 
-    Le nom de certains modules étant très long on peut les importer avec un nom plus petit en utilisant :code:`as`:
+    Le nom de certains modules étant très longs on peut les importer avec un nom plus petit en utilisant :code:`as`:
     
     .. code-block:: python
     
@@ -56,7 +56,7 @@ Généralités
         
     Dans ca cas on préfixera le nom des fonctions par :code:`mnl`.
     
-    Comme un module peut comporter un nombre très important de fonctions, et qu'il peut arriver que vous n'ayez besoin que de l'une ou l'autre, il est possible de n'importe que celles dont vous avez besoin :
+    Comme un module peut comporter un nombre très important de fonctions, et qu'il peut arriver que vous n'ayez besoin que de l'une ou l'autre, il est possible de n'importer que celles dont vous avez besoin :
     
     .. code-block:: python
     
@@ -102,7 +102,7 @@ Des exemples de modules
    
    La première simule un tirage avec répétition (on remet l'objet tiré avant de retirer) alors que la seconde simule un tirage sans répétition (comme si on tirer les éléments en même temps).
 
-**Exercice :** Ecrire une fonction :code:`chifoumi()` qui retourne un élément au hasard de la liste :code:`liste = [ "Pierre", "Caillou", "Ciseaux"]`. 
+**Exercice :** Ecrire une fonction :code:`chifoumi()` qui retourne un élément au hasard de la liste :code:`liste = [ "Papier", "Caillou", "Ciseaux"]`. 
 
 
 .. admonition:: Solution
@@ -113,7 +113,7 @@ Des exemples de modules
             from random import choice
             
             def chifoumi()->str:
-                liste = [ "Pierre", "Caillou", "Ciseaux"]
+                liste = [ "Papier", "Caillou", "Ciseaux"]
                 return choice(liste)
                 
             chifoumi()
