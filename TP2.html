@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>TP2 : Des modules, des tests et un peu de complexité &#8212; Les TP d informatique en PTSI-B</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -23,7 +24,7 @@
 
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,15 +43,15 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="TP1 : La reprise" href="TP1.html" />
@@ -72,10 +73,6 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
@@ -85,7 +82,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -190,7 +187,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contenu
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#utiliser-des-modules">
@@ -247,7 +244,7 @@
         
               <div>
                 
-  <div class="section" id="tp2-des-modules-des-tests-et-un-peu-de-complexite">
+  <section id="tp2-des-modules-des-tests-et-un-peu-de-complexite">
 <h1>TP2 : Des modules, des tests et un peu de complexité<a class="headerlink" href="#tp2-des-modules-des-tests-et-un-peu-de-complexite" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -258,9 +255,9 @@
 <li><p>Avoir des notions de la complexité de ses algorithmes.</p></li>
 </ul>
 </div>
-<div class="html-toggle section" id="utiliser-des-modules">
+<section class="html-toggle" id="utiliser-des-modules">
 <h2>Utiliser des modules<a class="headerlink" href="#utiliser-des-modules" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="generalites">
+<section id="generalites">
 <h3>Généralités<a class="headerlink" href="#generalites" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -289,12 +286,12 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Les importations de modules doivent se faire au début de votre fichier principal, à raison d’une importation par ligne.</p>
-<p>Le nom de certains modules étant très long on peut les importer avec un nom plus petit en utilisant <code class="code docutils literal notranslate"><span class="pre">as</span></code>:</p>
+<p>Le nom de certains modules étant très longs on peut les importer avec un nom plus petit en utilisant <code class="code docutils literal notranslate"><span class="pre">as</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">module_au_nom_trop_long</span> <span class="k">as</span> <span class="nn">mnl</span>
 </pre></div>
 </div>
 <p>Dans ca cas on préfixera le nom des fonctions par <code class="code docutils literal notranslate"><span class="pre">mnl</span></code>.</p>
-<p>Comme un module peut comporter un nombre très important de fonctions, et qu’il peut arriver que vous n’ayez besoin que de l’une ou l’autre, il est possible de n’importe que celles dont vous avez besoin :</p>
+<p>Comme un module peut comporter un nombre très important de fonctions, et qu’il peut arriver que vous n’ayez besoin que de l’une ou l’autre, il est possible de n’importer que celles dont vous avez besoin :</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">cube</span>
 </pre></div>
 </div>
@@ -308,8 +305,8 @@
 </div>
 <a class="reference internal image-reference" href="_images/antigravity.png"><img alt="_images/antigravity.png" class="align-center" src="_images/antigravity.png" style="width: 414.40000000000003px; height: 470.40000000000003px;" /></a>
 <p>Vous pouvez essayer d’importer le même module pour voir ce qui se passe.</p>
-</div>
-<div class="section" id="des-exemples-de-modules">
+</section>
+<section id="des-exemples-de-modules">
 <h3>Des exemples de modules<a class="headerlink" href="#des-exemples-de-modules" title="Permalink to this headline">¶</a></h3>
 <p><strong>Le module :</strong> <code class="code docutils literal notranslate"><span class="pre">random</span></code></p>
 <div class="admonition note">
@@ -325,19 +322,19 @@
 <p class="admonition-title">Solution</p>
 <p>La première simule un tirage avec répétition (on remet l’objet tiré avant de retirer) alors que la seconde simule un tirage sans répétition (comme si on tirer les éléments en même temps).</p>
 </div>
-<p><strong>Exercice :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">chifoumi()</span></code> qui retourne un élément au hasard de la liste <code class="code docutils literal notranslate"><span class="pre">liste</span> <span class="pre">=</span> <span class="pre">[</span> <span class="pre">&quot;Pierre&quot;,</span> <span class="pre">&quot;Caillou&quot;,</span> <span class="pre">&quot;Ciseaux&quot;]</span></code>.</p>
+<p><strong>Exercice :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">chifoumi()</span></code> qui retourne un élément au hasard de la liste <code class="code docutils literal notranslate"><span class="pre">liste</span> <span class="pre">=</span> <span class="pre">[</span> <span class="pre">&quot;Papier&quot;,</span> <span class="pre">&quot;Caillou&quot;,</span> <span class="pre">&quot;Ciseaux&quot;]</span></code>.</p>
 <div class="dropdown tip admonition">
 <p class="admonition-title">Solution</p>
 <blockquote>
 <div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">choice</span>
 
 <span class="gp">In [2]: </span><span class="k">def</span> <span class="nf">chifoumi</span><span class="p">()</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-<span class="gp">   ...: </span>    <span class="n">liste</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;Pierre&quot;</span><span class="p">,</span> <span class="s2">&quot;Caillou&quot;</span><span class="p">,</span> <span class="s2">&quot;Ciseaux&quot;</span><span class="p">]</span>
+<span class="gp">   ...: </span>    <span class="n">liste</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;Papier&quot;</span><span class="p">,</span> <span class="s2">&quot;Caillou&quot;</span><span class="p">,</span> <span class="s2">&quot;Ciseaux&quot;</span><span class="p">]</span>
 <span class="gp">   ...: </span>    <span class="k">return</span> <span class="n">choice</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
 <span class="gp">   ...: </span>
 
 <span class="gp">In [3]: </span><span class="n">chifoumi</span><span class="p">()</span>
-<span class="gh">Out[3]: </span><span class="go">&#39;Ciseaux&#39;</span>
+<span class="gh">Out[3]: </span><span class="go">&#39;Papier&#39;</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -394,13 +391,13 @@
 <span class="gp">   ...: </span>
 
 <span class="gp">In [7]: </span><span class="n">time_it</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
-<span class="gh">Out[7]: </span><span class="go">0.37254129198845476</span>
+<span class="gh">Out[7]: </span><span class="go">0.6617403749999999</span>
 
 <span class="gp">In [8]: </span><span class="n">time_it</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">)</span>
-<span class="gh">Out[8]: </span><span class="go">3.73250687494874</span>
+<span class="gh">Out[8]: </span><span class="go">6.661141375</span>
 
 <span class="gp">In [9]: </span><span class="n">time_it</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span>
-<span class="gh">Out[9]: </span><span class="go">0.03671329200733453</span>
+<span class="gh">Out[9]: </span><span class="go">0.06568212499999859</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -453,9 +450,9 @@
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="des-tests">
+</section>
+</section>
+<section id="des-tests">
 <h2>Des tests<a class="headerlink" href="#des-tests" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -588,8 +585,8 @@
 <p><strong>Exercice :</strong> Ecrire un jeu de tests pour la fonction <code class="code docutils literal notranslate"><span class="pre">is_palindrome</span></code> que vous avez programmée dans le TP1.</p>
 <p><strong>Exercice :</strong> Ecrire un jeu de tests pour la fonction <code class="code docutils literal notranslate"><span class="pre">largest_growing_sub_list</span></code> que vous avez programmée dans le TP1.</p>
 <p><strong>Exercice :</strong> Ecrire un jeu de tests pour la fonction <code class="code docutils literal notranslate"><span class="pre">creat_dict_pos</span></code> que vous avez programmée dans le TP1.</p>
-</div>
-<div class="section" id="un-peu-de-complexite">
+</section>
+<section id="un-peu-de-complexite">
 <h2>Un peu de complexité<a class="headerlink" href="#un-peu-de-complexite" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -680,7 +677,7 @@
 </div></blockquote>
 <p>Donc il faut environ 30 secondes pour calculer <code class="code docutils literal notranslate"><span class="pre">ma_fonction_a_mesurer(10**7)</span></code>.</p>
 </div>
-<div class="section" id="un-premier-exemple">
+<section id="un-premier-exemple">
 <h3>Un premier exemple<a class="headerlink" href="#un-premier-exemple" title="Permalink to this headline">¶</a></h3>
 <p><strong>Exercice :</strong> Voici deux fonctions qui calculent la même chose :</p>
 <blockquote>
@@ -756,8 +753,8 @@
 </div></blockquote>
 </div>
 </div></blockquote>
-</div>
-<div class="section" id="un-second-exemple">
+</section>
+<section id="un-second-exemple">
 <h3>Un second exemple<a class="headerlink" href="#un-second-exemple" title="Permalink to this headline">¶</a></h3>
 <p><strong>Exercice :</strong> On considère la fonction suivante :</p>
 <blockquote>
@@ -829,8 +826,8 @@
 </div></blockquote>
 </div>
 </div></blockquote>
-</div>
-<div class="section" id="un-troisieme-exemple">
+</section>
+<section id="un-troisieme-exemple">
 <h3>Un troisième exemple<a class="headerlink" href="#un-troisieme-exemple" title="Permalink to this headline">¶</a></h3>
 <p><strong>Exercice :</strong> On considère la fonction suivante qui trie un tableau de nombres entiers :</p>
 <blockquote>
@@ -931,9 +928,9 @@
 <p>Autrement dit, il faudrait 12 ans pour trier un tableau de taille <span class="math notranslate nohighlight">\(10^8\)</span> sur mon ordinateur.</p>
 </div>
 </div></blockquote>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -958,27 +955,15 @@
               </div>
               
         
+        <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="TP1.html" title="previous page">TP1 : La reprise</a>
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="TP1.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">TP1 : La reprise</p>
-            </div>
-        </a>
-    </div>
-
-</div>
+        </div>
         
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         
