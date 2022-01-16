@@ -5,14 +5,14 @@ TP4 : Récursivité
 
 .. note:: **Les objectifs du TP :**
 
-* Écrire des algorithmes récursifs  
-* Mettre en oeuvre la mémoïsation 
+    * Écrire des algorithmes récursifs  
+    * Mettre en oeuvre la mémoïsation 
        
 
 .. rst-class:: html-toggle
 
 Ceux qu'il faut avoir programmés une fois
-======================================
+============================================
 
 
 **Question 1 :** Écrire une fonction :code:`exp1(a,n)` qui prend comme arguments un nombre flottant :code:`a` et un entier :code:`n` et qui retourne :math:`a^n`, en utilisant l'opérateur puissance de Python. Écrire une deuxième fonction récursive :code:`exp2(a,n)`, qui retourne encore :math:`a^n`, et qui exploite la relation :math:`a^n = a\times a^{n-1}`.
@@ -43,7 +43,7 @@ Ceux qu'il faut avoir programmés une fois
 
     .. math:: u_{n+1} = \sqrt{u_n v_n} \text{ et }v_{n+1}=\dfrac{1}{2}\left(u_n+v_n\right).
 
-    Écrire deux fonctions récursives :code:`seq_u(n)` et :code:`seq_v(n)` qui retourne respectivement les valeurs de :math:`u_n` et :math:`v_n`.    
+    Écrire deux fonctions récursives :code:`seq_u(n,a,b)` et :code:`seq_v(n,a,b)` qui retourne respectivement les valeurs de :math:`u_n` et :math:`v_n`.    
 
 
 **Question 4 :** Pour dénombrer :math:`\mathbb{N}\times\mathbb{N}`, on peut utiliser la fonction de Cantor pour numéroter les éléments de :math:`\mathbb{N}\times\mathbb{N}` de la manière illustrée sur la figure suivante :
@@ -68,7 +68,7 @@ Ceux qu'il faut avoir programmés une fois
 
 
 
-.. _toggle-test-link:
+
 
 De beaux dessins
 ================================================================
@@ -125,7 +125,7 @@ De beaux dessins
            :width: 640 px
            :scale: 60 %
            :alt: Sierpinski
-           :align: left
+           :align: center
 
          .. image:: sierpinski_2.png
        	   :height: 480 px
@@ -139,7 +139,7 @@ De beaux dessins
            :width: 640 px
            :scale: 60 %
            :alt: Sierpinski
-           :align: left
+           :align: center
 
 	 .. image:: sierpinski_4.png
        	   :height: 480 px
@@ -151,7 +151,7 @@ De beaux dessins
 
      Tous les triangles sont équilatéraux.
 
-.. _toggle-test-link:
+
 
 
 Mémoïsation

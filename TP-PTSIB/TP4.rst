@@ -5,14 +5,14 @@ TP4 : Récursivité
 
 .. note:: **Les objectifs du TP :**
 
-* Écrire des algorithmes récursifs  
-* Mettre en oeuvre la mémoïsation 
+    * Écrire des algorithmes récursifs  
+    * Mettre en oeuvre la mémoïsation 
        
 
 .. rst-class:: html-toggle
 
 Ceux qu'il faut avoir programmés une fois
-======================================
+============================================
 
 
 **Question 1 :** Écrire une fonction :code:`exp1(a,n)` qui prend comme arguments un nombre flottant :code:`a` et un entier :code:`n` et qui retourne :math:`a^n`, en utilisant l'opérateur puissance de Python. Écrire une deuxième fonction récursive :code:`exp2(a,n)`, qui retourne encore :math:`a^n`, et qui exploite la relation :math:`a^n = a\times a^{n-1}`.
@@ -68,7 +68,7 @@ Ceux qu'il faut avoir programmés une fois
 
 
 
-.. _toggle-test-link:
+
 
 De beaux dessins
 ================================================================
@@ -151,7 +151,7 @@ De beaux dessins
 
      Tous les triangles sont équilatéraux.
 
-.. _toggle-test-link:
+
 
 
 Mémoïsation
