@@ -228,11 +228,11 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>Les objectifs du TP :</strong></p>
-</div>
 <ul class="simple">
 <li><p>Écrire des algorithmes récursifs</p></li>
 <li><p>Mettre en oeuvre la mémoïsation</p></li>
 </ul>
+</div>
 <div class="html-toggle section" id="ceux-qu-il-faut-avoir-programmes-une-fois">
 <h2>Ceux qu’il faut avoir programmés une fois<a class="headerlink" href="#ceux-qu-il-faut-avoir-programmes-une-fois" title="Permalink to this headline">¶</a></h2>
 <p><strong>Question 1 :</strong> Écrire une fonction <code class="code docutils literal notranslate"><span class="pre">exp1(a,n)</span></code> qui prend comme arguments un nombre flottant <code class="code docutils literal notranslate"><span class="pre">a</span></code> et un entier <code class="code docutils literal notranslate"><span class="pre">n</span></code> et qui retourne <span class="math notranslate nohighlight">\(a^n\)</span>, en utilisant l’opérateur puissance de Python. Écrire une deuxième fonction récursive <code class="code docutils literal notranslate"><span class="pre">exp2(a,n)</span></code>, qui retourne encore <span class="math notranslate nohighlight">\(a^n\)</span>, et qui exploite la relation <span class="math notranslate nohighlight">\(a^n = a\times a^{n-1}\)</span>.</p>
@@ -253,7 +253,7 @@
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[u_{n+1} = \sqrt{u_n v_n} \text{ et }v_{n+1}=\dfrac{1}{2}\left(u_n+v_n\right).\]</div>
-<p>Écrire deux fonctions récursives <code class="code docutils literal notranslate"><span class="pre">seq_u(n)</span></code> et <code class="code docutils literal notranslate"><span class="pre">seq_v(n)</span></code> qui retourne respectivement les valeurs de <span class="math notranslate nohighlight">\(u_n\)</span> et <span class="math notranslate nohighlight">\(v_n\)</span>.</p>
+<p>Écrire deux fonctions récursives <code class="code docutils literal notranslate"><span class="pre">seq_u(n,a,b)</span></code> et <code class="code docutils literal notranslate"><span class="pre">seq_v(n,a,b)</span></code> qui retourne respectivement les valeurs de <span class="math notranslate nohighlight">\(u_n\)</span> et <span class="math notranslate nohighlight">\(v_n\)</span>.</p>
 </div></blockquote>
 <p><strong>Question 4 :</strong> Pour dénombrer <span class="math notranslate nohighlight">\(\mathbb{N}\times\mathbb{N}\)</span>, on peut utiliser la fonction de Cantor pour numéroter les éléments de <span class="math notranslate nohighlight">\(\mathbb{N}\times\mathbb{N}\)</span> de la manière illustrée sur la figure suivante :</p>
 <blockquote>
@@ -265,7 +265,7 @@
 <p><strong>Question 6 :</strong> Dans cet exercice on représente les ensembles d’entiers par des listes d’entiers deux à deux distincts. Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">list_of_subset(E)</span></code> qui prend comme argument un ensemble et qui retourne l’ensemble de ses sous-ensembles. On pourra remarquer que si <span class="math notranslate nohighlight">\(E\)</span> est un ensemble et si <span class="math notranslate nohighlight">\(a\in E\)</span>, alors les sous-ensembles de <span class="math notranslate nohighlight">\(E\)</span> sont ceux de <span class="math notranslate nohighlight">\(E\setminus\{a\}\)</span>, et ceux de <span class="math notranslate nohighlight">\(E\setminus\{a\}\)</span> auxquels on ajoute <span class="math notranslate nohighlight">\(a\)</span>.</p>
 </div>
 <div class="section" id="de-beaux-dessins">
-<span id="toggle-test-link"></span><h2>De beaux dessins<a class="headerlink" href="#de-beaux-dessins" title="Permalink to this headline">¶</a></h2>
+<h2>De beaux dessins<a class="headerlink" href="#de-beaux-dessins" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Voici le code d’une fonction qui permet de tracer un cercle de centre <span class="math notranslate nohighlight">\((x,y)\)</span> et de rayon <span class="math notranslate nohighlight">\(r&gt;0\)</span> :</p>
@@ -298,16 +298,16 @@
 <p><strong>Question 3 :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">sierpinski(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span>, et qui permet d’obtenir les figures suivantes pour <span class="math notranslate nohighlight">\(n=1,2,3\)</span> et <span class="math notranslate nohighlight">\(4\)</span> :</p>
 <blockquote>
 <div><blockquote>
-<div><a class="reference internal image-reference" href="_images/sierpinski_1.png"><img alt="Sierpinski" class="align-left" src="_images/sierpinski_1.png" style="width: 384.0px; height: 288.0px;" /></a>
+<div><a class="reference internal image-reference" href="_images/sierpinski_1.png"><img alt="Sierpinski" class="align-center" src="_images/sierpinski_1.png" style="width: 384.0px; height: 288.0px;" /></a>
 <a class="reference internal image-reference" href="_images/sierpinski_2.png"><img alt="Sierpinski" class="align-center" src="_images/sierpinski_2.png" style="width: 384.0px; height: 288.0px;" /></a>
-<a class="reference internal image-reference" href="_images/sierpinski_3.png"><img alt="Sierpinski" class="align-left" src="_images/sierpinski_3.png" style="width: 384.0px; height: 288.0px;" /></a>
+<a class="reference internal image-reference" href="_images/sierpinski_3.png"><img alt="Sierpinski" class="align-center" src="_images/sierpinski_3.png" style="width: 384.0px; height: 288.0px;" /></a>
 <a class="reference internal image-reference" href="_images/sierpinski_4.png"><img alt="Sierpinski" class="align-center" src="_images/sierpinski_4.png" style="width: 384.0px; height: 288.0px;" /></a>
 </div></blockquote>
 <p>Tous les triangles sont équilatéraux.</p>
 </div></blockquote>
 </div>
 <div class="section" id="memoisation">
-<span id="id1"></span><h2>Mémoïsation<a class="headerlink" href="#memoisation" title="Permalink to this headline">¶</a></h2>
+<h2>Mémoïsation<a class="headerlink" href="#memoisation" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Nous pouvons diminuer les coûts temporels et spatiaux d’une fonction aux appels récursifs multiples en enregistrant les calculs déjà effectués dans une mémoire cache. Nous allons appliquer ce principe au calcul récursif du <span class="math notranslate nohighlight">\(n\)</span>-ième terme de la suite de Fibonacci.</p>
