@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>TP4 : Récursivité &#8212; Les TP d informatique en PTSI-B</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -23,7 +24,7 @@
 
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,15 +43,15 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="TP2 : Des modules, des tests et un peu de complexité" href="TP2.html" />
@@ -72,10 +73,6 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
@@ -85,7 +82,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -195,7 +192,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contenu
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ceux-qu-il-faut-avoir-programmes-une-fois">
@@ -223,7 +220,7 @@
         
               <div>
                 
-  <div class="section" id="tp4-recursivite">
+  <section id="tp4-recursivite">
 <h1>TP4 : Récursivité<a class="headerlink" href="#tp4-recursivite" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -233,38 +230,194 @@
 <li><p>Mettre en oeuvre la mémoïsation</p></li>
 </ul>
 </div>
-<div class="html-toggle section" id="ceux-qu-il-faut-avoir-programmes-une-fois">
-<h2>Ceux qu’il faut avoir programmés une fois<a class="headerlink" href="#ceux-qu-il-faut-avoir-programmes-une-fois" title="Permalink to this headline">¶</a></h2>
-<p><strong>Question 1 :</strong> Écrire une fonction <code class="code docutils literal notranslate"><span class="pre">exp1(a,n)</span></code> qui prend comme arguments un nombre flottant <code class="code docutils literal notranslate"><span class="pre">a</span></code> et un entier <code class="code docutils literal notranslate"><span class="pre">n</span></code> et qui retourne <span class="math notranslate nohighlight">\(a^n\)</span>, en utilisant l’opérateur puissance de Python. Écrire une deuxième fonction récursive <code class="code docutils literal notranslate"><span class="pre">exp2(a,n)</span></code>, qui retourne encore <span class="math notranslate nohighlight">\(a^n\)</span>, et qui exploite la relation <span class="math notranslate nohighlight">\(a^n = a\times a^{n-1}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<dl>
+<dt>Si l’on souhaite écrire une fonction qui calcule <span class="math notranslate nohighlight">\(n!\)</span> , au lieu de calculer tous les produits on peut écrire, pour <span class="math notranslate nohighlight">\(n&gt;1\)</span>, que <span class="math notranslate nohighlight">\(n!=n\times (n-1)!\)</span> et <span class="math notranslate nohighlight">\(1!=1\)</span>. Autrement dit, si <span class="math notranslate nohighlight">\(f\)</span> est cette fonction alors elle vérifie :</dt><dd><p><span class="math notranslate nohighlight">\(f(n)=n\times f(n-1)\)</span> si <span class="math notranslate nohighlight">\(n&gt;1\)</span> et <span class="math notranslate nohighlight">\(f(1)=1\)</span> .</p>
+<p>On pourrait donc l’écrire :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorielle</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="n">factorielle</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Calculer de cette manière s’appelle la <em>récursivité</em>, la fonction s’appelle elle-même.</p>
+<p>Une fonction récursive commence toujours par traiter ce qu’on appelle les <em>conditions d’ârret</em>, dans notre exemple il n’y en a qu’une, mais il peut y en avoir plusieurs.</p>
+<p>En utilisant le décorateur suivant, vous pourrez observer les appels successifs d’une fonction récursive :</p>
 <blockquote>
-<div><p>Écrire une troisième fonction <code class="code docutils literal notranslate"><span class="pre">exp3(a,n)</span></code>, qui retourne toujours <span class="math notranslate nohighlight">\(a^n\)</span>, en exploitant la relation :</p>
-<div class="math notranslate nohighlight">
-\[a^n = a^{\lfloor n/2\rfloor}\times a^{n-\lfloor n/2\rfloor}\]</div>
-<p>Écrire une quatrième fonction <code class="code docutils literal notranslate"><span class="pre">exp4(a,n)</span></code>,qui retourne toujours <span class="math notranslate nohighlight">\(a^n\)</span> , en exploitant la même relation, mais en exploitant en plus que :</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}n-\lfloor n/2\rfloor = \left\{\begin{array}{lr} \lfloor n/2\rfloor&amp;\text{ si $n$ est pair.}\\ \lfloor n/2\rfloor + 1&amp;\text{ sinon.}\end{array}\right.\end{split}\]</div>
-<p>Modifier vos codes pour compter le nombre d’appels récursifs des fonctions.</p>
-<p>Utiliser la fonction <code class="code docutils literal notranslate"><span class="pre">perf_counter()</span></code> du module <code class="code docutils literal notranslate"><span class="pre">time</span></code> pour mesurer le temps d’exécution de ces quatre fonctions par calculer <span class="math notranslate nohighlight">\(2^{900}\)</span>. Qu’observez-vous ?</p>
-<p>Comparer le nombre d’appels récursifs des trois fonctions <code class="code docutils literal notranslate"><span class="pre">exp2(a,n)</span></code>, <code class="code docutils literal notranslate"><span class="pre">exp3(a,n)</span></code> et <code class="code docutils literal notranslate"><span class="pre">exp4(a,n)</span></code>, pour <span class="math notranslate nohighlight">\(a=2\)</span> et <span class="math notranslate nohighlight">\(n=100,\,200,\,400,\,800\)</span>.</p>
-<p>Évaluez le nombre de multiplication effectuées par <code class="code docutils literal notranslate"><span class="pre">exp3(a,n)</span></code> et <code class="code docutils literal notranslate"><span class="pre">exp4(a,n)</span></code>.</p>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trace</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">wrapper</span><span class="o">.</span><span class="n">space</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> &lt;− </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">)))</span>
+        <span class="n">wrapper</span><span class="o">.</span><span class="n">space</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">wrapper</span><span class="o">.</span><span class="n">space</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">wrapper</span><span class="o">.</span><span class="n">space</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> −&gt; </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">val</span>
+    <span class="n">wrapper</span><span class="o">.</span><span class="n">space</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+</pre></div>
+</div>
 </div></blockquote>
-<p><strong>Question 2 :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">sum_digits(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span> et qui retourne la somme de ses chiffres.</p>
-<p><strong>Question 3 :</strong> Soient <span class="math notranslate nohighlight">\(a\)</span> et <span class="math notranslate nohighlight">\(b\)</span> deux flottants, on définit les suites <span class="math notranslate nohighlight">\((u_n)\)</span> par <span class="math notranslate nohighlight">\(u_0= a\)</span> et <span class="math notranslate nohighlight">\(v_0=b\)</span> et pour <span class="math notranslate nohighlight">\(n\geq 0\)</span> :</p>
+<p>Prenons un exemple. Considérons la fonction suivante :</p>
+<blockquote>
+<div></div></blockquote>
+<p>Que calcule cette fonction ?
+Avec le décorateur on obtient :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">s &lt;− (4, 3)</span>
+<span class="go"> s &lt;− (3, 4)</span>
+<span class="go">  s &lt;− (2, 5)</span>
+<span class="go">   s &lt;− (1, 6)</span>
+<span class="go">    s &lt;− (0, 7)</span>
+<span class="go">    s −&gt; 7</span>
+<span class="go">   s −&gt; 7</span>
+<span class="go">  s −&gt; 7</span>
+<span class="go"> s −&gt; 7</span>
+<span class="go">s −&gt; 7</span>
+</pre></div>
+</div>
+<p>Vous pouvez voir que la fonction a été appelée cinq fois, avant de retourner cinq fois… On dit qu’on a <em>empilé</em> les appels. Le nombres d’appels peut-être très important, ce qui est un problème. C’est ce qui nous intéressera à la fin du TP.</p>
+</div>
+<section class="html-toggle" id="ceux-qu-il-faut-avoir-programmes-une-fois">
+<h2>Ceux qu’il faut avoir programmés une fois<a class="headerlink" href="#ceux-qu-il-faut-avoir-programmes-une-fois" title="Permalink to this headline">¶</a></h2>
+<p><strong>Exercice :</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Écrire une fonction <code class="code docutils literal notranslate"><span class="pre">exp1(a,n)</span></code> qui prend comme arguments un nombre flottant <code class="code docutils literal notranslate"><span class="pre">a</span></code> et un entier <code class="code docutils literal notranslate"><span class="pre">n</span></code> et qui retourne   <span class="math notranslate nohighlight">\(a^n\)</span>, en utilisant l’opérateur puissance de Python.</p></li>
+<li><p>Écrire une deuxième fonction récursive <code class="code docutils literal notranslate"><span class="pre">exp2(a,n)</span></code>, qui retourne encore       <span class="math notranslate nohighlight">\(a^n\)</span>, et qui exploite la relation <span class="math notranslate nohighlight">\(a^n = a\times a^{n-1}\)</span>.</p></li>
+<li><p>Écrire une troisième fonction <code class="code docutils literal notranslate"><span class="pre">exp3(a,n)</span></code>, qui retourne toujours <span class="math notranslate nohighlight">\(a^n\)</span>, en exploitant la relation :</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[a^n = a^{\lfloor n/2\rfloor}\times a^{n-\lfloor n/2\rfloor}\]</div>
+</div></blockquote>
+</li>
+<li><p>Écrire une quatrième fonction <code class="code docutils literal notranslate"><span class="pre">exp4(a,n)</span></code>,qui retourne toujours <span class="math notranslate nohighlight">\(a^n\)</span> , en exploitant la même relation, mais en exploitant en plus que :</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}n-\lfloor n/2\rfloor = \left\{\begin{array}{lr} \lfloor n/2\rfloor&amp;\text{ si $n$ est pair.}\\ \lfloor n/2\rfloor + 1&amp;\text{ sinon.}\end{array}\right.\end{split}\]</div>
+</div></blockquote>
+</li>
+<li><p>Modifier vos codes pour compter le nombre d’appels récursifs des fonctions.</p></li>
+<li><p>Utiliser la fonction <code class="code docutils literal notranslate"><span class="pre">perf_counter()</span></code> du module <code class="code docutils literal notranslate"><span class="pre">time</span></code> pour mesurer le temps d’exécution de ces quatre fonctions par calculer <span class="math notranslate nohighlight">\(2^{900}\)</span>. Qu’observez-vous ?</p></li>
+<li><p>Comparer le nombre d’appels récursifs des trois fonctions <code class="code docutils literal notranslate"><span class="pre">exp2(a,n)</span></code>, <code class="code docutils literal notranslate"><span class="pre">exp3(a,n)</span></code> et <code class="code docutils literal notranslate"><span class="pre">exp4(a,n)</span></code>, pour <span class="math notranslate nohighlight">\(a=2\)</span> et <span class="math notranslate nohighlight">\(n=100,\,200,\,400,\,800\)</span>.</p></li>
+<li><p>Évaluez le nombre de multiplication effectuées par <code class="code docutils literal notranslate"><span class="pre">exp3(a,n)</span></code> et <code class="code docutils literal notranslate"><span class="pre">exp4(a,n)</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">exp1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+      <span class="k">return</span> <span class="n">a</span><span class="o">**</span><span class="n">n</span>
+
+
+<span class="k">def</span> <span class="nf">exp2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+      <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rep</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="n">rep</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">exp2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">rep</span>
+
+<span class="k">def</span> <span class="nf">exp3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+      <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rep</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">rep</span> <span class="o">=</span> <span class="n">a</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">rep</span> <span class="o">=</span> <span class="n">exp3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">exp3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">rep</span>
+
+
+<span class="k">def</span> <span class="nf">exp4</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+      <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rep</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">rep</span> <span class="o">=</span> <span class="n">a</span>
+      <span class="k">elif</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rep</span> <span class="o">=</span> <span class="n">exp4</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="n">rep</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">exp4</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">rep</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">sum_digits(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span> et qui retourne la somme de ses chiffres.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_digits</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">10</span><span class="p">)</span><span class="o">+</span> <span class="n">sum_digits</span><span class="p">(</span><span class="n">n</span><span class="o">//</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rep</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Soient <span class="math notranslate nohighlight">\(a\)</span> et <span class="math notranslate nohighlight">\(b\)</span> deux flottants, on définit les suites <span class="math notranslate nohighlight">\((u_n)\)</span> par <span class="math notranslate nohighlight">\(u_0= a\)</span> et <span class="math notranslate nohighlight">\(v_0=b\)</span> et pour <span class="math notranslate nohighlight">\(n\geq 0\)</span> :</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[u_{n+1} = \sqrt{u_n v_n} \text{ et }v_{n+1}=\dfrac{1}{2}\left(u_n+v_n\right).\]</div>
 <p>Écrire deux fonctions récursives <code class="code docutils literal notranslate"><span class="pre">seq_u(n,a,b)</span></code> et <code class="code docutils literal notranslate"><span class="pre">seq_v(n,a,b)</span></code> qui retourne respectivement les valeurs de <span class="math notranslate nohighlight">\(u_n\)</span> et <span class="math notranslate nohighlight">\(v_n\)</span>.</p>
 </div></blockquote>
-<p><strong>Question 4 :</strong> Pour dénombrer <span class="math notranslate nohighlight">\(\mathbb{N}\times\mathbb{N}\)</span>, on peut utiliser la fonction de Cantor pour numéroter les éléments de <span class="math notranslate nohighlight">\(\mathbb{N}\times\mathbb{N}\)</span> de la manière illustrée sur la figure suivante :</p>
+<p><strong>Exercice :</strong> Pour dénombrer <span class="math notranslate nohighlight">\(\mathbb{N}\times\mathbb{N}\)</span>, on peut utiliser la fonction de Cantor pour numéroter les éléments de <span class="math notranslate nohighlight">\(\mathbb{N}\times\mathbb{N}\)</span> de la manière illustrée sur la figure suivante :</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/Pairing_Function.png"><img alt="pairing_function" class="align-center" src="_images/Pairing_Function.png" style="width: 264.0px; height: 264.0px;" /></a>
 <p>Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">pairing_function(x,y)</span></code> qui prend comme argument un élément <span class="math notranslate nohighlight">\((x,y)\in \mathbb{N}\times\mathbb{N}\)</span> et qui retourne son numéro.</p>
-<p>Écrire, de manière récursive, la fonction réciproque <code class="code docutils literal notranslate"><span class="pre">inv_pairing_function(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span> et qui retourne le couple <span class="math notranslate nohighlight">\((x,y)\)</span> dont il est le numéro.</p>
 </div></blockquote>
-<p><strong>Question 5 :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">binary_digits(n)</span></code> qui retourne la liste des chiffres de l’écriture binaire de l’entier <code class="code docutils literal notranslate"><span class="pre">n</span></code> passé en argument.</p>
-<p><strong>Question 6 :</strong> Dans cet exercice on représente les ensembles d’entiers par des listes d’entiers deux à deux distincts. Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">list_of_subset(E)</span></code> qui prend comme argument un ensemble et qui retourne l’ensemble de ses sous-ensembles. On pourra remarquer que si <span class="math notranslate nohighlight">\(E\)</span> est un ensemble et si <span class="math notranslate nohighlight">\(a\in E\)</span>, alors les sous-ensembles de <span class="math notranslate nohighlight">\(E\)</span> sont ceux de <span class="math notranslate nohighlight">\(E\setminus\{a\}\)</span>, et ceux de <span class="math notranslate nohighlight">\(E\setminus\{a\}\)</span> auxquels on ajoute <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pairing_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">pairing_function</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">pairing_function</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="de-beaux-dessins">
+</div></blockquote>
+</div>
+<p>Écrire, de manière récursive, la fonction réciproque <code class="code docutils literal notranslate"><span class="pre">inv_pairing_function(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span> et qui retourne le couple <span class="math notranslate nohighlight">\((x,y)\)</span> dont il est le numéro.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inv_pairing_function</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">inv_pairing_function</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice *Difficile* :</strong> Dans cet exercice on représente les ensembles d’entiers par des listes d’entiers deux à deux distincts. Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">list_of_subset(E)</span></code> qui prend comme argument un ensemble et qui retourne l’ensemble de ses sous-ensembles. On pourra remarquer que si <span class="math notranslate nohighlight">\(E\)</span> est un ensemble et si <span class="math notranslate nohighlight">\(a\in E\)</span>, alors les sous-ensembles de <span class="math notranslate nohighlight">\(E\)</span> sont ceux de <span class="math notranslate nohighlight">\(E\setminus\{a\}\)</span>, et ceux de <span class="math notranslate nohighlight">\(E\setminus\{a\}\)</span> auxquels on ajoute <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">subset</span><span class="p">(</span><span class="n">E</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">E</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="p">[[]]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">E1</span> <span class="o">=</span> <span class="n">subset</span><span class="p">(</span><span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="n">E2</span> <span class="o">=</span> <span class="p">[[</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">E1</span><span class="p">]</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="n">E1</span> <span class="o">+</span> <span class="n">E2</span>
+    <span class="k">return</span> <span class="n">rep</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</section>
+<section id="de-beaux-dessins">
 <h2>De beaux dessins<a class="headerlink" href="#de-beaux-dessins" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -287,15 +440,15 @@
 </pre></div>
 </div>
 </div>
-<p><strong>Question 1 :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">bubble1(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span>, et qui permet d’obtenir la figure suivante pour <span class="math notranslate nohighlight">\(n=5\)</span> :</p>
+<p><strong>Exercice :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">bubble1(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span>, et qui permet d’obtenir la figure suivante pour <span class="math notranslate nohighlight">\(n=5\)</span> :</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/Bubble_1.png"><img alt="bubble1(5)" class="align-center" src="_images/Bubble_1.png" style="width: 384.0px; height: 288.0px;" /></a>
 </div></blockquote>
-<p><strong>Question 2 :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">bubble2(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span>, et qui permet d’obtenir la figure suivante pour <span class="math notranslate nohighlight">\(n=5\)</span> :</p>
+<p><strong>Exercice :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">bubble2(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span>, et qui permet d’obtenir la figure suivante pour <span class="math notranslate nohighlight">\(n=5\)</span> :</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/Bubble_2.png"><img alt="bubble1(5)" class="align-center" src="_images/Bubble_2.png" style="width: 384.0px; height: 288.0px;" /></a>
 </div></blockquote>
-<p><strong>Question 3 :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">sierpinski(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span>, et qui permet d’obtenir les figures suivantes pour <span class="math notranslate nohighlight">\(n=1,2,3\)</span> et <span class="math notranslate nohighlight">\(4\)</span> :</p>
+<p><strong>Exercice :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">sierpinski(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span>, et qui permet d’obtenir les figures suivantes pour <span class="math notranslate nohighlight">\(n=1,2,3\)</span> et <span class="math notranslate nohighlight">\(4\)</span> :</p>
 <blockquote>
 <div><blockquote>
 <div><a class="reference internal image-reference" href="_images/sierpinski_1.png"><img alt="Sierpinski" class="align-center" src="_images/sierpinski_1.png" style="width: 384.0px; height: 288.0px;" /></a>
@@ -305,19 +458,34 @@
 </div></blockquote>
 <p>Tous les triangles sont équilatéraux.</p>
 </div></blockquote>
-</div>
-<div class="section" id="memoisation">
+</section>
+<section id="memoisation">
 <h2>Mémoïsation<a class="headerlink" href="#memoisation" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Nous pouvons diminuer les coûts temporels et spatiaux d’une fonction aux appels récursifs multiples en enregistrant les calculs déjà effectués dans une mémoire cache. Nous allons appliquer ce principe au calcul récursif du <span class="math notranslate nohighlight">\(n\)</span>-ième terme de la suite de Fibonacci.</p>
 </div>
-<p><strong>Question 1 :</strong> Écrire une fonction itérative <code class="code docutils literal notranslate"><span class="pre">fibo_it(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span> et qui retourne le <span class="math notranslate nohighlight">\(n\)</span>-ième terme de la suite de Fibonacci.</p>
-<p><strong>Question 2 :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">fibo_rec(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span> et qui retourne le <span class="math notranslate nohighlight">\(n\)</span>-ième terme de la suite de Fibonacci.</p>
-<p><strong>Question 3 :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">fibo_m(n)</span></code> qui tire profit de la mémoïsation. Pour cela vous allez utiliser une liste comme <code class="code docutils literal notranslate"><span class="pre">cache</span></code> pour stocker les résultats des calculs intermédiaires. Au départ vous initialiserez le cache avec les deux premiers termes de la suite : <code class="code docutils literal notranslate"><span class="pre">cache</span> <span class="pre">=</span> <span class="pre">[0,1]</span></code>. Ensuite avant de faire un appel récursif vous vérifierez si le terme que vous souhaitez calculer n’est pas déjà en cache.</p>
+<p><strong>Exercice :</strong> Écrire une fonction itérative <code class="code docutils literal notranslate"><span class="pre">fibo_it(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span> et qui retourne le <span class="math notranslate nohighlight">\(n\)</span>-ième terme de la suite de Fibonacci.</p>
+<p><strong>Exercice :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">fibo_rec(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span> et qui retourne le <span class="math notranslate nohighlight">\(n\)</span>-ième terme de la suite de Fibonacci.</p>
+<p><strong>Exercice :</strong> Écrire une fonction récursive <code class="code docutils literal notranslate"><span class="pre">fibo_m(n)</span></code> qui tire profit de la mémoïsation. Pour cela vous allez utiliser une liste comme <code class="code docutils literal notranslate"><span class="pre">cache</span></code> pour stocker les résultats des calculs intermédiaires. Au départ vous initialiserez le cache avec les deux premiers termes de la suite : <code class="code docutils literal notranslate"><span class="pre">cache</span> <span class="pre">=</span> <span class="pre">[0,1]</span></code>. Ensuite avant de faire un appel récursif vous vérifierez si le terme que vous souhaitez calculer n’est pas déjà en cache.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cache</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">fib_m</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">cache</span><span class="p">):</span> <span class="c1">#Si n est dans le cache, on a déjà calculé la valeur donc on la renvoie directement</span>
+        <span class="k">return</span> <span class="n">cache</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">else</span> <span class="p">:</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="n">fib_m</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib_m</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Je le sauvegarde pour ne pas le calculer 2 fois</span>
+        <span class="n">cache</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rep</span><span class="p">)</span> <span class="c1"># Je sauvegarde la valeur de fib calculée</span>
+        <span class="k">return</span> <span class="n">rep</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
 <p><strong>Question 4 :</strong> Écrire une fonction récursive avec mémoïsation <code class="code docutils literal notranslate"><span class="pre">fact_m(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span> et qui retourne <span class="math notranslate nohighlight">\(n!\)</span>.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -342,27 +510,15 @@
               </div>
               
         
+        <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="TP2.html" title="previous page">TP2 : Des modules, des tests et un peu de complexité</a>
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="TP2.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">TP2 : Des modules, des tests et un peu de complexité</p>
-            </div>
-        </a>
-    </div>
-
-</div>
+        </div>
         
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         
