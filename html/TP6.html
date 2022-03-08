@@ -1,0 +1,606 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>TP6 : Algorithmes gloutons &#8212; Les TP d informatique en PTSI-B</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="TP4 : Récursivité" href="TP4.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Les TP d informatique en PTSI-B</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Les TP d’informatique en PTSI-B au lycée Coufignal
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP1.html">
+   TP1 : La reprise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP2.html">
+   TP2 : Des modules, des tests et un peu de complexité
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP4.html">
+   TP4 : Récursivité
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   TP6 : Algorithmes gloutons
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Basculer la navigation" aria-controls="site-navigation"
+                title="Basculer la navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Téléchargez cette page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/TP6.rst"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Télécharger le fichier source" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimer au format PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/julien-stiker/TP-PTSIB-21-22"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Dépôt source"><i
+                    class="fab fa-github"></i>dépôt</button></a>
+        <a class="issues-button"
+            href="https://github.com/julien-stiker/TP-PTSIB-21-22/issues/new?title=Issue%20on%20page%20%2FTP6.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Ouvrez un problème"><i class="fas fa-lightbulb"></i>signaler un problème</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Mode plein écran"
+        title="Mode plein écran"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenu
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principe-des-algorithmes-glouton">
+   Principe des algorithmes glouton
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#le-voyageur-de-commerce">
+   Le voyageur de commerce
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#une-version-simplifiee">
+     Une version simplifiée
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rendu-de-monnaie">
+   Rendu de monnaie
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formation-d-un-comite-restreint-d-experts">
+   Formation d’un comité restreint d’experts
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <section id="tp6-algorithmes-gloutons">
+<h1>TP6 : Algorithmes gloutons<a class="headerlink" href="#tp6-algorithmes-gloutons" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Les objectifs du TP :</strong></p>
+<ul class="simple">
+<li><p>Concevoir des algorithmes gloutons pour résoudre des problèmes d’optimisation depuis un squelette.</p></li>
+<li><p>Se libérer du squelette pour avoit un code plus concis.</p></li>
+<li><p>Implémenter ces algorithmes en Python.</p></li>
+</ul>
+</div>
+<section id="principe-des-algorithmes-glouton">
+<h2>Principe des algorithmes glouton<a class="headerlink" href="#principe-des-algorithmes-glouton" title="Permalink to this headline">¶</a></h2>
+<p>Il existe une famille de problèmes dits <em>d’optimisation</em>. Voici quelques exemples :</p>
+<ul class="simple">
+<li><p>Une loutre est au bord d’une rivère en train de pêcher des poissons pour sa famille, les poissons ne pèsent pas tous le même poids et ont des valeurs caloriques différentes. La loutre veut <strong>maximiser</strong> le nombre de calories qu’elle va rapporter sachant qu’elle ne peut porter qu’au plus <span class="math notranslate nohighlight">\(10\)</span> kilos de poisson.</p></li>
+<li><p>Un voyageur de commerce doit organiser sa tourner et  passer voir chaqu’un de ses clients, qui se trouvent tous dans des villes différentes, puis rentrer chez lui. Il souhaite <strong>minimiser</strong> la longueur de son traget.</p></li>
+<li><p>Un distributeur automatique de boisson doit pouvoir rendre la monnaie aux clients. On souhaite <strong>minimiser</strong> le nombre de pièces utiliser.</p></li>
+<li><p>Un gymnase doit acceuillir différentes activités, chacune avec une durée spécifique. Il s’agit ici de <strong>maximiser</strong> le nombre d’activités proposées.</p></li>
+</ul>
+<p>Il existe plusieurs stratégies pour résoudre ce type de problème, parmi lesquelles : la programmation <em>dynamique</em> et les algorithmes <em>gloutons</em>. Nous traiterons la programmation dynamique plus tard et nous allons nous intéresser à la seconde stratégie.</p>
+<p>Un algorithme classique pour résoudre un problème d’optimisation repose sur le <strong>backtracking</strong>, qui consiste lorsque l’on est devant plusieurs possibilités à toutes les tester. Ainsi, pour chaque possibilité il faut la tester et si la solution générale n’a pas été trouvée il faut revenir en arrière pour en tester une autre.</p>
+<p>Un algorithme glouton, quant à lui, résoud un problème pas à pas en faisant localement le choix qu’il <strong>estime</strong> optimal, sans jamais revenir en arrière à tord ou à raison. Il <strong>espère</strong> ainsi trouver la solution globalement optimale. Pour se faire il doit disposer d’une relation de comparaison sur les choix possibles à chaque étape et d’une fonction de sélection de la meilleure.</p>
+<p>Plus précisément on doit disposer :</p>
+<ul class="simple">
+<li><p>d’un ensemble de candidats <code class="code docutils literal notranslate"><span class="pre">Candidats</span></code>;</p></li>
+<li><p>d’une fonction de sélection, <code class="code docutils literal notranslate"><span class="pre">select</span></code>, qui permet de choisir le meilleur candidat à ajouter à la solution;</p></li>
+<li><p>d’une fonction de vérification, <code class="code docutils literal notranslate"><span class="pre">verify</span></code>, qui vérifie si un ensemble de candidats est constructible;</p></li>
+<li><p>d’une fonction <code class="code docutils literal notranslate"><span class="pre">is_solution</span></code> qui teste si notre ensemble de candidats forme une solution.</p></li>
+</ul>
+<p>La stratégie gloutonne peut alors s’écrire :</p>
+<img alt="_images/skeleton_greedy_algorithm.png" class="align-center" src="_images/skeleton_greedy_algorithm.png" />
+<p>Dans certains cas cette stratégie donnera effectivement la solution optimale, on parle dans ce cas d’<strong>algorithme glouton exact</strong>, dans d’autres cas non, on parle alors d’<strong>heuristique gloutonne</strong>.</p>
+<p>Par exemple pour le problème de la loutre, imaginons que nous ayons le choix entre trois poissons <code class="code docutils literal notranslate"><span class="pre">Candidats</span> <span class="pre">=</span> <span class="pre">[(2,</span> <span class="pre">6),(4,</span> <span class="pre">10),(6,</span> <span class="pre">12)</span></code>, un poisson étant donné par un couple (poids en kg, calories en Mcal). Si la loutre ne peut pas découper (<em>fractionner</em>) les poissons, une stratégie gloutonne serait :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(select\)</span> retourne le poisson qui maximise le rapport énergie/poids parmi les Candidats.</p></li>
+<li><p><span class="math notranslate nohighlight">\(verify\)</span> vérifie que le la somme des poids des poissons sélectionnés est inférieur à <span class="math notranslate nohighlight">\(10\)</span> kilos.</p></li>
+<li><p><span class="math notranslate nohighlight">\(is\_solution\)</span> vérifie qu’il n’existe plus de poisson à ajouter à la sélection sans dépasser les dix kilos.</p></li>
+</ul>
+</div></blockquote>
+<p>Dans ca cas la solution construite ne sera pas optimale, en effet le premier poisson ajouté à la solution est le poisson <code class="code docutils literal notranslate"><span class="pre">(2,6)</span></code>, le second et dernier sera <code class="code docutils literal notranslate"><span class="pre">(4,10)</span></code>. La solution construite apportera <span class="math notranslate nohighlight">\(16\)</span> Mcal, alors que la solution optimale est donnée par <code class="code docutils literal notranslate"><span class="pre">[(4,</span> <span class="pre">10),(6,</span> <span class="pre">12)]</span></code>, qui apporte <span class="math notranslate nohighlight">\(22\)</span> Mcal.</p>
+<p>Si la loutre peut découper les poissons, la statégie donne une solution optimale.</p>
+<p>Il faut bien comprendre que ces problèmes d’optimisation sont très compliqué à résoudre exactement. Pour beaucoup d’entre eux, ils sont NP-complets, voir NP-difficiles. Si bien que l’on de connait pas d’algorithmes capables de donner la solution exacte en un temps raissonable (ils sont tous de complexité exponentielle). Donc trouver une “bonne solution” même si ce n’est pas la meilleure en un temps raisonnable est déjà très satisfaisant.</p>
+</section>
+<section id="le-voyageur-de-commerce">
+<h2>Le voyageur de commerce<a class="headerlink" href="#le-voyageur-de-commerce" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/travelling_salesman_problem.png" class="align-center" src="_images/travelling_salesman_problem.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Un voyageur de commerce doit organiser sa tourner et  passer voir chaqu’un de ses clients, qui se trouvent tous dans des villes différentes, puis rentrer chez lui. Il souhaite <strong>minimiser</strong> la longueur de son traget.</p>
+<blockquote>
+<div><p>Il est clair que localement une des meilleures solutions est toujours la prochaine ville la plus proche. La stratégie gloutonne sera donc :</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(select\)</span> retourne la ville la plus proche;</p></li>
+<li><p><span class="math notranslate nohighlight">\(verify\)</span> vérifie que la ville est accessible directement depuis la position actuelle du voyageur;</p></li>
+<li><p><span class="math notranslate nohighlight">\(is\_solution\)</span> vérifie que l’on est bien passé par toutes les villes et que l’on est bien rentré à la maison.</p></li>
+</ul>
+</div></blockquote>
+<p>Il est clair que l’algorithme glouton ne donnera pas toujours une solution optimale, rarement même. Mais il a l’avantage d’être assez rapide et assez simple à mettre en ouvre.</p>
+</div>
+<section id="une-version-simplifiee">
+<h3>Une version simplifiée<a class="headerlink" href="#une-version-simplifiee" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pour simplifier le problème nous supposerons, que toutes les villes sont reliées entre elles. Ce qui nous permettra de nous passer de la phase de vérification par la fonction <code class="code docutils literal notranslate"><span class="pre">verify</span></code>.</p>
+<p>On dispose comme entrée d’une liste <code class="code docutils literal notranslate"><span class="pre">villes</span></code> comportant des tuples correspondants au coordonnées cartésiennes des villes, ainsi que de l’indice de la ville de départ. Notre algoritme devra fournir la liste <code class="code docutils literal notranslate"><span class="pre">trajet</span></code> des indices des villes dans l’orde dans lequel il faut les visiter pour minimiser le trajet.</p>
+<p>Nous utiliserons un vecteur de marques pour représenter les candidats disponibles. On départ <code class="code docutils literal notranslate"><span class="pre">candidats</span> <span class="pre">=</span> <span class="pre">[True]</span> <span class="pre">*</span> <span class="pre">len(villes)</span></code>, lorsque la ville <code class="code docutils literal notranslate"><span class="pre">villes[i]`aura</span> <span class="pre">était</span> <span class="pre">visitée</span> <span class="pre">on</span> <span class="pre">modifiera</span>&#160; <span class="pre">:code:`candidats[i]</span> <span class="pre">=</span> <span class="pre">False</span></code>.</p>
+</div>
+<p><strong>Exercice :</strong> Ecrire une fonction de signature <code class="code docutils literal notranslate"><span class="pre">distance(pos1:</span> <span class="pre">tuple[float,float],</span> <span class="pre">pos2:</span> <span class="pre">tuple[float,float])-&gt;float</span></code>, qui à partir des coordonnées de deux villes retourne la distance qui les sépare.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+
+<span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">pos1</span><span class="p">,</span> <span class="n">pos2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">((</span><span class="n">pos1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">pos2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">pos1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">pos2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">select(pos:</span> <span class="pre">int,</span> <span class="pre">candidats:</span> <span class="pre">list[bool],</span> <span class="pre">villes:</span> <span class="pre">list[tuple[float,</span> <span class="pre">float]])-&gt;int</span></code>, qui retourne l’indice dans <code class="code docutils literal notranslate"><span class="pre">villes</span></code> de la ville la plus proche de notre position actuelle qui soit encore non visitée.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">select</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">candidats</span><span class="p">,</span> <span class="n">villes</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">villes</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">candidats</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="c1"># On recherche la première ville non visitée</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">d_min</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">villes</span><span class="p">[</span><span class="n">pos</span><span class="p">],</span> <span class="n">villes</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">i_min</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">candidats</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">d_tmp</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">villes</span><span class="p">[</span><span class="n">pos</span><span class="p">],</span> <span class="n">villes</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">d_tmp</span> <span class="o">&lt;</span> <span class="n">d_min</span><span class="p">:</span>
+                <span class="n">d_min</span> <span class="o">=</span> <span class="n">d_tmp</span>
+                <span class="n">i_min</span> <span class="o">=</span> <span class="n">j</span>
+
+    <span class="k">return</span> <span class="n">i_min</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">is_solution(trajet:</span> <span class="pre">list[int],</span> <span class="pre">nb_villes:</span> <span class="pre">int)-&gt;bool</span></code> qui teste si notre trajet est complet (il contient toutes les villes et sont dernier élement est notre point de départ).</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_solution</span><span class="p">(</span><span class="n">trajet</span><span class="p">,</span> <span class="n">nb_villes</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajet</span><span class="p">)</span> <span class="o">==</span> <span class="n">nb_villes</span><span class="o">+</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">trajet</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="n">trajet</span><span class="p">[</span><span class="n">nb_villes</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Ecrire la fonction <code class="code docutils literal notranslate"><span class="pre">trajet_glouton(villes:</span> <span class="pre">list[tuple[float,float]],</span> <span class="pre">start:</span> <span class="pre">int)-&gt;list[int]</span></code> qui met en place notre stratégie gloutonne pour résoudre le problème.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trajet_glouton</span><span class="p">(</span><span class="n">villes</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">villes</span><span class="p">)</span>
+    <span class="n">candidats</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="n">candidats</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">trajet</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">start</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">is_solution</span><span class="p">(</span><span class="n">trajet</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">sum</span><span class="p">(</span><span class="n">candidats</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">candidats</span><span class="p">,</span> <span class="n">villes</span><span class="p">)</span>
+        <span class="n">candidats</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">trajet</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">candidats</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">trajet</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">trajet</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Modifier la fonction <code class="code docutils literal notranslate"><span class="pre">trajet_glouton</span></code> pour qu’elle retourne en plus la distance parcourue lors du trajet. Il faudra aussi modifier la fonction <code class="code docutils literal notranslate"><span class="pre">select</span></code>. Essayez votre fonction sur plusieurs exemples.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trajet_glouton</span><span class="p">(</span><span class="n">villes</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">villes</span><span class="p">)</span>
+    <span class="n">candidats</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="n">candidats</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">trajet</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">start</span>
+    <span class="n">d_totale</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">is_solution</span><span class="p">(</span><span class="n">trajet</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">sum</span><span class="p">(</span><span class="n">candidats</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">pos</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">candidats</span><span class="p">,</span> <span class="n">villes</span><span class="p">)</span>
+        <span class="n">d_totale</span> <span class="o">+=</span> <span class="n">d</span>
+        <span class="n">candidats</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">trajet</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">candidats</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">trajet</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+            <span class="n">d_totale</span> <span class="o">+=</span> <span class="n">distance</span><span class="p">(</span><span class="n">villes</span><span class="p">[</span><span class="n">pos</span><span class="p">],</span><span class="n">villes</span><span class="p">[</span><span class="n">start</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">trajet</span><span class="p">,</span> <span class="n">d_totale</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice à traiter à la maison :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">brute_force(villes:</span> <span class="pre">list[tuple[float,</span> <span class="pre">float]],</span> <span class="pre">start:</span> <span class="pre">int)-&gt;trajet</span></code> qui résoud le probblème du voyageur de commerce par <em>force brute</em>, c’est-à-dire en essayant toutes les permutations de l’ensemble des villes.</p>
+<p><strong>Exercice à traiter à la maison :</strong> Utiliser le décorateur <code class="code docutils literal notranslate"><span class="pre">&#64;timing</span></code> du TP2 pour comparer les temps d’exécution des deux algorithme sur des listes de villes tirées au hasard.</p>
+</section>
+</section>
+<section id="rendu-de-monnaie">
+<h2>Rendu de monnaie<a class="headerlink" href="#rendu-de-monnaie" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/np_complete.png"><img alt="_images/np_complete.png" class="align-center" src="_images/np_complete.png" style="width: 640px; height: 414px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Un distributeur de boisson doit pouvoir rendre la monnaie, et on souhaite qu’il le fasse en utilisant le moins de pièces possible. Si nous souhaitons utiliser le moins de pièces possible, il semble que la meilleure stratégie locale est d’utiliser à chaque étape la pièce de plus grande valeur que l’on puisse rendre.</p>
+<p>On suppose que l’on dispose d’une liste <code class="code docutils literal notranslate"><span class="pre">pieces</span></code> qui contient des listes de deux éléments <code class="code docutils literal notranslate"><span class="pre">[val,</span> <span class="pre">nb]</span></code> qui représentent la valeur de la pièce et le nombre dont on en dispose. On supposera de plus que les valeurs des pièces sont triées dans l’ordre décroissant. Par exemple :</p>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">pieces</span> <span class="pre">=</span> <span class="pre">[[2,3],[1,2],[0.5,10],[0.2,3],[0.1,10],[0.05,</span> <span class="pre">10],[0.02,</span> <span class="pre">2],[0.01,</span> <span class="pre">5]]</span></code></p>
+</div></blockquote>
+<p>Le but est de retourner un tuple constitué de la liste des pièces à utiliser pour rendre la monnaie et du code <span class="math notranslate nohighlight">\(1\)</span>, ou de la liste vide et du code <span class="math notranslate nohighlight">\(-1\)</span> si c’est imposssible.</p>
+<p>Ce problème est NP-complet dans le cas général, c’est-à-dire avec un ensemble de pièces de valeurs quelqconques. Dans le cas d’un système monaitaire canonique notre algorithme sera optimal.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Vous le savez Python nous réserve bien des surprises lorsque l’on travaille avec des flottants… Aussi je vous conseille de travailler en centimes pour pouvoir utiliser des <code class="code docutils literal notranslate"><span class="pre">int</span></code>…</p>
+</div>
+<p><strong>Exercice :</strong> Ecrire la fonction <code class="code docutils literal notranslate"><span class="pre">is_solution(S:</span> <span class="pre">list[float],</span> <span class="pre">a_rendre:</span> <span class="pre">float)-&gt;bool</span></code> qui teste si la liste <code class="code docutils literal notranslate"><span class="pre">S</span></code> est une solution du problème qui consiste à rendre <code class="code docutils literal notranslate"><span class="pre">a_rendre</span></code>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_solution</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">a_rendre</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a_rendre</span> <span class="o">==</span> <span class="nb">sum</span><span class="p">([</span><span class="mi">100</span><span class="o">*</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">S</span><span class="p">])</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Ecrire la fonction <code class="code docutils literal notranslate"><span class="pre">select(pieces:</span> <span class="pre">list[list[float,int]]):-&gt;int</span></code> qui retourne l’indice de la pièce de plus grande valeur dont nous disposons encore, s’il existe et <span class="math notranslate nohighlight">\(-1\)</span> sinon.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">select</span><span class="p">(</span><span class="n">pieces</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">rep</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Ecrire la fonction <code class="code docutils literal notranslate"><span class="pre">verify(S:</span> <span class="pre">list[float],</span> <span class="pre">a_rendre:</span> <span class="pre">float,</span> <span class="pre">val_piece):-&gt;bool</span></code> qui teste si l’on peut adjoindre la pièce sélectionnée par <code class="code docutils literal notranslate"><span class="pre">select</span></code> à notre solution.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">a_rendre</span><span class="p">,</span> <span class="n">val_piece</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a_rendre</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">val_piece</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">S</span><span class="p">])</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Ecrire la fonction <code class="code docutils literal notranslate"><span class="pre">rendu_glouton(pieces:</span> <span class="pre">list[float],</span> <span class="pre">a_rendre:</span> <span class="pre">float):-&gt;tuple[list[float],int]</span></code> qui résoud le problème du rendu de monnaie.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rendu_glouton</span><span class="p">(</span><span class="n">pieces</span><span class="p">,</span> <span class="n">a_rendre</span><span class="p">):</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">a_rendre</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">a_rendre</span>
+    <span class="n">possible</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">is_solution</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">a_rendre</span><span class="p">)</span> <span class="ow">and</span> <span class="n">possible</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="n">pieces</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">possible</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">verify</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">a_rendre</span><span class="p">,</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="n">S</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">possible</span><span class="p">:</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="n">S</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="p">[],</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">rep</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Réécrire une fonction <code class="code docutils literal notranslate"><span class="pre">rendu_glouton2(pieces:</span> <span class="pre">list[float],</span> <span class="pre">a_rendre:</span> <span class="pre">float):-&gt;tuple[list[float],int]</span></code> qui utilise le même principe d’algorithme glouton mais qui se détache du squelette rigide que je vous ai présenté, et qui tient en une dizaine de lignes.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rendu_glouton2</span><span class="p">(</span><span class="n">pieces</span><span class="p">,</span> <span class="n">a_rendre</span><span class="p">):</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">a_rendre</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">a_rendre</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">piece</span> <span class="ow">in</span> <span class="n">pieces</span><span class="p">:</span>
+        <span class="k">while</span> <span class="nb">int</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">piece</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="n">a_rendre</span> <span class="ow">and</span> <span class="n">piece</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">piece</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">S</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">piece</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">a_rendre</span> <span class="o">=</span> <span class="n">a_rendre</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">piece</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="o">==</span> <span class="n">a_rendre</span><span class="p">:</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="n">S</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="p">[],</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">S</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</section>
+<section id="formation-d-un-comite-restreint-d-experts">
+<h2>Formation d’un comité restreint d’experts<a class="headerlink" href="#formation-d-un-comite-restreint-d-experts" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/Stormtrooper-Feature.jpg"><img alt="_images/Stormtrooper-Feature.jpg" class="align-center" src="_images/Stormtrooper-Feature.jpg" style="width: 480.0px; height: 250.0px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Darth Vader souhaite envoyé un commando spécial de troopers sur Kashyyyk exécuter une mission top-secrète. Cette mission ne pourra réussir que si les troopers selectionnés présentent en groupe un ensemble de compétences spécifiques dont celles des forest-troopers, des incinerator-troopers, des scout-troopers, des snipers-trooper, des SCAR-troopers etc…</p>
+<p>Pour des raison de confidentialité et de furtivité une fois déployé sur place le commando doit être formé du moins de troopers possible.</p>
+<p>Il faut l’aider à choisir parmi un certain nombres de candidats le commando le plus restreint possible qui présentera toutes les compétences recquises par la mission.</p>
+<p>Les compétences nécessaires seront numérotées de <span class="math notranslate nohighlight">\(0\)</span> à <span class="math notranslate nohighlight">\(n\)</span>. Et chaque candidat sera représenté par l’ensemble de ses compétences, une partie de <span class="math notranslate nohighlight">\(E\)</span>. On suppose que l’ensemble des compétences de tous les candidats réunis recouvre l’ensemble de celles souhaitées.</p>
+<p>Ce problème est un problème de <em>recouvrement</em>.</p>
+<p>On peut facilement élaborer une stratégie gloutonne pour le résoudre. Si <span class="math notranslate nohighlight">\(E = \{0,\dots,n\}\)</span> et si l’on dispose des troopers <span class="math notranslate nohighlight">\((S_j)_{1\leq j\leq p}\)</span> tels que <span class="math notranslate nohighlight">\(E = \bigcup_{j=1}^p S_j\)</span> , on forme notre commando <span class="math notranslate nohighlight">\(C\)</span> en choisissant à chaque étape un <span class="math notranslate nohighlight">\(S_j\)</span> qui recouvre le plus de compétences qui nous manquent encore, c’est-à-dire tel que <span class="math notranslate nohighlight">\(Card(S_j\cap \left(E\setminus\bigcup_{i\in C}S_i\right)\)</span> soit maximal.</p>
+<p>Pour implémenter l’algorithme on utilisera des <code class="code docutils literal notranslate"><span class="pre">set</span></code>, c’est-à-dire des ensembles en python.</p>
+<p>On déclare des ensensembles en posant par exemple <code class="code docutils literal notranslate"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">set([2,3,4])</span></code> et <code class="code docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">set([1,3,5])</span></code>, les opérations de base sont la réunion, l’intersection et la différence qu’on obtiten respectivement par <code class="code docutils literal notranslate"><span class="pre">A</span> <span class="pre">| B</span></code>, <code class="code docutils literal notranslate"><span class="pre">A</span> <span class="pre">&amp;</span> <span class="pre">B</span></code> et <code class="code docutils literal notranslate"><span class="pre">A</span> <span class="pre">-</span> <span class="pre">B</span></code>.</p>
+</div>
+<p><strong>Exercice :</strong> Ecrire la fonction <code class="code docutils literal notranslate"><span class="pre">commando_vader(E:</span> <span class="pre">set,</span> <span class="pre">T:</span> <span class="pre">list[set])-&gt;list[int]</span></code>, qui prend comme argument l’ensemble <code class="code docutils literal notranslate"><span class="pre">E</span></code> a recouvrir, et la liste <code class="code docutils literal notranslate"><span class="pre">T</span></code> des troopers <span class="math notranslate nohighlight">\(S_j\)</span> dont on dispose et qui retourne la liste des matricules (indices) des troopers formant le commando.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">select_next_trooper</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+      <span class="n">dispo</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)))</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+      <span class="n">j_max</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dispo</span><span class="p">)</span>
+      <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">U</span> <span class="o">&amp;</span> <span class="n">T</span><span class="p">[</span><span class="n">j_max</span><span class="p">])</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dispo</span><span class="p">:</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">U</span> <span class="o">&amp;</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">tmp</span> <span class="o">&gt;</span> <span class="n">m</span><span class="p">:</span>
+                  <span class="n">m</span> <span class="o">=</span> <span class="n">tmp</span>
+                  <span class="n">j_max</span> <span class="o">=</span> <span class="n">i</span>
+      <span class="k">return</span> <span class="n">j_max</span>
+
+
+<span class="k">def</span> <span class="nf">commando_vader</span><span class="p">(</span><span class="n">E</span><span class="p">:</span> <span class="nb">set</span><span class="p">,</span> <span class="n">T</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">set</span><span class="p">])</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+      <span class="n">needed_comp</span> <span class="o">=</span> <span class="n">E</span>
+      <span class="n">commando</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">needed_comp</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="n">j</span> <span class="o">=</span> <span class="n">select_next_trooper</span><span class="p">(</span><span class="n">needed_comp</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">commando</span><span class="p">)</span>
+          <span class="nb">print</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+          <span class="n">needed_comp</span> <span class="o">=</span> <span class="n">needed_comp</span> <span class="o">-</span> <span class="n">T</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+          <span class="n">commando</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">commando</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "julien-stiker/TP-PTSIB-21-22",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="TP4.html" title="previous page">TP4 : Récursivité</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Par J.stiker<br/>
+        
+            &copy; droits d'auteur 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
