@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TP6 : Algorithmes gloutons &#8212; Les TP d informatique en PTSI-B</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -24,7 +23,7 @@
 
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -43,17 +42,17 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="TP8 : Algorithmes gloutons" href="TP8.html" />
     <link rel="prev" title="TP4 : Récursivité" href="TP4.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -73,6 +72,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
@@ -82,7 +85,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -110,6 +113,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    TP6 : Algorithmes gloutons
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP8.html">
+   TP8 : Algorithmes gloutons
   </a>
  </li>
 </ul>
@@ -197,7 +205,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contenu
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#principe-des-algorithmes-glouton">
@@ -237,7 +245,7 @@
         
               <div>
                 
-  <section id="tp6-algorithmes-gloutons">
+  <div class="section" id="tp6-algorithmes-gloutons">
 <h1>TP6 : Algorithmes gloutons<a class="headerlink" href="#tp6-algorithmes-gloutons" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -248,7 +256,7 @@
 <li><p>Implémenter ces algorithmes en Python.</p></li>
 </ul>
 </div>
-<section id="principe-des-algorithmes-glouton">
+<div class="section" id="principe-des-algorithmes-glouton">
 <h2>Principe des algorithmes glouton<a class="headerlink" href="#principe-des-algorithmes-glouton" title="Permalink to this headline">¶</a></h2>
 <p>Il existe une famille de problèmes dits <em>d’optimisation</em>. Voici quelques exemples :</p>
 <ul class="simple">
@@ -281,8 +289,8 @@
 <p>Dans ca cas la solution construite ne sera pas optimale, en effet le premier poisson ajouté à la solution est le poisson <code class="code docutils literal notranslate"><span class="pre">(2,6)</span></code>, le second et dernier sera <code class="code docutils literal notranslate"><span class="pre">(4,10)</span></code>. La solution construite apportera <span class="math notranslate nohighlight">\(16\)</span> Mcal, alors que la solution optimale est donnée par <code class="code docutils literal notranslate"><span class="pre">[(4,</span> <span class="pre">10),(6,</span> <span class="pre">12)]</span></code>, qui apporte <span class="math notranslate nohighlight">\(22\)</span> Mcal.</p>
 <p>Si la loutre peut découper les poissons, la statégie donne une solution optimale.</p>
 <p>Il faut bien comprendre que ces problèmes d’optimisation sont très compliqué à résoudre exactement. Pour beaucoup d’entre eux, ils sont NP-complets, voir NP-difficiles. Si bien que l’on de connait pas d’algorithmes capables de donner la solution exacte en un temps raissonable (ils sont tous de complexité exponentielle). Donc trouver une “bonne solution” même si ce n’est pas la meilleure en un temps raisonnable est déjà très satisfaisant.</p>
-</section>
-<section id="le-voyageur-de-commerce">
+</div>
+<div class="section" id="le-voyageur-de-commerce">
 <h2>Le voyageur de commerce<a class="headerlink" href="#le-voyageur-de-commerce" title="Permalink to this headline">¶</a></h2>
 <img alt="_images/travelling_salesman_problem.png" class="align-center" src="_images/travelling_salesman_problem.png" />
 <div class="admonition note">
@@ -298,7 +306,7 @@
 </div></blockquote>
 <p>Il est clair que l’algorithme glouton ne donnera pas toujours une solution optimale, rarement même. Mais il a l’avantage d’être assez rapide et assez simple à mettre en ouvre.</p>
 </div>
-<section id="une-version-simplifiee">
+<div class="section" id="une-version-simplifiee">
 <h3>Une version simplifiée<a class="headerlink" href="#une-version-simplifiee" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -401,9 +409,9 @@
 </div>
 <p><strong>Exercice à traiter à la maison :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">brute_force(villes:</span> <span class="pre">list[tuple[float,</span> <span class="pre">float]],</span> <span class="pre">start:</span> <span class="pre">int)-&gt;trajet</span></code> qui résoud le probblème du voyageur de commerce par <em>force brute</em>, c’est-à-dire en essayant toutes les permutations de l’ensemble des villes.</p>
 <p><strong>Exercice à traiter à la maison :</strong> Utiliser le décorateur <code class="code docutils literal notranslate"><span class="pre">&#64;timing</span></code> du TP2 pour comparer les temps d’exécution des deux algorithme sur des listes de villes tirées au hasard.</p>
-</section>
-</section>
-<section id="rendu-de-monnaie">
+</div>
+</div>
+<div class="section" id="rendu-de-monnaie">
 <h2>Rendu de monnaie<a class="headerlink" href="#rendu-de-monnaie" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/np_complete.png"><img alt="_images/np_complete.png" class="align-center" src="_images/np_complete.png" style="width: 640px; height: 414px;" /></a>
 <div class="admonition note">
@@ -505,8 +513,8 @@
 </div>
 </div></blockquote>
 </div>
-</section>
-<section id="formation-d-un-comite-restreint-d-experts">
+</div>
+<div class="section" id="formation-d-un-comite-restreint-d-experts">
 <h2>Formation d’un comité restreint d’experts<a class="headerlink" href="#formation-d-un-comite-restreint-d-experts" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/Stormtrooper-Feature.jpg"><img alt="_images/Stormtrooper-Feature.jpg" class="align-center" src="_images/Stormtrooper-Feature.jpg" style="width: 480.0px; height: 250.0px;" /></a>
 <div class="admonition note">
@@ -518,7 +526,7 @@
 <p>Ce problème est un problème de <em>recouvrement</em>.</p>
 <p>On peut facilement élaborer une stratégie gloutonne pour le résoudre. Si <span class="math notranslate nohighlight">\(E = \{0,\dots,n\}\)</span> et si l’on dispose des troopers <span class="math notranslate nohighlight">\((S_j)_{1\leq j\leq p}\)</span> tels que <span class="math notranslate nohighlight">\(E = \bigcup_{j=1}^p S_j\)</span> , on forme notre commando <span class="math notranslate nohighlight">\(C\)</span> en choisissant à chaque étape un <span class="math notranslate nohighlight">\(S_j\)</span> qui recouvre le plus de compétences qui nous manquent encore, c’est-à-dire tel que <span class="math notranslate nohighlight">\(Card(S_j\cap \left(E\setminus\bigcup_{i\in C}S_i\right)\)</span> soit maximal.</p>
 <p>Pour implémenter l’algorithme on utilisera des <code class="code docutils literal notranslate"><span class="pre">set</span></code>, c’est-à-dire des ensembles en python.</p>
-<p>On déclare des ensensembles en posant par exemple <code class="code docutils literal notranslate"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">set([2,3,4])</span></code> et <code class="code docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">set([1,3,5])</span></code>, les opérations de base sont la réunion, l’intersection et la différence qu’on obtiten respectivement par <code class="code docutils literal notranslate"><span class="pre">A</span> <span class="pre">| B</span></code>, <code class="code docutils literal notranslate"><span class="pre">A</span> <span class="pre">&amp;</span> <span class="pre">B</span></code> et <code class="code docutils literal notranslate"><span class="pre">A</span> <span class="pre">-</span> <span class="pre">B</span></code>.</p>
+<p>On déclare des ensensembles en posant par exemple <code class="code docutils literal notranslate"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">set([2,3,4])</span></code> et <code class="code docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">set([1,3,5])</span></code>, les opérations de base sont la réunion, l’intersection et la différence qu’on obtitent respectivement par <code class="code docutils literal notranslate"><span class="pre">A</span> <span class="pre">| B</span></code>, <code class="code docutils literal notranslate"><span class="pre">A</span> <span class="pre">&amp;</span> <span class="pre">B</span></code> et <code class="code docutils literal notranslate"><span class="pre">A</span> <span class="pre">-</span> <span class="pre">B</span></code>.</p>
 </div>
 <p><strong>Exercice :</strong> Ecrire la fonction <code class="code docutils literal notranslate"><span class="pre">commando_vader(E:</span> <span class="pre">set,</span> <span class="pre">T:</span> <span class="pre">list[set])-&gt;list[int]</span></code>, qui prend comme argument l’ensemble <code class="code docutils literal notranslate"><span class="pre">E</span></code> a recouvrir, et la liste <code class="code docutils literal notranslate"><span class="pre">T</span></code> des troopers <span class="math notranslate nohighlight">\(S_j\)</span> dont on dispose et qui retourne la liste des matricules (indices) des troopers formant le commando.</p>
 <div class="dropdown tip admonition">
@@ -549,8 +557,8 @@
 </div>
 </div></blockquote>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -575,15 +583,36 @@
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="TP4.html" title="previous page">TP4 : Récursivité</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="TP4.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">TP4 : Récursivité</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="TP8.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">TP8 : Algorithmes gloutons</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

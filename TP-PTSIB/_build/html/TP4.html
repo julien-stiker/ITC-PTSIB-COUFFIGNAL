@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TP4 : Récursivité &#8212; Les TP d informatique en PTSI-B</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -24,7 +23,7 @@
 
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -43,17 +42,17 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="TP6 : Algorithmes gloutons" href="TP6.html" />
     <link rel="prev" title="TP2 : Des modules, des tests et un peu de complexité" href="TP2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -73,6 +72,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
@@ -82,7 +85,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -105,6 +108,16 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    TP4 : Récursivité
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP6.html">
+   TP6 : Algorithmes gloutons
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP8.html">
+   TP8 : Algorithmes gloutons
   </a>
  </li>
 </ul>
@@ -192,7 +205,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contenu
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ceux-qu-il-faut-avoir-programmes-une-fois">
@@ -220,7 +233,7 @@
         
               <div>
                 
-  <section id="tp4-recursivite">
+  <div class="section" id="tp4-recursivite">
 <h1>TP4 : Récursivité<a class="headerlink" href="#tp4-recursivite" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -283,7 +296,7 @@ Avec le décorateur on obtient :</p>
 </div>
 <p>Vous pouvez voir que la fonction a été appelée cinq fois, avant de retourner cinq fois… On dit qu’on a <em>empilé</em> les appels. Le nombres d’appels peut-être très important, ce qui est un problème. C’est ce qui nous intéressera à la fin du TP.</p>
 </div>
-<section class="html-toggle" id="ceux-qu-il-faut-avoir-programmes-une-fois">
+<div class="html-toggle section" id="ceux-qu-il-faut-avoir-programmes-une-fois">
 <h2>Ceux qu’il faut avoir programmés une fois<a class="headerlink" href="#ceux-qu-il-faut-avoir-programmes-une-fois" title="Permalink to this headline">¶</a></h2>
 <p><strong>Exercice :</strong></p>
 <blockquote>
@@ -416,8 +429,8 @@ Avec le décorateur on obtient :</p>
 </div>
 </div></blockquote>
 </div>
-</section>
-<section id="de-beaux-dessins">
+</div>
+<div class="section" id="de-beaux-dessins">
 <h2>De beaux dessins<a class="headerlink" href="#de-beaux-dessins" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -458,8 +471,8 @@ Avec le décorateur on obtient :</p>
 </div></blockquote>
 <p>Tous les triangles sont équilatéraux.</p>
 </div></blockquote>
-</section>
-<section id="memoisation">
+</div>
+<div class="section" id="memoisation">
 <h2>Mémoïsation<a class="headerlink" href="#memoisation" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -484,8 +497,8 @@ Avec le décorateur on obtient :</p>
 </div></blockquote>
 </div>
 <p><strong>Question 4 :</strong> Écrire une fonction récursive avec mémoïsation <code class="code docutils literal notranslate"><span class="pre">fact_m(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span> et qui retourne <span class="math notranslate nohighlight">\(n!\)</span>.</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -510,15 +523,36 @@ Avec le décorateur on obtient :</p>
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="TP2.html" title="previous page">TP2 : Des modules, des tests et un peu de complexité</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="TP2.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">TP2 : Des modules, des tests et un peu de complexité</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="TP6.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">TP6 : Algorithmes gloutons</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
