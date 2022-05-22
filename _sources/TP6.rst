@@ -330,7 +330,7 @@ Formation d'un comité restreint d'experts
     
     Pour implémenter l'algorithme on utilisera des :code:`set`, c'est-à-dire des ensembles en python.
     
-    On déclare des ensensembles en posant par exemple :code:`A = set([2,3,4])` et :code:`B = set([1,3,5])`, les opérations de base sont la réunion, l'intersection et la différence qu'on obtiten respectivement par :code:`A | B`, :code:`A & B` et :code:`A - B`.
+    On déclare des ensensembles en posant par exemple :code:`A = set([2,3,4])` et :code:`B = set([1,3,5])`, les opérations de base sont la réunion, l'intersection et la différence qu'on obtitent respectivement par :code:`A | B`, :code:`A & B` et :code:`A - B`.
     
 
 

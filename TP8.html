@@ -1,0 +1,528 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TP8 : Applications des parcours de graphe &#8212; Les TP d informatique en PTSI-B</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="TP6 : Algorithmes gloutons" href="TP6.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Les TP d informatique en PTSI-B</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Les TP d’informatique en PTSI-B au lycée Coufignal
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP1.html">
+   TP1 : La reprise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP2.html">
+   TP2 : Des modules, des tests et un peu de complexité
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP4.html">
+   TP4 : Récursivité
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP6.html">
+   TP6 : Algorithmes gloutons
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   TP8 : Applications des parcours de graphe
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Basculer la navigation" aria-controls="site-navigation"
+                title="Basculer la navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Téléchargez cette page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/TP8.rst"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Télécharger le fichier source" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimer au format PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/julien-stiker/TP-PTSIB-21-22"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Dépôt source"><i
+                    class="fab fa-github"></i>dépôt</button></a>
+        <a class="issues-button"
+            href="https://github.com/julien-stiker/TP-PTSIB-21-22/issues/new?title=Issue%20on%20page%20%2FTP8.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Ouvrez un problème"><i class="fas fa-lightbulb"></i>signaler un problème</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Mode plein écran"
+        title="Mode plein écran"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenu
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#foret-couvrante">
+   Forêt couvrante
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#detection-de-cycle">
+   Détection de cycle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ordre-topologique">
+   Ordre topologique
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="tp8-applications-des-parcours-de-graphe">
+<h1>TP8 : Applications des parcours de graphe<a class="headerlink" href="#tp8-applications-des-parcours-de-graphe" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Les objectifs du TP :</strong></p>
+<ul class="simple">
+<li><p>Utiliser les parcours de graphe.</p></li>
+<li><p>Constuire la forêt couvrante d’un parcours.</p></li>
+<li><p>Appliquer les parcours à un problème concret.</p></li>
+<li><p>Implémenter ces algorithmes en Python.</p></li>
+</ul>
+</div>
+<div class="section" id="foret-couvrante">
+<h2>Forêt couvrante<a class="headerlink" href="#foret-couvrante" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id1">
+<img alt="_images/graphe_cc_fortement_connexe.png" src="_images/graphe_cc_fortement_connexe.png" />
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Graphe 1</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Code du graphe 1</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">G1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+    <span class="mi">1</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="mi">2</span> <span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+    <span class="mi">3</span> <span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="mi">4</span> <span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+    <span class="mi">5</span> <span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+    <span class="mi">6</span> <span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+    <span class="mi">7</span> <span class="p">:</span> <span class="p">[</span><span class="mi">9</span><span class="p">],</span>
+    <span class="mi">8</span> <span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+    <span class="mi">9</span> <span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+    <span class="mi">10</span> <span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Faire à la main le parcours profondeur du graphe de la figure 1, dessiner la forêt couvrante du parcours en notant les différents types d’arcs :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>arc couvrant</p></li>
+<li><p>arc retour</p></li>
+<li><p>arc croisé</p></li>
+<li><p>arc avant</p></li>
+</ul>
+</div></blockquote>
+<p>Noter l’ordre préfixe et l’ordre suffixe de chaque sommet dans des tableaux.</p>
+<p><strong>Exercice :</strong> Ecrire une fonction de signature <code class="code docutils literal notranslate"><span class="pre">orders(G:</span> <span class="pre">dict)-&gt;tuple[list[int],list[int]]</span></code> qui prend un graphe comme argument et retourne les deux listes <code class="code docutils literal notranslate"><span class="pre">pref</span></code> et <code class="code docutils literal notranslate"><span class="pre">suff</span></code> contenant
+à l’indice <span class="math notranslate nohighlight">\(i\)</span> l’ordre préfixe, respectivement suffixe, du sommet <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">orders</span><span class="p">(</span><span class="n">G1</span><span class="p">)</span>
+<span class="go">([1, 4, 2, 3, 11, 5, 6, 7, 9, 8, 10], [11, 7, 10, 9, 8, 6, 5, 4, 2, 3, 1])</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Pour chaque arc <span class="math notranslate nohighlight">\((x,y)\)</span> du parcours comparer les ordres préfixes et suffixes de <span class="math notranslate nohighlight">\(x\)</span> et <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{|l|c|c|}
+\hline \textrm{avant} &amp; pref(x)&lt;pref(y) &amp; suff(x)&gt;suff(y) \\
+\hline \text{couvrant} &amp; pref(x)&lt;pref(y) &amp; suff(x)&gt;suff(y) \\
+\hline \text{croisé} &amp; pref(x)&gt;pref(y) &amp; suff(x)&gt;suff(y)\\
+\hline \text{retour} &amp; pref(x)&gt;pref(y) &amp; suff(x)&lt;suff(y) \\
+\hline
+\end{array}\end{split}\]</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Ecrire une procédure <code class="code docutils literal notranslate"><span class="pre">dfs_digraph_forest(G:</span> <span class="pre">dict)-&gt;None</span></code> qui effectue le parcours profondeur du graphe orienté <span class="math notranslate nohighlight">\(G\)</span> et affiche lors de celui-ci les arcs de parcours et leur nature.
+Par exemple :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dfs_forest</span><span class="p">(</span><span class="n">G1</span><span class="p">)</span>
+<span class="go">0 -&gt; 2 arc couvrant</span>
+<span class="go">2 -&gt; 3 arc couvrant</span>
+<span class="go">3 -&gt; 0 arc retour</span>
+<span class="go">3 -&gt; 1 arc couvrant</span>
+<span class="go">1 -&gt; 2 arc retour</span>
+<span class="go">1 -&gt; 5 arc couvrant</span>
+<span class="go">5 -&gt; 6 arc couvrant</span>
+<span class="go">6 -&gt; 5 arc retour</span>
+<span class="go">6 -&gt; 7 arc couvrant</span>
+<span class="go">7 -&gt; 9 arc couvrant</span>
+<span class="go">9 -&gt; 8 arc couvrant</span>
+<span class="go">8 -&gt; 7 arc retour</span>
+<span class="go">8 -&gt; 10 arc couvrant</span>
+<span class="go">9 -&gt; 10 arc en avant</span>
+<span class="go">3 -&gt; 4 arc couvrant</span>
+<span class="go">4 -&gt; 3 arc retour</span>
+<span class="go">4 -&gt; 10 arc croisé</span>
+<span class="go">2 -&gt; 8 arc en avant</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Exercice :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">dfs_graph_forest(G:</span> <span class="pre">dict)-&gt;None</span></code> qui effectue le parcours profondeur du graphe non orienté <span class="math notranslate nohighlight">\(G\)</span> et affiche lors de celui-ci les arcs de parcours et leur nature.</p>
+</div>
+<div class="section" id="detection-de-cycle">
+<h2>Détection de cycle<a class="headerlink" href="#detection-de-cycle" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On rappelle la propriété suivante : Un graphe <span class="math notranslate nohighlight">\(G\)</span> est sans circuit si et seulement son parcours profondeur ne génère pas d’arc retour.</p>
+</div>
+<p><strong>Exercice :</strong> Ecrire une fonction de signature <code class="code docutils literal notranslate"><span class="pre">is_acyclic(G:</span> <span class="pre">dict)-&gt;bool</span></code> qui teste si un graphe orienté est acyclique.</p>
+<p><strong>Exercice :</strong> Ecrire une fonction de signature <code class="code docutils literal notranslate"><span class="pre">is_tree(G:</span> <span class="pre">dict)-&gt;bool</span></code> qui teste si un graphe non orienté est un arbre.</p>
+</div>
+<div class="section" id="ordre-topologique">
+<h2>Ordre topologique<a class="headerlink" href="#ordre-topologique" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Etant donné un graphe orienté <span class="math notranslate nohighlight">\(G=(S,A)\)</span> d’ordre <span class="math notranslate nohighlight">\(n\)</span>, on appelle ordre topologique sur <span class="math notranslate nohighlight">\(G\)</span> une numérotation <span class="math notranslate nohighlight">\(num\,:\,S\to \{0,\ldots,n-1\}\)</span> telle que :</p>
+<div class="math notranslate nohighlight">
+\[\forall (x,y)\in A,\; num(x) &lt;num(y).\]</div>
+<p>En d’autres termes, si l’on parcourt la liste des sommets dans l’ordre defini par une telle numerotation, un sommet y ne peut être rencontre que si l’on a, au prealable, rencontre tous ses predecesseurs.</p>
+</div>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/tri_topo.png"><img alt="_images/tri_topo.png" src="_images/tri_topo.png" style="width: 240.0px; height: 442.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Graphe 2</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Code du graphe 2</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">G4</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+    <span class="mi">1</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+    <span class="mi">2</span> <span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+    <span class="mi">3</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="mi">4</span> <span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+    <span class="mi">5</span> <span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+    <span class="mi">6</span> <span class="p">:</span> <span class="p">[],</span>
+    <span class="mi">7</span> <span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+    <span class="mi">8</span> <span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<dl class="simple">
+<dt><strong>Exercice :</strong></dt><dd><ul class="simple">
+<li><p>Quelle condition un graphe orienté doit-il remplir pour qu’un tri topologique existe ?</p></li>
+<li><p>Faire le parcours profondeur du graphe de la figure 2 et noter les ordres suffixes des sommets. Si <span class="math notranslate nohighlight">\((x,y)\in A\)</span>, dans quel ordre sont rangés <span class="math notranslate nohighlight">\(suff(x)\)</span> et <span class="math notranslate nohighlight">\(suff(y)\)</span> ?</p></li>
+<li><p>Démontrer que l’ordre suffixe inversé est un tri topologique de <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
+<li><p>Déssiner le graphe <span class="math notranslate nohighlight">\(G\)</span> en alignant ses sommets dans l’ordre d’un tri topologique. Que remarquez-vous ?</p></li>
+<li><p>Lors d’un parcours profondeur, quelle structrure de données peut-on utiliser pour stocker les sommets en ordre suffixe, pour obtenir un tri topologique ?</p></li>
+<li><p>Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">tri_topo(G:</span> <span class="pre">dict)-&gt;list[int]</span></code> qui prend comme argument un graphe, pour lequel il existe un tri topologique et qui le retourne.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Exercice :</strong> On souhaite construire une maison, le tableau suivant présente les différentes tâches à réaliser ainsi que leurs durées et les différentes contraintes qu’elles imposent.</p>
+<blockquote>
+<div><table class="table">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 23%" />
+<col style="width: 15%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Tâches</p></th>
+<th class="head"></th>
+<th class="head"><p>Durées</p></th>
+<th class="head"><p>Contraintes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>Achat terrain</p></td>
+<td><p>2</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>Permis</p></td>
+<td><p>3</p></td>
+<td><p>A</p></td>
+</tr>
+<tr class="row-even"><td><p>C</p></td>
+<td><p>Fondations</p></td>
+<td><p>4</p></td>
+<td><p>A, B</p></td>
+</tr>
+<tr class="row-odd"><td><p>D</p></td>
+<td><p>Préfabriqué</p></td>
+<td><p>4</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>E</p></td>
+<td><p>Assemblage</p></td>
+<td><p>2</p></td>
+<td><p>A, B, C</p></td>
+</tr>
+<tr class="row-odd"><td><p>F</p></td>
+<td><p>Couverture</p></td>
+<td><p>3</p></td>
+<td><p>D</p></td>
+</tr>
+<tr class="row-even"><td><p>G</p></td>
+<td><p>Peinture</p></td>
+<td><p>2</p></td>
+<td><p>I, J, E, F</p></td>
+</tr>
+<tr class="row-odd"><td><p>H</p></td>
+<td><p>Menuiserie</p></td>
+<td><p>4</p></td>
+<td><p>E, F, I</p></td>
+</tr>
+<tr class="row-even"><td><p>I</p></td>
+<td><p>Sanitaires</p></td>
+<td><p>2</p></td>
+<td><p>E</p></td>
+</tr>
+<tr class="row-odd"><td><p>J</p></td>
+<td><p>Eléctricité</p></td>
+<td><p>2</p></td>
+<td><p>E, F</p></td>
+</tr>
+<tr class="row-even"><td><p>K</p></td>
+<td><p>Emménagement</p></td>
+<td><p>1</p></td>
+<td><p>A, B, C, D, E, F, G, H, I, J, K</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<ul class="simple">
+<li><p>Trouver un ordre dans lequel effectuer toutes les tâches.</p></li>
+<li><p>Quelle est la durée minimum du chantier ?</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "julien-stiker/TP-PTSIB-21-22",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="TP6.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">TP6 : Algorithmes gloutons</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          Par J.stiker<br/>
+        
+            &copy; droits d'auteur 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
