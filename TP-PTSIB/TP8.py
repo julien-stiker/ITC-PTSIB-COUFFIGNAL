@@ -137,7 +137,7 @@ def __dfs_forest(G,s,pref,suff,pere,cpt,cpts):
     return cpt, cpts    
     
 
-
+def essai(g: dict)->tuple[list[int],list[int]]
 
 def __bfs(G, s, p, edges):
     q = queue.Queue()
@@ -218,4 +218,16 @@ G3 = {
     8 : [7, 10],
     9 : [8, 10],
     10 : []
+    }
+
+G4 = {
+    0 : [1, 4, 7],
+    1 : [2, 7],
+    2 : [5],
+    3 : [2, 4],
+    4 : [5],
+    5 : [6],
+    6 : [],
+    7 : [6],
+    8 : [7],
     }
