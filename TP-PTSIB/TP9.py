@@ -9,17 +9,19 @@ Created on Tue Jun  7 15:56:00 2022
 ### Graphe aléatoire
 from random import randint, choices
    
-def alea_directed_graphe(n):
+def alea_directed_graphe(n: int)-> dict:
     G = {}
     S = list(range(n))
     for i in range(n):
         adj = {}
         nb_v = randint(0,n-1)
-        voisins = choices(S,k=nb_v)
+        voisins = choices(S, k = nb_v)
         for v in sorted(voisins):
             adj[v] = randint(0,100)
         G[i] = adj
     return G
+
+
 ### Construction du graphe général de taille n x m
 
 import math    

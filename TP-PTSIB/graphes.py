@@ -1083,8 +1083,11 @@ def h4(node , dst):
 def h5(node, dst):
     return 1/(1+(abs(node[1])+abs(node[0])))
 
-def h6(node, dst):
-    return 
+def h0(node, dst):
+    return math.sqrt( (node[1]-dst[1])**2 + (node[0]-dst[0])**2) 
+
+def h6(node , dst):
+    return 1/(1+(abs(node[0])))
 
 def A_grid_1(G: dict, src, dst, h, w):
     n = len(G)
@@ -1110,7 +1113,7 @@ def A_grid_1(G: dict, src, dst, h, w):
         _, s = M.pop()
         visited.append(s)
         if s == dst:
-            return cpt, visited, show_path(pred, src, dst)
+            return cpt, visited, dist, show_path(pred, src, dst)
             
         for v in G[s]:
             if v not in visited:
@@ -1123,7 +1126,7 @@ def A_grid_1(G: dict, src, dst, h, w):
                     priority = dist[v] + H
                     M.update((p, v), (priority, v))
                     #visited.append(v)
-    return cpt, visited, show_path(pred,src,dst)
+    return cpt, visited, dist, show_path(pred,src,dst)
 
 
 
@@ -1295,71 +1298,44 @@ for x in range(44,49):
         G5[(x,y)]={}
 
 
-        
-cpt, visited, path = A_grid_1(G5, (0, 0), (49, 49), h4, 1000) 
-print(len(visited))
-print(len(path))
-print(cpt)      
-plateau(G5,50,50)
-for x,y in visited:
-    plt.plot(x,y,marker="+", color="orange")
-for x,y in path:
-    plt.plot(x,y,marker="o", color="magenta") 
-
-plt.show()
+def lenght_path(G, pred, dist, src, dst):
+    pass
 
 
-def A_grid_2(G: dict, src, dst, h, w):
-    fig = plt.figure(dpi=300,figsize=(10, 10)) 
-    plt.axis("equal")
-    
-    n = len(G)
-    dist, pred = {}, {}
-    for node in G.keys():
-        dist[node] = inf
-        pred[node] = None
-    
-    
-    
-    pred[src] = -1
-    dist[src] = 0
-    
-    M = Heap([])
-    
-    M.push((dist[src]+ w*h(src,dst),src))
-    visited = [src]
-    
-   
-    cpt = 0
-    while len(M) > 0:
-        cpt += 1
-        _, s = M.pop()
-        visited.append(s)
+i = 0
+res = [['Fonctions','Poids w','Longueur','Sommets traités','Itérations']]
+
+for f in [h0,h,h1,h2,h3,h4,h5, h6]:
+    for w in [1,10**4,10**5,10**6]:      
+        cpt, visited, dist, path = A_grid_1(G5, (0, 0), (49, 49), f, w)    
         
-        
+        plateau(G5,50,50)
         for x,y in visited:
             plt.plot(x,y,marker="+", color="orange")
+        for x,y in path:
+            plt.plot(x,y,marker="o", color="magenta") 
+        i += 1
+        print(i)
+        plt.title('Pour {} et w = {}. L = {}, Nb sommets = {} en {} itérations'.format(f.__name__,w,dist[(49,49)],len(visited),cpt))  
+        res.append([f.__name__,str(w),"{:.2f}".format(dist[(25,45)]),str(len(visited)),str(cpt)])
+        plt.savefig("3_Pour {} et w = {} et dst = (49,49)".format(f.__name__,w))
         
+import csv
+with open('resultats.csv', 'w') as fichier: 
+         ecrire = csv.writer(fichier)
+         for ligne in res:
+             ecrire.writerow(ligne)        
         
-        if s == dst:
-            plateau(G, 25, 25)
-            plt.show()
-            return cpt, visited, show_path(pred, src, dst)
-            
-        for v in G[s]:
-            plt.plot(x,y,marker="+", color="red")
-            if v not in visited:
-                H = w * h(v, dst)
-                d = dist[v]
-                p = d + H
-                if dist[s] + G[s][v] < dist[v]:
-                    dist[v] = dist[s] + G[s][v]
-                    pred[v] = s
-                    priority = dist[v] + H
-                    M.update((p, v), (priority, v))
-                    #visited.append(v)
-    return cpt, visited, show_path(pred,src,dst)
+# cpt, visited, path = A_grid_1(G5, (0, 0), (49, 49), f, 1)    
 
-A_grid_2(G1, (0,0), (24,24), h1, 1)
-
- 
+# plateau(G5,50,50)
+# for x,y in visited:
+#     plt.plot(x,y,marker="+", color="orange")
+# for x,y in path:
+#     plt.plot(x,y,marker="o", color="magenta") 
+# i += 1
+# print(i)
+# plt.title('Pour {} et w = {}. L = {}, Nb sommets = {} en {} itérations'.format(f.__name__,w,len(path),len(visited),cpt))  
+# plt.show() 
+        
+    
