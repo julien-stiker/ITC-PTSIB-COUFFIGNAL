@@ -46,7 +46,7 @@ Variations autour de Dijkstra
         :align: center
         
 
-**Exercice :** Ecrire une fonction de signature :code:`dijkstra_set(G: dict, src: int)->tuple[list[int],list[int]]`, qui prend comme argument un graphe :code:`G` sous forme de dictionnaire de dictionnaires, et un sommet :code:`src`, et qui retourne les listes :code:`dict` et :code:`pred`, respectivement des distances à :code:`src` et des prédecesseurs dans le plus court chemin :code:`pred`. L'algorithme utilisera une ensemble comme décrit dans le cours.
+**Exercice :** Ecrire une fonction de signature :code:`dijkstra_set(G: dict, src: int)->tuple[list[int],list[int]]`, qui prend comme argument un graphe :code:`G` pondéré sous forme de dictionnaire de dictionnaires, et un sommet :code:`src`, et qui retourne les listes :code:`dict` et :code:`pred`, respectivement des distances à :code:`src` et des prédecesseurs dans le plus court chemin de :code:`src`à un sommet :code:`s` . L'algorithme utilisera une ensemble comme décrit dans le cours.
 
 .. admonition:: Solution
    :class: dropdown; tip
@@ -91,7 +91,7 @@ Variations autour de Dijkstra
 
 
 
-**Exercice :** Ecrire une seconde fonction de signature :code:`dijkstra_heap(G: dict, src: int)->tuple[dict,dict]`, qui prend comme argument un graphe :code:`G` sous forme de dictionnaire de dictionnaires, et un sommet :code:`src`, et qui retourne les dictionnaires :code:`dist` et :code:`pred`, respectivement des distances à :code:`src` et des prédecesseurs dans le plus courts chemins :code:`pred`. L'algorithme utilisera un file de priorité comme décrit dans le cours. Vous utiliserez le module :code:`heap` fournit avec le TP.
+**Exercice :** Ecrire une seconde fonction de signature :code:`dijkstra_heap(G: dict, src: int)->tuple[dict,dict]`, qui prend comme argument un graphe :code:`G` sous forme de dictionnaire de dictionnaires, et un sommet :code:`src`, et qui retourne les dictionnaires :code:`dist` et :code:`pred`, respectivement des distances à :code:`src` et des prédecesseurs dans le plus court chemin de :code:`src` à un sommet :code:`s`. L'algorithme utilisera un file de priorité comme décrit dans le cours. Vous utiliserez le module :code:`heap` fournit avec le TP.
 
 
 .. admonition:: Solution
@@ -271,8 +271,12 @@ L'algorithme A*
 
 L'argument :code:`w` agit ici comme un poids pour l'heuristique.
 
-En prenant différentes valeurs pour :code:`w` (prendre par exemple :math:`1`, :math:`10^3`, :math:`10^4` et :math:`10^5`) observez les différents résultats obtenus avec le graphe G5 et toutes les heuristiques.
+En prenant différentes valeurs pour :code:`w` (prendre par exemple :math:`1`, :math:`10^4` et :math:`10^5`) observez les différents résultats obtenus avec le graphe G5 et toutes les heuristiques.
 
 Comparez la longueur des chemins trouvés, observez qu'ils ne sont pas toujours optimaux mais que dans certaines situations ils ont nécessité beaucoup moins de traitement.
+
+On pourra par exemple enregistrer les résultats dans un fichier csv, dont les colones seraient : ['Fonctions','Poids w','Longueur','Sommets traités','Itérations'], puis ajouter une colone pour calculer le pourcentage que représente l'augmentation de la longueur du chemin par rapport à la longueur optimale, puis trier les données seulon le nombre de sommet traités.
+
+
 
 
