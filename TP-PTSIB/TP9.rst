@@ -228,13 +228,15 @@ L'algorithme A*
     Voici différentes propositions d'heuristiques très classqiues et moins classiques :
     
     .. code-block:: python
-    
+
+        def h0(node, dst):
+            return math.sqrt( (node[1]-dst[1])**2 + (node[0]-dst[0])**2) 
 
         def h(node, dst):
             return abs(node[1]-dst[1])+abs(node[0]-dst[0])
 
         def h1(node, dst):
-            return (node[1]-dst[1])**2+(node[0]-dst[0])**2
+            return (node[1]-dst[1])**2 + (node[0]-dst[0])**2
 
         def h2(node , dst):
             return max(abs(node[1]-dst[1]),abs(node[0]-dst[0]))
@@ -247,6 +249,9 @@ L'algorithme A*
 
         def h5(node, dst):
             return 1/(1+(abs(node[1])+abs(node[0])))
+
+        def h6(node , dst):
+            return 1/(1+(abs(node[0])))
 
 
 
