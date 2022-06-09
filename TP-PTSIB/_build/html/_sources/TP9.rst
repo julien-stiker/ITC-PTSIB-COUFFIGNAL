@@ -282,6 +282,27 @@ Comparez la longueur des chemins trouvés, observez qu'ils ne sont pas toujours 
 
 On pourra par exemple enregistrer les résultats dans un fichier csv, dont les colones seraient : ['Fonctions','Poids w','Longueur','Sommets traités','Itérations'], puis ajouter une colone pour calculer le pourcentage que représente l'augmentation de la longueur du chemin par rapport à la longueur optimale, puis trier les données seulon le nombre de sommet traités.
 
+Quelques exemples de résultats :
+
+.. figure:: 3_Pour_h0_et_w_=_1_et_dst_=_(49,49).png
+    :align: center
+    :scale: 25%
+
+.. figure:: 3_Pour_h0_et_w_=_1000000_et_dst_=_(49,49).png
+    :align: center
+    :scale: 25%
+
+
+.. figure:: 3_Pour_h4_et_w_=_100000_et_dst_=_(49,49).png
+    :align: center
+    :scale: 25%
+
+
+.. figure:: 3_Pour_h6_et_w_=_100000_et_dst_=_(49,49).png
+    :align: center
+    :scale: 25%
+    
+
 
 
 

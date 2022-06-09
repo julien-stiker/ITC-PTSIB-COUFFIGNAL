@@ -1065,6 +1065,9 @@ def dijkstra4_grid(G: dict, src, dst):
     
     
 
+def h0(node, dst):
+    return math.sqrt( (node[1]-dst[1])**2 + (node[0]-dst[0])**2) 
+
 def h(node, dst):
     return abs(node[1]-dst[1])+abs(node[0]-dst[0])
 
@@ -1082,9 +1085,6 @@ def h4(node , dst):
 
 def h5(node, dst):
     return 1/(1+(abs(node[1])+abs(node[0])))
-
-def h0(node, dst):
-    return math.sqrt( (node[1]-dst[1])**2 + (node[0]-dst[0])**2) 
 
 def h6(node , dst):
     return 1/(1+(abs(node[0])))
@@ -1318,7 +1318,7 @@ for f in [h0,h,h1,h2,h3,h4,h5, h6]:
         print(i)
         plt.title('Pour {} et w = {}. L = {}, Nb sommets = {} en {} itérations'.format(f.__name__,w,dist[(49,49)],len(visited),cpt))  
         res.append([f.__name__,str(w),"{:.2f}".format(dist[(25,45)]),str(len(visited)),str(cpt)])
-        plt.savefig("3_Pour {} et w = {} et dst = (49,49)".format(f.__name__,w))
+        plt.savefig("3_Pour_{}_et_w_=_{}_et_dst_=_(49,49)".format(f.__name__,w))
         
 import csv
 with open('resultats.csv', 'w') as fichier: 
