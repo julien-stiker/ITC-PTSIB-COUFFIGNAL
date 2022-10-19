@@ -10,7 +10,7 @@ TP9 : Plus courts chemins
     * Découvrir A*.
    
 
-.. note:: Pour représenter un egraphe pondéré on utilisera une structure de dictionnaire de dictionnaires.
+.. note:: Pour représenter une graphe pondéré on utilisera une structure de dictionnaire de dictionnaires.
     
     Par exemple :
 
@@ -33,7 +33,7 @@ TP9 : Plus courts chemins
             :align: center
             :scale: 75%
             
-    De sorte que :code:`G[3]` est un dictionaire dont les clefs sont les successeurs du sommet :code:`3`, et tel que :code:`G[3][4]` est le poids de l'arrête :math:`(3, 4)`.
+    De sorte que :code:`G[3]` est un dictionnaire dont les clefs sont les successeurs du sommet :code:`3`, et tel que :code:`G[3][4]` est le poids de l'arrête :math:`(3, 4)`.
     
 
         

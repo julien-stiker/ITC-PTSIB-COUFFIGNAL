@@ -1202,8 +1202,8 @@ Boucle :code:`for`
     .. ipython :: python
 
         resultat = 5
-        for _ in range(1, 20):
-            resultat *= resultat
+        for _ in range(1, 245):
+            resultat *= 5
         resultat
 
 **Exercice :** Dans la console écrire un programme qui calcule :math:`50!` en effectuant toutes les multiplications. Comparer le résultat avec la fonction :code:`factorial` du module :code:`math`. Calculer la somme des décimales de ce nombre.
