@@ -2545,7 +2545,7 @@ Les dictionnaires
         dict1['pamplemousses']
         dict1[3]
     
-    Que se passe-til si l'on charche à accéder à une valeur pour une clef qui n'existe pas :
+    Que se passe-til si l'on cherche à accéder à une valeur pour une clef qui n'existe pas :
     
     .. ipython :: python
         :okexcept:
