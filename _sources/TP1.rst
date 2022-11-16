@@ -2480,7 +2480,12 @@ Les tuples
             Returns:
                 The same list where the last value of each tuple is val.
             """
-            
+            rep = []
+            for t in l:
+                l_tmp = list(t)
+                l_tmp[-1] = val
+                rep.append(tuple(l_tmp))
+            return rep
   
         
 **Petit problème 2 :** 
