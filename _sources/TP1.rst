@@ -2533,7 +2533,7 @@ Les dictionnaires
 
 .. note:: Les dictionnaires sont des tableaux associatifs qui associent à chaque clef une valeur. Les clefs comme les valeurs peuvent être hétérogènes (i.e. de type différents). Seule restriction les clefs doivent être des objets hashables, donc non mutables, en particulier pas des listes ou des ensembles.
 
-    On définit des dictionnaire entre accolades et en déclarant les couples clef-valeur comme suit :
+    On définit des dictionnaires entre accolades et en déclarant les couples clef-valeur comme suit :
 
     .. ipython :: python
     
@@ -2575,7 +2575,7 @@ Les dictionnaires
         len(dict1)
         
         
-    Il est possible d'accèder aux clefs et aux valeurs en utilisant les méthodes :code:`keys` et :code:`values` :
+    Il est possible d'accéder aux clefs et aux valeurs en utilisant les méthodes :code:`keys` et :code:`values` :
     
     .. ipython :: python
         :okexcept:
@@ -2608,7 +2608,7 @@ Les dictionnaires
         dict1['pommes'] = 10
         dict1
     
-    Il est possible de définir une dictionnaire en compréhension comme pour les listes :
+    Il est possible de définir un dictionnaire en compréhension comme pour les listes :
     
     .. ipython :: python
         
