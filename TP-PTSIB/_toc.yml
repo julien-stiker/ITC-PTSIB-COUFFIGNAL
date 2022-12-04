@@ -6,6 +6,7 @@ root: intro
 chapters:
 - file: TP1
 - file: TP2
+- file: TP3
 - file: TP4
 - file: TP6
 - file: TP8
