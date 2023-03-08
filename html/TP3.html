@@ -1,0 +1,721 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>TP3 : Lecture dans un fichiers et statistiques &#8212; Les TP d informatique en PTSI-B</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="TP4 : Récursivité" href="TP4.html" />
+    <link rel="prev" title="TP2 : Des modules, des tests et un peu de complexité" href="TP2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Les TP d informatique en PTSI-B</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Les TP d’informatique en PTSI-B au lycée Coufignal
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP1.html">
+   TP1 : La reprise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP2.html">
+   TP2 : Des modules, des tests et un peu de complexité
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   TP3 : Lecture dans un fichiers et statistiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP4.html">
+   TP4 : Récursivité
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP6.html">
+   TP6 : Algorithmes gloutons
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP8.html">
+   TP8 : Applications des parcours de graphe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP9.html">
+   TP9 : Plus courts chemins
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/julien-stiker/TP-PTSIB-21-22"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/julien-stiker/TP-PTSIB-21-22/issues/new?title=Issue%20on%20page%20%2FTP3.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/TP3.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lire-et-ecrire-dans-un-fichier-texte">
+   Lire et écrire dans un fichier texte
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lire-un-fichier-texte">
+     Lire un fichier texte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ecrire-dans-un-fichier-texte">
+     Ecrire dans un fichier texte
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lire-et-ecrire-dans-un-fichier-csv">
+   Lire et écrire dans un fichier CSV
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>TP3 : Lecture dans un fichiers et statistiques</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lire-et-ecrire-dans-un-fichier-texte">
+   Lire et écrire dans un fichier texte
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lire-un-fichier-texte">
+     Lire un fichier texte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ecrire-dans-un-fichier-texte">
+     Ecrire dans un fichier texte
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lire-et-ecrire-dans-un-fichier-csv">
+   Lire et écrire dans un fichier CSV
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="tp3-lecture-dans-un-fichiers-et-statistiques">
+<h1>TP3 : Lecture dans un fichiers et statistiques<a class="headerlink" href="#tp3-lecture-dans-un-fichiers-et-statistiques" title="Permalink to this headline">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Les objectifs du TP :</strong></p>
+<ul class="simple">
+<li><p>Apprendre à lire et à écrire dans un fichier txt ou csv.</p></li>
+<li><p>Faire des statistiques sur les données lues.</p></li>
+<li><p>Représenter graphiquement ces données.</p></li>
+</ul>
+</div>
+<section class="html-toggle" id="lire-et-ecrire-dans-un-fichier-texte">
+<h2>Lire et écrire dans un fichier texte<a class="headerlink" href="#lire-et-ecrire-dans-un-fichier-texte" title="Permalink to this headline">#</a></h2>
+<section id="lire-un-fichier-texte">
+<h3>Lire un fichier texte<a class="headerlink" href="#lire-un-fichier-texte" title="Permalink to this headline">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Du point de vue du programme qui va s’en servir, un fichier texte fait parti de ce que l’on peut appeler une ressource.       Or, les ressources sont limitées, et d’une manière ou d’une autre, l’accès à ces ressources doit être partagé entre les         différents programmes qui peuvent en avoir besoin.</p>
+<blockquote>
+<div><p>Concrètement, cela veut dire qu’il est nécessaire d’acquérir cette ressource avant de s’en servir, puis de la libérer           après usage. Pour un fichier, cela se fait en l’ouvrant – puis en le fermant:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;essai.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="c1"># On ouvre le fichier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># On utilise le fichier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fichier</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># On ferme le fichier</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Le second argument de la fonction <code class="code docutils literal notranslate"><span class="pre">open</span></code> est le <em>mode</em> dans lequel vous souhaitez ouvrir le fichier, il en existe                 trois :</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">r</span></code> : pour <em>read</em>, c’est le mode de lecture.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">w</span></code> : pour <em>write</em>, c’est le mode d’écriture mais là il faut faire très attention car si le fichier existe il                        sera écrasé.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> : pour <em>append</em>, c’est le mode d’ajout à la fin d’un fichier.</p></li>
+</ul>
+</dd>
+</dl>
+<p>On peut lire tout le contenu d’un fichier texte grâce à la méthode <code class="code docutils literal notranslate"><span class="pre">read</span></code> :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;essai.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chaine</span> <span class="o">=</span> <span class="n">fichier</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Le fichier contient :</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span><span class="n">chaine</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fichier</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Avec cette méthode il est impératif de refermer le fichier, une fois que l’on a finit de travailler avec. Pour ne pas avoir à s’en soucier on peut aussi utiliser un gestionnaire de contexte avec le mot clef <code class="code docutils literal notranslate"><span class="pre">with</span></code> :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mon_fichier.txt&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">scr</span><span class="p">:</span>
+<span class="go">        # Travail sur le fichier</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Exercice 1 :</strong> Ouvrez le fichier et afficher tout le contenu de <em>BigBangTheoryS06E22.txt</em>. Il s’agit du scipt de l’épisode 22 de la saison 6 de la série the Big-Bang Theory (l’un des meilleurs). Vous trouverez le fichier <a class="reference download internal" download="" href="_downloads/d74d6c85b5c4a680dd8dc4a1fc8472fa/BigBangTheoryS06E22.txt"><code class="xref download docutils literal notranslate"><span class="pre">ici</span></code></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Python offre plusieurs possibilités pour lire les lignes d’un fichier :</p>
+<ul>
+<li><p>La méthode <code class="docutils literal notranslate"><span class="pre">readlines</span></code>, qui lit toutes les lignes du fichiers, et les range dans une séquence.</p></li>
+<li><p>La méthode <code class="docutils literal notranslate"><span class="pre">readline</span></code>, qui lit le fichier ligne par ligne.</p></li>
+<li><p>L’objet fichier est un itérable, donc on peut le parcourir :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">fichier</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Les lignes d’un fichier texte se finissent par un retour chariot <code class="docutils literal notranslate"><span class="pre">\n</span></code>. Il est souvent utile de s’en débarrasser,              pour cela on peut utiliser la méthode <code class="docutils literal notranslate"><span class="pre">replace('a','b')</span></code> qui remplace le caractère <code class="docutils literal notranslate"><span class="pre">a</span></code> par le caractère <code class="docutils literal notranslate"><span class="pre">b</span></code>.              Mais, depuis Python 2.2 il est recommandé d’utiliser la méthode <code class="docutils literal notranslate"><span class="pre">rstrip('\n\r')</span></code> pour les faire disparaître.</p>
+</div>
+<p><strong>Exercice 2 :</strong> Ecrire un script qui compte le nombre de lignes du fichier <em>BigBangTheoryS06E22.txt</em>.
+Combien de fois le nom du docteur Proton est-il mentionné pendant cette épisode ?</p>
+<p><strong>Exercice 3 :</strong> Ecrire un script qui compte le nombre de répliques de chaque personnage. Il y en a sept : Sheldon, Leonard, Howard, Raj, Penny, Bernadette et Arthur. Vous utiliserez un dictionnaire <code class="code docutils literal notranslate"><span class="pre">characters</span></code> dont les clefs sont les noms des personnages pour stocker les résultats.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;BigBangTheoryS06E22.txt&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">characters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Sheldon&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Leonard&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Howard&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Raj&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Penny&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Bernadette&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Arthur&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">Characters</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ligne</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">)]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                <span class="n">characters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p>A l’aide du code suivant représenter les données du dictionnaire <code class="code docutils literal notranslate"><span class="pre">characters</span></code> sous forme d’un histogramme. Vous trouverez toutes les informations <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.bar.html">ici</a>.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="c1"># Création de la liste des clefs</span>
+<span class="n">char</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">characters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># Création de la liste des nombres de dialogues</span>
+<span class="n">nb_diag</span> <span class="o">=</span> <span class="p">[</span><span class="n">characters</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">characters</span><span class="p">]</span>
+<span class="c1"># Nommage des axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Nombre de répliques&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Personnages&#39;</span><span class="p">)</span>
+<span class="c1"># Création du titre de la figure</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Répartition des lignes de dialogues&#39;</span><span class="p">)</span>
+<span class="c1"># Création de l&#39;histogramme</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="n">nb_diag</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Exercice 4 :</strong> Ecrire un script qui compte le nombre de mots prononcés par chacun des personnages. Vous pourrez utiliser la méthode <code class="code docutils literal notranslate"><span class="pre">replace</span></code> pour éliminer les charactères <code class="code docutils literal notranslate"><span class="pre">\n</span></code>, pour transformer les apostrophes en espaces, et la méthode <code class="code docutils literal notranslate"><span class="pre">split</span></code>, avec une espace comme séparateur, pour obtenir la liste des mots d’une chaîne de charactères. Stocker les résultats dans un dictionnaire <code class="code docutils literal notranslate"><span class="pre">dialogues</span></code>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;BigBangTheoryS06E22.txt&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">dialogues</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Sheldon&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Leonard&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Howard&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Raj&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Penny&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Bernadette&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Arthur&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">dialogues</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ligne</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">)]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                <span class="n">dialogues</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ligne</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;’&quot;</span><span class="p">,</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p>A l’aide du code suivant représenter les données du dictionnaire <code class="code docutils literal notranslate"><span class="pre">dialogues</span></code> sous forme d’un diagramme circulaire. Vous trouverez toutes les informations <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pie.html">ici</a>.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># Création de la liste des clefs</span>
+<span class="n">char</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">characters</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># Création de la liste des nombres de dialogues</span>
+<span class="n">nb_mot</span> <span class="o">=</span> <span class="p">[</span><span class="n">dialogues</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dialogues</span><span class="p">]</span>
+
+<span class="n">explode</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">fig1</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">nb_mot</span><span class="p">,</span> <span class="n">explode</span><span class="o">=</span><span class="n">explode</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">char</span><span class="p">,</span> <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">startangle</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Répartition du nombre de mots&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Exercice 5 :</strong> Ecrire un script qui compte le nombre de questions posées par chaque personnages durant cette épisode, et représenter la répartition par un diagramme circulaire.</p>
+<p><strong>Exercice 6 :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">freq(sch</span> <span class="pre">:</span> <span class="pre">str)-&gt;list</span></code>. Qui calcule la fréquence d’apparition du schéma <code class="code docutils literal notranslate"><span class="pre">sch</span></code> parmi les décimales de <span class="math notranslate nohighlight">\(\pi\)</span> allant de <span class="math notranslate nohighlight">\(10^3\)</span> à <span class="math notranslate nohighlight">\(10^7\)</span> en avancant par pas de <span class="math notranslate nohighlight">\(100\)</span>.</p>
+<blockquote>
+<div><p>Afficher sur un même graphique les fréquences d’apparition de <span class="math notranslate nohighlight">\(0\)</span>. Ces fréquences semblent-elles converger ? Si oui vers quoi ?</p>
+<p>Faire de même avec <span class="math notranslate nohighlight">\(089\)</span>, <span class="math notranslate nohighlight">\(666\)</span>. Ces fréquences semblent-elles converger ? Si oui vers quoi ?</p>
+<p>Pouvez-vous conjecturer vers quoi converge la fréqence d’apparition d’un schéma en fonction de sa longueur ?</p>
+<p>Vous trouverez <a class="reference download internal" download="" href="_downloads/7e640b1e3cb67333b86d4422dc12acfa/pi_10_millions_line.txt"><code class="xref download docutils literal notranslate"><span class="pre">ici</span></code></a> le fichier contenant les <span class="math notranslate nohighlight">\(10\)</span> millions de premières décimales de <span class="math notranslate nohighlight">\(\pi\)</span>.</p>
+</div></blockquote>
+</section>
+<section id="ecrire-dans-un-fichier-texte">
+<h3>Ecrire dans un fichier texte<a class="headerlink" href="#ecrire-dans-un-fichier-texte" title="Permalink to this headline">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pour écrire dans un fichier, il faut ouvrir ce fichier en mode <code class="docutils literal notranslate"><span class="pre">w</span></code> ou ( <code class="docutils literal notranslate"><span class="pre">a</span></code> s’il existe déjà et que l’on veut ajouter des données à la suite de celles préexistantes).</p>
+<blockquote>
+<div><p>Ensuite on utilise la méthode <code class="docutils literal notranslate"><span class="pre">write</span></code>, qui prend comme argument une chaîne de caractère à inscrire dans le fichier.</p>
+</div></blockquote>
+<p>Attention, si le fichier existe déjà l’appel à la fonction <code class="code docutils literal notranslate"><span class="pre">open</span></code> en mode :code:<a href="#id2"><span class="problematic" id="id3">`</span></a>w`écrasera le fichier.</p>
+</div>
+<p><strong>Exercice 1 :</strong> Ecrire dans un fichier <code class="docutils literal notranslate"><span class="pre">premiers_1000</span></code> les 1000 premiers nombres premiers.</p>
+<p><strong>Exercice 2 :</strong> Ecrire une fonction qui prend comme argument un entier naturel <span class="math notranslate nohighlight">\(n\leq 1000\)</span> et qui retourne la somme des <span class="math notranslate nohighlight">\(n\)</span> premiers nombres premiers après les avoir lu dans le fichier <code class="docutils literal notranslate"><span class="pre">premiers_1000</span></code>.</p>
+<p><strong>Exercice 3 :</strong> Ecrire dans neufs fichiers différents les nombres premiers qui commencent respectivement par les chiffres de 1 à 9 contenus dans le fichier <em>premiers_1000.txt</em>.</p>
+<p><strong>Exercice 4 :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">common_word(file1:</span> <span class="pre">str,</span> <span class="pre">file2:</span> <span class="pre">str)-&gt;None</span></code>, qui prend comme arguments les noms de deux fichiers textes, et qui crée un fichier contenant les mots communs aux deux textes, à raison d’un mot par ligne.</p>
+</section>
+</section>
+<section class="html-toggle" id="lire-et-ecrire-dans-un-fichier-csv">
+<span id="toggle-test-link"></span><h2>Lire et écrire dans un fichier CSV<a class="headerlink" href="#lire-et-ecrire-dans-un-fichier-csv" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Un fichier CSV est une fichier au format <em>Comma-Separated Values</em>. C’est un format utilisé pour sauvegarder les feuilles de calculs d’un tableur.
+Dans un tel fichier, une ligne de la feuille de calculs est représentée par une ligne dans le fichier, les cellules d’une même ligne sont séparés par des virgules.
+Par exemple, la feuille :</p>
+<a class="reference internal image-reference" href="_images/tableur.jpg"><img alt="_images/tableur.jpg" class="align-center" src="_images/tableur.jpg" style="width: 647.0px; height: 109.0px;" /></a>
+<p>sera enregistrée sous la forme du fichier  <code class="code docutils literal notranslate"><span class="pre">note.csv</span></code> :</p>
+<blockquote>
+<div><p>Nom,Math,Physique,Info</p>
+<p>Bob,10,12,19</p>
+<p>Sophie,11,13,6</p>
+<p>Carlos,9,11,14</p>
+</div></blockquote>
+<p>Pour lire dans un fichier au format CSV, on peut utiliser le module <code class="code docutils literal notranslate"><span class="pre">csv</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;note.csv&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fichier</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">lire</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">fichier</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">lire</span><span class="p">:</span>
+<span class="gp">... </span>          <span class="nb">print</span><span class="p">(</span><span class="n">ligne</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">[&#39;Nom&#39;, &#39;Math&#39;, &#39;Physique&#39;, &#39;Info&#39;]</span>
+<span class="go">[&#39;Bob&#39;, &#39;10&#39;, &#39;12&#39;, &#39;19&#39;]</span>
+<span class="go">[&#39;Sophie&#39;, &#39;11&#39;, &#39;13&#39;, &#39;6&#39;]</span>
+<span class="go">[&#39;Carlos&#39;, &#39;9&#39;, &#39;11&#39;, &#39;14&#39;]</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Exercice 1 :</strong> Télécharger, <a class="reference download internal" download="" href="_downloads/e8e76bf03bc0d6067da3fcfa6d4d1df8/note.csv"><code class="xref download docutils literal notranslate"><span class="pre">ici</span></code></a>,  le fichier <code class="code docutils literal notranslate"><span class="pre">notes.csv</span></code> dans votre répertoire de travail. Modifier le chemin du fichier dans le code précédent et essayer de le lire.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pour écrire dans un fichier au format csv, c’est très simple :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Noms&#39;</span><span class="p">,</span> <span class="s1">&#39;Math&#39;</span><span class="p">,</span> <span class="s1">&#39;Physique&#39;</span><span class="p">,</span> <span class="s1">&#39;Info&#39;</span><span class="p">],[</span><span class="s1">&#39;Boby&#39;</span><span class="p">,</span> <span class="s1">&#39;12&#39;</span><span class="p">,</span> <span class="s1">&#39;14&#39;</span><span class="p">,</span> <span class="s1">&#39;15&#39;</span><span class="p">],[</span><span class="s1">&#39;Pimousse&#39;</span><span class="p">,</span> <span class="s1">&#39;15&#39;</span><span class="p">,</span> <span class="s1">&#39;15&#39;</span><span class="p">,</span> <span class="s1">&#39;16&#39;</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fichier</span><span class="p">:</span> <span class="c1">#En mode &#39;w&#39; le fichier est cree s&#39;il existe il est ecrase.</span>
+<span class="gp">... </span>        <span class="n">ecrire</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">fichier</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">table</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="n">ecrire</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">ligne</span><span class="p">)</span> <span class="c1"># La méthode writerow ligne par ligne.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fichier</span><span class="p">:</span> <span class="c1">#En mode &#39;a&#39; on ajoute au fichier existant.</span>
+<span class="gp">... </span>        <span class="n">ecrire</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">fichier</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">ecrire</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;Arthur&#39;</span><span class="p">,</span> <span class="s1">&#39;14&#39;</span><span class="p">,</span> <span class="s1">&#39;17&#39;</span><span class="p">,</span> <span class="s1">&#39;17&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Exercice 2 :</strong> Utiliser le code ci-dessus, puis vérifier le résultat en lisant dans le fichier.</p>
+<p><strong>Exercice 3 :</strong> Que fait le code suivant ? Le recopier et le commenter. Puis le lancer pour vérifier.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test.csv&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fichier</span><span class="p">:</span>
+    <span class="n">lignes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ligne</span> <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">fichier</span><span class="p">)]</span>
+
+<span class="k">def</span> <span class="nf">moy</span><span class="p">(</span><span class="n">liste</span><span class="p">):</span>
+    <span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="nb">eval</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">liste</span><span class="p">]</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">liste</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">lignes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Moyennes&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">lignes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="n">ligne</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">moy</span><span class="p">(</span><span class="n">ligne</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fichier</span><span class="p">:</span>
+    <span class="n">ecrire</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">fichier</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">lignes</span><span class="p">:</span>
+        <span class="n">ecrire</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">ligne</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Exercice 4 :</strong> Ajouter à notre fichier <code class="code docutils literal notranslate"><span class="pre">notes.csv</span></code> une ligne sur laquelle figure la moyenne par matière.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On rappelle qu’on peur obtenir de l’aide sur une fonction ou une méthode à l’aide la commande <code class="code docutils literal notranslate"><span class="pre">help()</span></code>.</p>
+</div>
+<p><strong>Exercice 5 :</strong> Comprendre et commenter le code suivant :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">etudiants</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Boby&#39;</span><span class="p">,</span> <span class="s1">&#39;Pimousse&#39;</span><span class="p">,</span> <span class="s1">&#39;Arthur&#39;</span><span class="p">]</span>
+<span class="n">y_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">etudiants</span><span class="p">))</span>
+<span class="n">notes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">14</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">y_pos</span><span class="p">,</span> <span class="n">notes</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>  <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">y_pos</span><span class="p">,</span> <span class="n">etudiants</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Note&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mathématiques&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Exercice 6 :</strong> Tracer un diagramme des notes de physique de nos étudiants contenues dans le fichier test.csv (en lisant le fichier bien sûr).</p>
+<p><strong>Exercice 7 :</strong> Ecrire une procédure <code class="code docutils literal notranslate"><span class="pre">ajout(nom:</span> <span class="pre">str,</span> <span class="pre">notes:</span> <span class="pre">list)-&gt;</span> <span class="pre">None</span></code> qui prend comme arguments le nom et les notes en mathématiques, physique et informatique d’un nouvel étudiant et qui l’ajoute à notre fichiers <code class="code docutils literal notranslate"><span class="pre">notes.csv</span></code>.</p>
+<p><strong>Exercice 8 :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">kill_bob(nom:</span> <span class="pre">str)-&gt;None</span></code> qui prend comme argument le nom d’un étudiant à retirer de notre fichier <code class="code docutils literal notranslate"><span class="pre">notes.csv</span></code>. (Attention il faut que le fichier reste lisible par ligne…)</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "julien-stiker/TP-PTSIB-21-22",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="TP2.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">TP2 : Des modules, des tests et un peu de complexité</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="TP4.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">TP4 : Récursivité</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By J.stiker<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
