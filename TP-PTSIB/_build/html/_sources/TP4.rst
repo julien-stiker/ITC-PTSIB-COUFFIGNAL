@@ -46,6 +46,7 @@ TP4 : Récursivité
     Prenons un exemple. Considérons la fonction suivante :
         
  	.. code-block :: python
+            
             @trace
             def s(a:int, b:int):
                 if a == 0:
@@ -254,7 +255,7 @@ De beaux dessins
 
                 from matplotlib.patches import Polygon
 
-                def triangle([[x1,y1],[x2,y2],[x3,y3]]):
+                def triangle(x1,y1,x2,y2,x3,y3):
                     liste = [[x1,y1],[x2,y2],[x3,y3]]
                     ax.add_patch(Polygon(liste, closed=True,fill=True, color='red'))
 
@@ -330,20 +331,20 @@ Mémoïsation
 
 **Exercice :** Écrire une fonction récursive :code:`fibo_rec(n)` qui prend comme argument un entier :math:`n` et qui retourne le :math:`n`-ième terme de la suite de Fibonacci.
 
-**Exercice :** Écrire une fonction récursive :code:`fibo_m(n)` qui tire profit de la mémoïsation. Pour cela vous allez utiliser une liste comme :code:`cache` pour stocker les résultats des calculs intermédiaires. Au départ vous initialiserez le cache avec les deux premiers termes de la suite : :code:`cache = [0,1]`. Ensuite avant de faire un appel récursif vous vérifierez si le terme que vous souhaitez calculer n'est pas déjà en cache.
+**Exercice :** Écrire une fonction récursive :code:`fibo_m(n)` qui tire profit de la mémoïsation. Pour cela vous allez utiliser une liste comme :code:`cache` pour stocker les résultats des calculs intermédiaires. Au départ vous initialiserez le cache avec les deux premiers termes de la suite : :code:`cache = {0 : 0, 1 : 1]`. Ensuite avant de faire un appel récursif vous vérifierez si le terme que vous souhaitez calculer n'est pas déjà en cache.
 
 .. admonition:: Solution
    :class: dropdown; tip
    
         .. code-block :: python
         
-                cache=[1,1]
-                def fib_m(n):
-                    if n < len(cache): #Si n est dans le cache, on a déjà calculé la valeur donc on la renvoie directement
-                        return cache[n]
-                    else :
-                        rep = fib_m(n-1) + fib_m(n-2) # Je le sauvegarde pour ne pas le calculer 2 fois
-                        cache.append(rep) # Je sauvegarde la valeur de fib calculée
-                        return rep
+                cache = {0:0, 1:1}
+                def fibo_m(n):
+                    if n in cache:
+                        res = cache[n]
+                    else:
+                        cache[n] = fibo_m(n-1)+cache[n-2]
+                        res =  cache[n]
+                    return res
 
 **Question 4 :** Écrire une fonction récursive avec mémoïsation :code:`fact_m(n)` qui prend comme argument un entier :math:`n` et qui retourne :math:`n!`.
