@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="TP6 : Algorithmes gloutons" href="TP6.html" />
+    <link rel="next" title="TP5 : Algorithmes de tri" href="TP5.html" />
     <link rel="prev" title="TP3 : Lecture dans un fichiers et statistiques" href="TP3.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -134,6 +134,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    TP4 : Récursivité
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP5.html">
+   TP5 : Algorithmes de tri
   </a>
  </li>
  <li class="toctree-l1">
@@ -337,10 +342,22 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#de-beaux-dessins">
    De beaux dessins
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimisations">
+     Optimisations
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#memoisation">
    Mémoïsation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recursivite-terminale-et-tail-call-elimination">
+   Récursivité terminale et Tail Call Elimination
   </a>
  </li>
 </ul>
@@ -371,10 +388,22 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#de-beaux-dessins">
    De beaux dessins
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimisations">
+     Optimisations
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#memoisation">
    Mémoïsation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recursivite-terminale-et-tail-call-elimination">
+   Récursivité terminale et Tail Call Elimination
   </a>
  </li>
 </ul>
@@ -633,6 +662,9 @@ Avec le décorateur on obtient :</p>
 </div></blockquote>
 <p>Tous les triangles sont équilatéraux.</p>
 </div></blockquote>
+<section id="optimisations">
+<h3>Optimisations<a class="headerlink" href="#optimisations" title="Permalink to this headline">#</a></h3>
+</section>
 </section>
 <section id="memoisation">
 <h2>Mémoïsation<a class="headerlink" href="#memoisation" title="Permalink to this headline">#</a></h2>
@@ -659,6 +691,196 @@ Avec le décorateur on obtient :</p>
 </div></blockquote>
 </div>
 <p><strong>Question 4 :</strong> Écrire une fonction récursive avec mémoïsation <code class="code docutils literal notranslate"><span class="pre">fact_m(n)</span></code> qui prend comme argument un entier <span class="math notranslate nohighlight">\(n\)</span> et qui retourne <span class="math notranslate nohighlight">\(n!\)</span>.</p>
+</section>
+<section id="recursivite-terminale-et-tail-call-elimination">
+<h2>Récursivité terminale et Tail Call Elimination<a class="headerlink" href="#recursivite-terminale-et-tail-call-elimination" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La <em>Tail Call Elimination (TCE)</em>, également connue sous le nom d’optimisation de la récursivité terminale, est une technique d’optimisation couramment utilisée pour les langages de programmation fonctionnels tels que Scheme, mais elle peut également être appliquée à Python.</p>
+</div>
+<p>La TCE consiste à remplacer une récursivité terminale par une boucle, de sorte que la pile d’appels ne soit plus nécessaire pour exécuter la fonction, ce qui peut améliorer les performances et éviter un éventuel débordement de la pile d’appels.</p>
+<p>Pour le faire il suffit de remarquer qu’un appel récursif terminal revient à effectuer un <strong>GOTO</strong> avec une mise à jour des différents paramètres. Prenons l’exemple de l’algorithme d’Euclide du calcul du pgcd : (on suppose <span class="math notranslate nohighlight">\(a&gt;b\)</span>):</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pgcd_rec</span><span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">pgcd</span> <span class="o">=</span> <span class="n">a</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pgcd</span> <span class="o">=</span> <span class="n">pgcd_rec</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pgcd</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>L’appel récursif est bien terminal. Si l’on se sert de la condition d’arrêt comme condition d’une boucle <code class="code docutils literal notranslate"><span class="pre">while</span></code> et que l’on mets les différentes variables à jour on obtient l’algoritme itératif suivant :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pgcd</span><span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span><span class="n">b</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+    <span class="k">while</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Exercice :</strong> Effectuer une TCE sur la fonction suivante :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">s</span><span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">b</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">s</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><dl>
+<dt>def s(a<span class="classifier">int, b</span><span class="classifier">int)-&gt;int</span></dt><dd><dl class="simple">
+<dt>while a &gt; 0:</dt><dd><p>a -= 1
+b += 1</p>
+</dd>
+</dl>
+<p>return b</p>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Effectuer une TCE sur la fonction suivante :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">palindrome</span><span class="p">(</span><span class="n">mot</span> <span class="p">:</span> <span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">bool</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mot</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="n">mot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">mot</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">palindrome</span><span class="p">(</span><span class="n">mot</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">palindrome</span><span class="p">(</span><span class="n">mot</span> <span class="p">:</span> <span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">bool</span><span class="p">:</span>
+    <span class="n">rep</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">mot</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">rep</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">mot</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">mot</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">rep</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">mot</span> <span class="o">=</span> <span class="n">mot</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">rep</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La TCE n’est possible que si la récursion est terminale. Dans certains cas il est possible de transformer une récursion quelconque en une récursion terminale. Pour cela on a recourt à des <strong>accumulateurs</strong> pour stocker les résultats intermédiaires et les passer comme argument lors de chaque appel récursif. Par exemple la fonction récursive suivante n’est pas terminale :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">somme</span><span class="p">(</span><span class="n">n</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">somme</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Pour transformer cette fonction en une fonction récursive terminale, on peut utiliser un accumulateur pour stocker la somme partielle et le passer comme argument lors de chaque appel récursif :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">somme</span><span class="p">(</span><span class="n">n</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">acc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">acc</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">somme</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">acc</span><span class="o">+</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Dans cette fonction, <code class="code docutils literal notranslate"><span class="pre">acc</span></code> est l’accumulateur qui stocke la somme partielle. L’appel initial de la fonction utilise une valeur par défaut de 0 pour l’accumulateur. Lors de chaque appel récursif, la fonction passe <code class="code docutils literal notranslate"><span class="pre">acc+n</span></code> comme nouvel accumulateur.</p>
+</div>
+<p><strong>Exercice :</strong> Utiliser un accumulateur pour transformer la fonction récursive suivante :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">puissance</span><span class="p">(</span><span class="n">base</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">exposant</span> <span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">exposant</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">base</span> <span class="o">*</span> <span class="n">puissance</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">exposant</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">puissance</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">exposant</span><span class="p">,</span> <span class="n">accumulateur</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">exposant</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">accumulateur</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">puissance</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">exposant</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">accumulateur</span> <span class="o">*</span> <span class="n">base</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Utiliser un accumulateur pour transformer la fonction récursive suivante :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">somme_carres</span><span class="p">(</span><span class="n">n</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">somme_carres</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">somme_carres</span><span class="p">(</span><span class="n">n</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">acc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">acc</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">somme_carres</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">acc</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Utiliser deux accumulateurs pour transformer la fonction récursive suivante :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">acc</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">b</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">next</span> <span class="p">,</span> <span class="n">acc</span> <span class="o">+</span> <span class="nb">next</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Utiliser un accumulateur (attention ce n’est pas un nombre) pour transformer la fonction récursive suivante :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">concat_strings</span><span class="p">(</span><span class="n">lst</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">concat_strings</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">concat_strings</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">acc</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">lst</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">acc</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">concat_strings</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><em>Exercice :*</em> Ecrire des versions itératives de toutes les dernières fonctions.</p>
 </section>
 </section>
 
@@ -696,10 +918,10 @@ Avec le décorateur on obtient :</p>
             <p class="prev-next-title">TP3 : Lecture dans un fichiers et statistiques</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="TP6.html" title="next page">
+    <a class='right-next' id="next-link" href="TP5.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">TP6 : Algorithmes gloutons</p>
+        <p class="prev-next-title">TP5 : Algorithmes de tri</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

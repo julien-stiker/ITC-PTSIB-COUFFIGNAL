@@ -73,7 +73,7 @@ Combien de fois le nom du docteur Proton est-il mentionné pendant cette épisod
         with open("BigBangTheoryS06E22.txt","r") as data:
             characters = {'Sheldon': 0, 'Leonard': 0, 'Howard': 0, 'Raj': 0, 'Penny': 0, 'Bernadette': 0, 'Arthur': 0}
             for ligne in data.readlines():
-                for key in Characters:
+                for key in characters:
                     if ligne[:len(key)] == key:
                         characters[key] += 1
             

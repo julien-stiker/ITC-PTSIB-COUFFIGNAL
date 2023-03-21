@@ -137,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="TP5.html">
+   TP5 : Algorithmes de tri
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="TP6.html">
    TP6 : Algorithmes gloutons
   </a>
@@ -472,7 +477,7 @@ Combien de fois le nom du docteur Proton est-il mentionné pendant cette épisod
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;BigBangTheoryS06E22.txt&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
     <span class="n">characters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Sheldon&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Leonard&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Howard&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Raj&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Penny&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Bernadette&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Arthur&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
     <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
-        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">Characters</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">characters</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">ligne</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">)]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
                 <span class="n">characters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>

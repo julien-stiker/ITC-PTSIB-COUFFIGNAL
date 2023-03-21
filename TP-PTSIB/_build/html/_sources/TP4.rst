@@ -317,6 +317,8 @@ De beaux dessins
 
 
 
+Optimisations
+*************
 
 Mémoïsation
 ================================================================
@@ -348,3 +350,203 @@ Mémoïsation
                     return res
 
 **Question 4 :** Écrire une fonction récursive avec mémoïsation :code:`fact_m(n)` qui prend comme argument un entier :math:`n` et qui retourne :math:`n!`.
+
+
+Récursivité terminale et Tail Call Elimination
+==============================================
+
+.. note:: La *Tail Call Elimination (TCE)*, également connue sous le nom d'optimisation de la récursivité terminale, est une technique d'optimisation couramment utilisée pour les langages de programmation fonctionnels tels que Scheme, mais elle peut également être appliquée à Python.
+
+La TCE consiste à remplacer une récursivité terminale par une boucle, de sorte que la pile d'appels ne soit plus nécessaire pour exécuter la fonction, ce qui peut améliorer les performances et éviter un éventuel débordement de la pile d'appels.
+
+Pour le faire il suffit de remarquer qu'un appel récursif terminal revient à effectuer un **GOTO** avec une mise à jour des différents paramètres. Prenons l'exemple de l'algorithme d'Euclide du calcul du pgcd : (on suppose :math:`a>b`):
+
+    .. code-block:: python
+    
+        def pgcd_rec(a : int, b : int)->int:
+            if b == 0:
+                pgcd = a
+            else:
+                pgcd = pgcd_rec(b, a % b)
+            return pgcd
+
+L'appel récursif est bien terminal. Si l'on se sert de la condition d'arrêt comme condition d'une boucle :code:`while` et que l'on mets les différentes variables à jour on obtient l'algoritme itératif suivant :
+
+
+    .. code-block:: python
+    
+        def pgcd(a : int,b : int)->int:
+            while b > 0:
+                a, b = b, a % b
+            return b
+
+
+**Exercice :** Effectuer une TCE sur la fonction suivante :
+
+    .. code-block:: python 
+    
+        def s(a : int, b : int)->int
+            if a == 0:
+                return b
+            else:
+                return s(a-1,b+1)
+
+
+.. admonition:: Solution
+   :class: dropdown; tip
+
+        def s(a : int, b : int)->int
+            while a > 0:
+                a -= 1
+                b += 1
+            return b
+
+**Exercice :** Effectuer une TCE sur la fonction suivante :
+
+    .. code-block:: python 
+    
+        def palindrome(mot : str)->bool:
+            if len(mot) < 2:
+                return True
+            elif mot[0] != mot[-1]:
+                return False
+            else:
+                return palindrome(mot[1:-1])
+
+
+
+
+.. admonition:: Solution
+   :class: dropdown; tip
+
+    .. code-block :: python 
+    
+        def palindrome(mot : str)->bool:
+            rep = True
+            while len(mot) > 1 and rep:
+                print(mot)
+                if mot[0] != mot[-1]:
+                    rep = False
+                mot = mot[1:-1]
+            return rep
+
+.. note:: La TCE n'est possible que si la récursion est terminale. Dans certains cas il est possible de transformer une récursion quelconque en une récursion terminale. Pour cela on a recourt à des **accumulateurs** pour stocker les résultats intermédiaires et les passer comme argument lors de chaque appel récursif. Par exemple la fonction récursive suivante n'est pas terminale :
+
+
+    .. code-block :: python
+    
+        def somme(n : int)->int:
+            if n == 0:
+                return 0
+            else:
+                return n + somme(n-1)
+
+    Pour transformer cette fonction en une fonction récursive terminale, on peut utiliser un accumulateur pour stocker la somme partielle et le passer comme argument lors de chaque appel récursif :
+    
+
+
+    .. code-block :: python
+    
+        def somme(n : int, acc = 0)->int:
+            if n == 0:
+                return acc
+            else:
+                return somme(n-1, acc+n)
+
+
+    Dans cette fonction, :code:`acc` est l'accumulateur qui stocke la somme partielle. L'appel initial de la fonction utilise une valeur par défaut de 0 pour l'accumulateur. Lors de chaque appel récursif, la fonction passe :code:`acc+n` comme nouvel accumulateur.
+    
+
+**Exercice :** Utiliser un accumulateur pour transformer la fonction récursive suivante :
+
+    .. code-block:: python
+    
+        def puissance(base : int, exposant : int):
+            if exposant == 0:
+                return 1
+            else:
+                return base * puissance(base, exposant - 1)
+
+.. admonition:: Solution
+   :class: dropdown; tip
+
+    .. code-block:: python
+    
+        def puissance(base, exposant, accumulateur=1):
+            if exposant == 0:
+                return accumulateur
+            else:
+                return puissance(base, exposant - 1, accumulateur * base)
+                
+**Exercice :** Utiliser un accumulateur pour transformer la fonction récursive suivante :
+
+    .. code-block:: python
+    
+        def somme_carres(n : int)->int:
+            if n == 0:
+                return 0
+            else:
+                return n**2 + somme_carres(n-1)
+
+.. admonition:: Solution
+   :class: dropdown; tip
+
+    .. code-block:: python
+    
+        def somme_carres(n : int, acc=0)->int:
+            if n == 0:
+                return acc
+            else:
+                return somme_carres(n-1, acc+n*n)
+                
+                
+                
+**Exercice :** Utiliser deux accumulateurs pour transformer la fonction récursive suivante :
+
+    .. code-block :: python
+    
+        def fibonacci(n : int)->int:
+            if n in [0,1]:
+                return n
+            else:
+                return fibonacci(n-1) + fibonacci(n-2)
+                
+
+.. admonition:: Solution
+   :class: dropdown; tip
+
+    .. code-block:: python
+    
+        def fibonacci(n, next=0, acc=1):
+            if n == 0:
+                return a
+            elif n == 1:
+                return b
+            else:
+                return fibonacci(n-1, next , acc + next)
+
+**Exercice :** Utiliser un accumulateur (attention ce n'est pas un nombre) pour transformer la fonction récursive suivante :
+
+   .. code-block :: python
+
+        def concat_strings(lst : list[str])->str:
+            if len(lst)==0:
+                return ''
+            else:
+                return lst[0] + concat_strings(lst[1:])
+                
+
+.. admonition:: Solution
+   :class: dropdown; tip
+
+    .. code-block:: python
+
+        def concat_strings(lst, acc=""):
+            if not lst:
+                return acc
+            else:
+                return concat_strings(lst[1:], acc + lst[0])
+                
+                
+*Exercice :** Ecrire des versions itératives de toutes les dernières fonctions.
+
