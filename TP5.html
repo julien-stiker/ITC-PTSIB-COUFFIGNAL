@@ -1,0 +1,1051 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>TP5 : Algorithmes de tri &#8212; Les TP d informatique en PTSI-B</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="TP6 : Algorithmes gloutons" href="TP6.html" />
+    <link rel="prev" title="TP4 : Récursivité" href="TP4.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Les TP d informatique en PTSI-B</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Les TP d’informatique en PTSI-B au lycée Coufignal
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP1.html">
+   TP1 : La reprise
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP2.html">
+   TP2 : Des modules, des tests et un peu de complexité
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP3.html">
+   TP3 : Lecture dans un fichiers et statistiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP4.html">
+   TP4 : Récursivité
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   TP5 : Algorithmes de tri
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP6.html">
+   TP6 : Algorithmes gloutons
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP8.html">
+   TP8 : Applications des parcours de graphe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TP9.html">
+   TP9 : Plus courts chemins
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/julien-stiker/TP-PTSIB-21-22"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/julien-stiker/TP-PTSIB-21-22/issues/new?title=Issue%20on%20page%20%2FTP5.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/TP5.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#un-nouveau-tri-le-bucket-sort">
+   Un nouveau tri : le Bucket Sort
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strategies-de-fusion-de-merge-sort-au-tim-sort">
+   Stratégies de fusion : de merge sort au Tim sort
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decomposition-en-runs-et-fusion">
+     Décomposition en runs et fusion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algorithmes-de-tri-par-decomposition-en-runs-et-fusions">
+     Algorithmes de tri par décomposition en runs et fusions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#natural-merge-sort-de-knuth">
+       Natural Merge Sort de Knuth
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algorithmes-de-tri-par-decomposition-en-runs-et-fusions-utilisant-une-pile">
+     Algorithmes de tri par décomposition en runs et fusions utilisant une pile
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#la-detection-des-runs">
+       La détection des runs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#le-tri-alpha-stack-sort">
+       Le tri
+       <span class="math notranslate nohighlight">
+        \(\alpha\)
+       </span>
+       -stack_sort
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pseudo-tim-sort">
+       Pseudo Tim Sort
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimiser-quick-sort">
+   Optimiser Quick Sort
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>TP5 : Algorithmes de tri</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#un-nouveau-tri-le-bucket-sort">
+   Un nouveau tri : le Bucket Sort
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strategies-de-fusion-de-merge-sort-au-tim-sort">
+   Stratégies de fusion : de merge sort au Tim sort
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decomposition-en-runs-et-fusion">
+     Décomposition en runs et fusion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algorithmes-de-tri-par-decomposition-en-runs-et-fusions">
+     Algorithmes de tri par décomposition en runs et fusions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#natural-merge-sort-de-knuth">
+       Natural Merge Sort de Knuth
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algorithmes-de-tri-par-decomposition-en-runs-et-fusions-utilisant-une-pile">
+     Algorithmes de tri par décomposition en runs et fusions utilisant une pile
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#la-detection-des-runs">
+       La détection des runs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#le-tri-alpha-stack-sort">
+       Le tri
+       <span class="math notranslate nohighlight">
+        \(\alpha\)
+       </span>
+       -stack_sort
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pseudo-tim-sort">
+       Pseudo Tim Sort
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimiser-quick-sort">
+   Optimiser Quick Sort
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="tp5-algorithmes-de-tri">
+<h1>TP5 : Algorithmes de tri<a class="headerlink" href="#tp5-algorithmes-de-tri" title="Permalink to this headline">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Les objectifs du TP :</strong></p>
+<ul class="simple">
+<li><p>Découvrir d’autres algorithmes de tris</p></li>
+<li><p>Améliorer quick_sort (du moins essayer)</p></li>
+<li><p>Comparer les performances des algorithmes vus</p></li>
+</ul>
+</div>
+<section id="un-nouveau-tri-le-bucket-sort">
+<h2>Un nouveau tri : le Bucket Sort<a class="headerlink" href="#un-nouveau-tri-le-bucket-sort" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Le Bucket Sort est particulièrement utile pour trier des valeurs qui sont uniformément distribuées dans un intervalle donné, comme dans le cas de nombres dans l’intervalle [0,1[ (c’est-à-dire, tous les nombres entre 0 inclus et 1 exclu).</p>
+<p>Voici comment fonctionne le Bucket Sort pour trier des valeurs dans l’intervalle [0,1[:</p>
+<ul class="simple">
+<li><p>Tout d’abord, vous devez déterminer le nombre de buckets dont vous avez besoin. Dans ce cas, il est logique de choisir le nombre de buckets égal au nombre de valeurs à trier. Cela signifie que chaque bucket ne devrait contienir qu’une seule valeur, puisque les nombres sont supposés uniformément distribués.</p></li>
+<li><p>Ensuite, vous devez parcourir la liste des valeurs à trier et les placer dans les buckets appropriés en fonction de leur valeur. Pour cela, vous multipliez chaque valeur par le nombre de buckets et vous arrondissez à l’entier inférieur pour obtenir l’indice du bucket approprié. Par exemple, si vous avez la liste suivante de <span class="math notranslate nohighlight">\(7\)</span> nombres entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span> : <span class="math notranslate nohighlight">\([0.54, 0.23, 0.10, 0.72, 0.43, 0.99, 0.24]\)</span> et que vous avez décidé d’utiliser <span class="math notranslate nohighlight">\(7\)</span> buckets, vous pouvez placer les éléments dans les buckets comme suit : <span class="math notranslate nohighlight">\([ [0.1], [0.23, 0.24], [0.43], [0.54], [0.72], [0.99], [] ]\)</span>.</p></li>
+<li><p>Maintenant que les éléments sont répartis dans les buckets, vous pouvez trier chaque bucket individuellement en utilisant un autre algorithme de tri (par exemple, insertion sort). Une fois que chaque bucket a été trié, vous pouvez les concaténer pour obtenir la liste triée finale.</p></li>
+</ul>
+</div>
+<p><strong>Exercice :</strong> L’obligation pour les nombres à trier d’être dans l’intervalle <span class="math notranslate nohighlight">\([0,1[\)</span> semble très restrictive. Si <code class="code docutils literal notranslate"><span class="pre">tab</span></code> est une liste d’entiers quelconques, quelles opérations peut-on effectuer sur ses éléments pour se ramener à un l’intervalle <span class="math notranslate nohighlight">\([0,1[\)</span> ?</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><p>Il suffit de déterminer le <span class="math notranslate nohighlight">\(min\)</span> et le <span class="math notranslate nohighlight">\(max\)</span> de la liste <code class="code docutils literal notranslate"><span class="pre">tab</span></code>, puis d’appliquer à ses valeurs la fonction <span class="math notranslate nohighlight">\(x\mapsto \dfrac{x-min}{max + 1 - min}\)</span>.</p>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Implémenter la fonction <code class="code docutils literal notranslate"><span class="pre">bucket_sort(tab</span> <span class="pre">:</span> <span class="pre">list)-&gt;list</span></code> .</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><p>..code-block:: python</p>
+<blockquote>
+<div><dl>
+<dt>def bucket_sort(tab: list)-&gt; list:</dt><dd><p># Le nombre de bucket est le nombre d’éléments de tab
+num_buckets = len(tab)
+# On initialise des buckets vides
+buckets = [[] for _ in range(num_buckets)]
+# On range chaque valeur dans le bon bucket
+for val in tab:</p>
+<blockquote>
+<div><p>bucket_index = int(val * num_buckets)
+buckets[bucket_index].append(val)</p>
+</div></blockquote>
+<dl class="simple">
+<dt># On tri chaque bucket (ici avec insertion_sort)</dt><dd><dl class="simple">
+<dt>for bucket in buckets:</dt><dd><p>insertion_sort(bucket)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p># On concatène les différents bucket
+sorted_tab = []
+for bucket in buckets:</p>
+<blockquote>
+<div><p>sorted_tab.extend(bucket)</p>
+</div></blockquote>
+<p>return sorted_tab</p>
+</dd>
+<dt>def insertion_sort(tab<span class="classifier">list)-&gt; None:</span></dt><dd><dl>
+<dt>for i in range(1, len(tab)):</dt><dd><p>key = tab[i]
+j = i - 1
+while j &gt;= 0 and tab[j] &gt; key:</p>
+<blockquote>
+<div><p>tab[j + 1] = tab[j]
+j -= 1</p>
+</div></blockquote>
+<p>tab[j + 1] = key</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Déterminer la complexité au pire, et au meilleur de cet algorithme. Nous verrons plus tard dans l’année qu’en moyenne sa complexité est linéaire.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><p>Dans le meilleur cas, il y a une seule valeur par bucket. Et dans ce cas la complexité est linéaire. Notez que sur un tableau d’une case :code:ìnsertion_sort` se faite en <span class="math notranslate nohighlight">\(O(1)\)</span>.</p>
+<p>Dans le pire cas, toutes les valeurs sont dans le même bucket, et dans ca cas le pire cas est celui d’:code:ìnsertion_sort` soit un <span class="math notranslate nohighlight">\(O(n^2\)</span>).</p>
+</div></blockquote>
+</div>
+</section>
+<section id="strategies-de-fusion-de-merge-sort-au-tim-sort">
+<h2>Stratégies de fusion : de merge sort au Tim sort<a class="headerlink" href="#strategies-de-fusion-de-merge-sort-au-tim-sort" title="Permalink to this headline">#</a></h2>
+<p>Cette partie est entièrement basée sur le travail de Nicolas Auger, notamment sur sa thèse intitulée <a class="reference external" href="https://www.theses.fr/2018PESC1110.pdf">Analyse réaliste d’algorithme standard</a> et son article <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-01212839">Merge Strategies : from Merge Sort to TimSort</a> .</p>
+<p>L’idée des algorithmes présentés ici est d’essayer de tirer profit des sous-listes triée, dans l’ordre croissante ou ddécroissant, d’une liste pour la trier.</p>
+<section id="decomposition-en-runs-et-fusion">
+<h3>Décomposition en runs et fusion<a class="headerlink" href="#decomposition-en-runs-et-fusion" title="Permalink to this headline">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Si <span class="math notranslate nohighlight">\(\mathcal{S} = (s_1,\ldots,s_n)\)</span> est une suite de <span class="math notranslate nohighlight">\(n\)</span> nombres, un <em>run</em> est une sous-suite <span class="math notranslate nohighlight">\((s_i,\ldots,s_j)\)</span> avec <span class="math notranslate nohighlight">\(i\leq j\)</span> qui est croissante ou décroissante.</p>
+<p>Une décomposition de <span class="math notranslate nohighlight">\(S\)</span> en runs est une suite non vide <span class="math notranslate nohighlight">\(\mathcal{R}=(R_1,\ldots,R_m)\)</span> de runs de <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>, telle que <span class="math notranslate nohighlight">\(\mathcal{S}=R_1\cdot R_2\cdot\ldots\cdot R_m\)</span>, où le point signifie que l’on concatène les deus suites.</p>
+<p>Par exemple : si <span class="math notranslate nohighlight">\(\mathcal{S} = (2, 3, 5, 7, 11, 10, 9, 8, 9, 10)\)</span> alors <span class="math notranslate nohighlight">\(\mathcal{R}_1 = ((2,3,5,7,11), (10), (9), (8,9,10))\)</span> et <span class="math notranslate nohighlight">\(\mathcal{R}_2 = ((2,3,5,7,11) · (10, 9, 8) · (9, 10))\)</span>  sont deux décompositions en runs de <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>.</p>
+<p>La taille d’un run est sa longueur, on la note <span class="math notranslate nohighlight">\(\text{size}\)</span>. Par exemple <span class="math notranslate nohighlight">\(\text{size}((2,3,5,7,11)) = 5\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Si <span class="math notranslate nohighlight">\(R_1\)</span> sont deux runs d’une suite <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> on notera <span class="math notranslate nohighlight">\(R_1\oplus R_2\)</span> la suite croissante obtenues à partir des éléments de <span class="math notranslate nohighlight">\(R_1\)</span> et <span class="math notranslate nohighlight">\(R_2\)</span>. On dit qu’on a réalisé la <em>fusion</em> des deux runs.</p>
+<p>Comme nous tâcherons d’écrire des algorithmes de tri en place, dans la suite nous représenterons un run <span class="math notranslate nohighlight">\(R = (s_i,\ldots, s_j)\)</span> avec le tuple <span class="math notranslate nohighlight">\((i,j)\)</span>, pour ne pas à avoir à gérer des tableaux auxiliaires.</p>
+<p>Nous ne fusionnerons que des runs croissants. Nous pouvons donc réutiliser la procédure que nous avons vu en cours, dont je vous rappelle le pseudocode.</p>
+<a class="reference internal image-reference" href="_images/merge.pdf"><img alt="_images/merge.pdf" class="align-center" src="_images/merge.pdf" style="width: 792px;" /></a>
+</div>
+<p><strong>Exercice :</strong> Implémenter la procédure <code class="code docutils literal notranslate"><span class="pre">merge(tab</span> <span class="pre">:</span> <span class="pre">list,</span> <span class="pre">i</span> <span class="pre">:int,</span> <span class="pre">j</span> <span class="pre">:int,</span> <span class="pre">k</span> <span class="pre">:</span> <span class="pre">int)-&gt;None</span></code> qui fusionne <code class="code docutils literal notranslate"><span class="pre">tab[i:j]</span></code> et <code class="code docutils literal notranslate"><span class="pre">tab[j:k]</span></code> directement dans le tableau <code class="code docutils literal notranslate"><span class="pre">tab</span></code>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">i</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">k</span> <span class="p">:</span> <span class="nb">int</span> <span class="p">)</span><span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">j</span>
+    <span class="n">merged</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">):</span>
+        <span class="k">if</span>  <span class="n">r</span> <span class="o">==</span> <span class="n">k</span> <span class="ow">or</span> <span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">j</span> <span class="ow">and</span> <span class="n">tab</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">tab</span><span class="p">[</span><span class="n">r</span><span class="p">]):</span>
+            <span class="n">merged</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>
+            <span class="n">l</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">merged</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">r</span><span class="p">])</span>
+            <span class="n">r</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</section>
+<section id="algorithmes-de-tri-par-decomposition-en-runs-et-fusions">
+<h3>Algorithmes de tri par décomposition en runs et fusions<a class="headerlink" href="#algorithmes-de-tri-par-decomposition-en-runs-et-fusions" title="Permalink to this headline">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les algorithmes de tri qui utilisent une décomposition en runs de la liste à trier et qui utilisent ensuite des fusions de ces runs, sont appelés des algorithme de type <em>run-merge</em>.</p>
+<p>Par exemple l’algorithme <code class="code docutils literal notranslate"><span class="pre">merge_sort</span></code>, que nous avons étudier en cours est du type run-merge. Il consiste à réduire chaque run à des singletons, puis à les fusionner de manière récursive.</p>
+<p>En pseudo-code cet type d’algorithmes peut se résumer à ce qui suit.</p>
+<a class="reference internal image-reference" href="_images/strategy_run_merge.pdf"><img alt="_images/strategy_run_merge.pdf" class="align-center" src="_images/strategy_run_merge.pdf" style="width: 842px;" /></a>
+<p>Comme dit plus haut, nous implémenterons des versions en place de ces algorithmes. Aussi, nous n’écrirons que des procédures.</p>
+</div>
+<section id="natural-merge-sort-de-knuth">
+<h4>Natural Merge Sort de Knuth<a class="headerlink" href="#natural-merge-sort-de-knuth" title="Permalink to this headline">#</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Dans <em>Sorting and searching</em>, Knuth a proposé un algorithme qu’il appelle Natural Merge Sort. Nous allons en étudier une version (très) simplifiée.</p>
+<p>L’algorithme consiste à décomposer la suite des valeurs de la liste <code class="code docutils literal notranslate"><span class="pre">tab</span></code> en runs croissants maximaux, puis à fusionner les runs successifs obtenus.</p>
+<p>Pour obtenir la décomposition en runs croissants maximaux on parcourt le tableau de gauche à droite, en comparant chaque élément avec son successeur. Si l’élément est inférieur ou égal au suivant, on continue à parcourir le tableau. Sinon, on a trouvé la fin d’un run croissant maximal. On stocke alors le tuple <code class="code docutils literal notranslate"><span class="pre">(start,</span> <span class="pre">end)</span></code> des indices de départ et de fin du run que l’on a trouvé dans la liste des runs. On répète ce processus jusqu’à ce que tout le tableau soit parcouru en entier.</p>
+<p>Ensuite on fusionne deux à deux les runs consécutifs jusqu’à ce que le tableau soit trié.</p>
+</div>
+<p><strong>Exercice :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">decomposition_into_increasing_runs(tab</span> <span class="pre">:</span> <span class="pre">list)-&gt;list[Tuple[int,int]]</span></code> qui retourne la liste des indices <code class="code docutils literal notranslate"><span class="pre">(start,end)</span></code> de la décomposition en runs croissants. Par exemple pour la liste <code class="code docutils literal notranslate"><span class="pre">tab=[2,</span> <span class="pre">3,</span> <span class="pre">5,</span> <span class="pre">7,</span> <span class="pre">11,</span> <span class="pre">10,</span> <span class="pre">9,</span> <span class="pre">8,</span> <span class="pre">9,</span> <span class="pre">10]</span></code> la fonction retourne <code class="code docutils literal notranslate"><span class="pre">[(0,</span> <span class="pre">4),</span> <span class="pre">(5,</span> <span class="pre">5),</span> <span class="pre">(6,</span> <span class="pre">6),</span> <span class="pre">(7,</span> <span class="pre">9)]</span></code> .</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decomposition_into_increasing_run</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]]:</span>
+    <span class="n">runs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">runs</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Ecrire la procédure <code class="code docutils literal notranslate"><span class="pre">naturale_merge_sort(tab</span> <span class="pre">:</span> <span class="pre">list)-&gt;None</span></code> qui trie en place la liste <code class="code docutils literal notranslate"><span class="pre">tab</span></code> suivant l’algorithme de Knuth. Il suffit de parcourir la liste des runs, et de les fusionner deux à deux jusqu’à ce qu’il n’en reste qu’un.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">natural_merge_sort</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">runs</span> <span class="o">=</span> <span class="n">decomposition_into_increasing_run</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span>
+    <span class="c1"># Tant qu&#39;il y a plus d&#39;un run dans la liste</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">merged_runs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="c1"># Si c&#39;est le dernier run on l&#39;ajoute à la liste</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">merged_runs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="c1"># Sinon, il reste au moins deux runs à fusionner</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># On fusionne les runs en place</span>
+                <span class="n">merge</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">runs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">runs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">runs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="c1"># Le run obtenu est ajouté à la liste des runs</span>
+                <span class="n">merged_runs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">runs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">runs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">runs</span> <span class="o">=</span> <span class="n">merged_runs</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</section>
+</section>
+<section id="algorithmes-de-tri-par-decomposition-en-runs-et-fusions-utilisant-une-pile">
+<h3>Algorithmes de tri par décomposition en runs et fusions utilisant une pile<a class="headerlink" href="#algorithmes-de-tri-par-decomposition-en-runs-et-fusions-utilisant-une-pile" title="Permalink to this headline">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Nous allons nous intéresser dans cette partie à des algorithmes de tris qui peuvent être décrit à partir d’une <em>stratégie de décompositions en runs</em> et d’une <em>stratégie de fusion des runs</em>.</p>
+<p>Après avoir calculer une décomposition en runs de la liste à trier. On ajoute les runs un à un à une pile <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> à qui on applique la stratégie de fusion.</p>
+<p>La stratégie de fusion consiste en la donnée d’un ensemble <span class="math notranslate nohighlight">\(\mathfrak{S}\)</span> de couple <span class="math notranslate nohighlight">\((\rho,\mu)\)</span>, où <span class="math notranslate nohighlight">\(\rho\)</span> est une règle et <span class="math notranslate nohighlight">\(\mu\)</span> une action à réaliser lorsque la règle n’est pas vérifiée.</p>
+<p>Par exemple si la pile des runs est <span class="math notranslate nohighlight">\(\mathcal{R}=\{\ldots,W,X,Y,Z\}\)</span>, c’est-à-dire si les runs <span class="math notranslate nohighlight">\(W,\ldots,Y\)</span> et <span class="math notranslate nohighlight">\(Z\)</span> sont au sommet de la pile, on pourrait avoir comme stratégie de fusion <span class="math notranslate nohighlight">\(\mathfrak{S}\)</span> :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho_1 : \textrm{size}(W)&gt;\textrm{size}(X)+\textrm{size}(Y)\)</span> et <span class="math notranslate nohighlight">\(\mu_1 :\)</span> fusionner <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_2 : \textrm{size}(Y)&gt;\textrm{size}(Z)\)</span> et <span class="math notranslate nohighlight">\(\mu_2 :\)</span> fusionner <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
+</ul>
+</div></blockquote>
+<p>Dans cet exemple, lorsque <span class="math notranslate nohighlight">\(Z\)</span> est ajouté à la pile on vérifie si la condition <span class="math notranslate nohighlight">\(\rho_1\)</span>.</p>
+<p>Lorsqu’une régle porte sur plus d’éléments que la pile n’en contient on l’ignore. Dans notre exemple, si la pile ne contient que deux runs, on ignore <span class="math notranslate nohighlight">\(\rho_1\)</span> et on passe à <span class="math notranslate nohighlight">\(\rho_2\)</span>.</p>
+<p>Lorsque tous les runs ont été empilé, l’algorithme fusionne les runs restant deux à deux jusqu’à ce qu’il n’en reste qu’un. De tels algorithmes sont dits de type <em>stack run-merge sort</em>.</p>
+<a class="reference internal image-reference" href="_images/stack_run_merge.pdf"><img alt="_images/stack_run_merge.pdf" class="align-center" src="_images/stack_run_merge.pdf" style="width: 842px;" /></a>
+<p>Pour gagner du temps, on peut ne pas attendre d’avoir obtenu toute la décomposition en runs de la liste pour appliquer la stratégie de fusion. On peut le faire en même temps.</p>
+</div>
+<section id="la-detection-des-runs">
+<h4>La détection des runs<a class="headerlink" href="#la-detection-des-runs" title="Permalink to this headline">#</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pour tirer profit au maximum des sous-suites monotones contenues dans la liste à trier on souhaite maintenant tenir compte des runs décroissants. Lorsqu’un run décroissant sera détecté on le <em>renversera</em> immédiatement dans la liste.</p>
+</div>
+<p><strong>Exercice :</strong> Ecrire une fonction <code class="code docutils literal notranslate"><span class="pre">run_detect(tab:</span> <span class="pre">list,</span> <span class="pre">start</span> <span class="pre">:</span> <span class="pre">int,</span> <span class="pre">n</span> <span class="pre">:</span> <span class="pre">int)-&gt;tuple[int,</span> <span class="pre">int,</span> <span class="pre">bool]</span></code> qui prend comme arguments une liste <code class="code docutils literal notranslate"><span class="pre">tab</span></code>, une position <code class="code docutils literal notranslate"><span class="pre">start</span></code> et la longueur <code class="code docutils literal notranslate"><span class="pre">n</span></code> de la liste <code class="code docutils literal notranslate"><span class="pre">tab</span></code>, et qui retourne le tuple <span class="math notranslate nohighlight">\((start,j)\)</span> telle que <code class="code docutils literal notranslate"><span class="pre">tab[start:j+1]</span></code> soit un run maximal de <code class="code docutils literal notranslate"><span class="pre">tab</span></code>, et un booléen <code class="code docutils literal notranslate"><span class="pre">True</span></code> si le run est croissant et <code class="code docutils literal notranslate"><span class="pre">False</span></code> sinon.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_detect3</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">start</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">tuple</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">tab</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">tab</span><span class="p">[</span><span class="n">start</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">start</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">start</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">start</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">start</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">start</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</section>
+<section id="le-tri-alpha-stack-sort">
+<h4>Le tri <span class="math notranslate nohighlight">\(\alpha\)</span>-stack_sort<a class="headerlink" href="#le-tri-alpha-stack-sort" title="Permalink to this headline">#</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ce tri est un tri de type stack run-merge. Sa stratégie ne contient qu’une régle et une action qui dépend d’un paramètre <span class="math notranslate nohighlight">\(\alpha\)</span>, si les runs <span class="math notranslate nohighlight">\(Y\)</span> et <span class="math notranslate nohighlight">\(Z\)</span> sont au sommet de la pile :</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho:\textrm{size}(Y) \geq \alpha\cdot \textrm{size}(Z)\)</span> et <span class="math notranslate nohighlight">\(\mu :\)</span> fusionner <span class="math notranslate nohighlight">\(Y\)</span> et <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
+</ul>
+<p>L’algorithme peut donc s’écrire comme suit.</p>
+<a class="reference internal image-reference" href="_images/alpha_stack_sort.pdf"><img alt="_images/alpha_stack_sort.pdf" class="align-center" src="_images/alpha_stack_sort.pdf" style="width: 842px;" /></a>
+<p>La procédure <span class="math notranslate nohighlight">\(\mu\)</span> se charge d’opérer les fusions lorsque la règle <span class="math notranslate nohighlight">\(\rho\)</span> n’est pas vérifiée. On peut l’écrire en pseudo code comme suit :</p>
+<a class="reference internal image-reference" href="_images/mu_rho.pdf"><img alt="_images/mu_rho.pdf" class="align-center" src="_images/mu_rho.pdf" style="width: 842px;" /></a>
+</div>
+<p><strong>Exercice :</strong> Implémenter la fonction <code class="code docutils literal notranslate"><span class="pre">rho(runs:</span> <span class="pre">list)-&gt;bool</span></code> et la procédure <code class="code docutils literal notranslate"><span class="pre">mu(tab</span> <span class="pre">:</span> <span class="pre">list,</span> <span class="pre">runs</span> <span class="pre">:</span> <span class="pre">list)</span></code>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rho</span><span class="p">(</span><span class="n">runs</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">bool</span><span class="p">:</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">j</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<p><strong>Exercice :</strong> Implémenter la procédure <code class="code docutils literal notranslate"><span class="pre">alpha_stack_sort(tab</span> <span class="pre">:</span> <span class="pre">list)-&gt;None</span></code>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mu</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">runs</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">rho</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
+            <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">r2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">r1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">merge</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">])</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</section>
+<section id="pseudo-tim-sort">
+<h4>Pseudo Tim Sort<a class="headerlink" href="#pseudo-tim-sort" title="Permalink to this headline">#</a></h4>
+<p>Le TimSort a plusieurs avantages par rapport à d’autres algorithmes de tri. Tout d’abord, il est très efficace pour trier des données qui sont déjà partiellement triées, ce qui est souvent le cas dans de nombreux cas d’utilisation. De plus, il est très rapide pour trier de grandes quantités de données, ce qui en fait un choix populaire pour les applications où les performances sont importantes.</p>
+<p>Si la pile <span class="math notranslate nohighlight">\(\mathcal{X}=\{\ldots,W,X,Y,Z\}\)</span> la statégie de fusion du TimSort repose sur les règles suivantes :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho_1 : \textrm{size}(X)\geq\textrm{size}(Z)\)</span> et <span class="math notranslate nohighlight">\(\mu_1 :\)</span> fusionner <span class="math notranslate nohighlight">\(X\)</span> et <span class="math notranslate nohighlight">\(Y\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_2 : \textrm{size}(X)&gt;\textrm{size}(Y)+\textrm{size}(Z)\)</span> et <span class="math notranslate nohighlight">\(\mu_2 :\)</span> fusionner <span class="math notranslate nohighlight">\(Y\)</span> et <span class="math notranslate nohighlight">\(Z\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_3 : \textrm{size}(W)&gt;\textrm{size}(X)+\textrm{size}(Y)\)</span> et <span class="math notranslate nohighlight">\(\mu_3 :\)</span> fusionner <span class="math notranslate nohighlight">\(Y\)</span> et <span class="math notranslate nohighlight">\(Z\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_4 : \textrm{size}(Y)&gt;\textrm{size}(Z)\)</span> et <span class="math notranslate nohighlight">\(\mu_4 :\)</span> fusionner <span class="math notranslate nohighlight">\(Y\)</span> et <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
+</ul>
+</div></blockquote>
+<p>Il faut se souvenir que les règles doivent être prises dans l’ordre et que celles qui ne peuvent être évaluées sont ignorées.</p>
+<p><strong>Exercice :</strong> Implémenter les fonctions <code class="code docutils literal notranslate"><span class="pre">rho1</span></code>,…, <code class="code docutils literal notranslate"><span class="pre">rho4</span></code>, et les procédures <code class="code docutils literal notranslate"><span class="pre">mu1</span></code>,…, <code class="code docutils literal notranslate"><span class="pre">mu4</span></code>. Et enfin la procédure <code class="code docutils literal notranslate"><span class="pre">pseudo_tim_sort(tab</span> <span class="pre">:</span> <span class="pre">list)</span></code>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="n">run</span> <span class="p">:</span> <span class="nb">tuple</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">run</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">run</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">rho1</span><span class="p">(</span><span class="n">runs</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]),</span> <span class="n">size</span><span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]),</span> <span class="n">size</span><span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span>  <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">z</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span> <span class="nf">rho2</span><span class="p">(</span><span class="n">runs</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]),</span> <span class="n">size</span><span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]),</span> <span class="n">size</span><span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">def</span> <span class="nf">rho3</span><span class="p">(</span><span class="n">runs</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">]),</span> <span class="n">size</span><span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]),</span> <span class="n">size</span><span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]),</span> <span class="n">size</span><span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">w</span> <span class="o">&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span> <span class="nf">rho4</span><span class="p">(</span><span class="n">runs</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">bool</span><span class="p">:</span>
+    <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]),</span> <span class="n">size</span><span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="n">z</span>
+
+
+<span class="k">def</span> <span class="nf">mu1</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span><span class="n">runs</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+    <span class="n">Z</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">merge</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">])</span>
+    <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">mu2</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">runs</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+    <span class="n">Z</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Z</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">merge</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">mu3</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">runs</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+    <span class="n">Z</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Z</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">merge</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">mu4</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">runs</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+    <span class="n">Z</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Z</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">merge</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">pseudo_tim_sort</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span>
+    <span class="n">runs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">run</span> <span class="o">=</span> <span class="n">run_detect2</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">run</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+            <span class="n">tab</span><span class="p">[</span><span class="n">run</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">run</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">run</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">run</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">run</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="n">test</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">test</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">rho1</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
+                <span class="n">mu1</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span><span class="n">runs</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">rho2</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
+                <span class="n">mu2</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">runs</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">rho3</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
+                <span class="n">mu3</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">runs</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">rho4</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
+                <span class="n">mu4</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">runs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">test</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">r2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">r1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">merge</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">])</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>En réalité le vrai TimSort tire profit de plusieurs optimisations, nous allons implémenter l’une d’elle.</p>
+<p>Après avoir détecter un nouveau run :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>si le run est décroissant il est retourné.</p></li>
+<li><p>si le run <code class="code docutils literal notranslate"><span class="pre">tab[star:</span> <span class="pre">end+1]</span></code> est de taille inférieure à <code class="code docutils literal notranslate"><span class="pre">min_size</span></code>, généralement 32 ou 64, alors il est complété avec les éléments suivants du tableau jusqu’à atteindre la taille <code class="code docutils literal notranslate"><span class="pre">min_size</span></code>, si c’est possible. Puis la tranche <code class="code docutils literal notranslate"><span class="pre">tab[start:start+31]</span></code>  est triée par :code:ìnsertion_sort`. Enfin le run obtenu est ajouté à la pile des runs.</p></li>
+</ul>
+</div></blockquote>
+<p>Voici une implémentation différente du tri par insertion que celle vu en cours. Elle permet d’appliquer le tri sur une tranche d’un tableau :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">insertion_sort</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span><span class="n">l</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span><span class="n">r</span> <span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">tab</span><span class="p">[</span><span class="n">l</span><span class="p">]:</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="n">l</span><span class="p">:</span>
+            <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">tab</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span>
+        <span class="k">while</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">:</span>
+            <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Exercice :</strong> Implémenter une procédure <code class="code docutils literal notranslate"><span class="pre">pseudo_tim_sort2(tab</span> <span class="pre">:</span> <span class="pre">list)-&gt;None</span></code> qui tient compte de cette oprimisation avec <code class="code docutils literal notranslate"><span class="pre">min_size=32</span></code>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Solution</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pseudo_tim_sort2</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span>
+    <span class="n">runs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">run</span> <span class="o">=</span> <span class="n">run_detect</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">run</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+            <span class="n">tab</span><span class="p">[</span><span class="n">run</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">run</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">run</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">run</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">size</span><span class="p">(</span><span class="n">run</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">32</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">31</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">insertion_sort</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">32</span><span class="p">)</span>
+            <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">31</span><span class="p">])</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">31</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">run</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="n">test</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">test</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">rho1</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
+                <span class="n">mu1</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span><span class="n">runs</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">rho2</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
+                <span class="n">mu2</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">runs</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">rho3</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
+                <span class="n">mu3</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">runs</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">rho4</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
+                <span class="n">mu4</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">runs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">test</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="n">runs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+
+
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="n">runs</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">r2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">r1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">merge</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">])</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</section>
+</section>
+</section>
+<section id="optimiser-quick-sort">
+<h2>Optimiser Quick Sort<a class="headerlink" href="#optimiser-quick-sort" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Nous avons étudier en cours le <code class="code docutils literal notranslate"><span class="pre">quick_sort</span></code>, dont je vous rapelle le pseudo-code :</p>
+<a class="reference internal image-reference" href="_images/algo_quick_sort.pdf"><img alt="_images/algo_quick_sort.pdf" class="align-center" src="_images/algo_quick_sort.pdf" style="width: 792px;" /></a>
+<p>Comme le second appel récursif est terminal, on peut procéder à une <strong>tail call elimination</strong>, il s’agit de transformer le dernier appel récursif en une boucle. Ce qui donne :</p>
+<a class="reference internal image-reference" href="_images/algo_quick_sort_tce.pdf"><img alt="_images/algo_quick_sort_tce.pdf" class="align-center" src="_images/algo_quick_sort_tce.pdf" style="width: 792px;" /></a>
+<p>Cette optimisation ne change rien à la complexité temporelle, mais diminue l’espace mémoire utilisé en soulageant la pile d’appels. On peut d’ailleurs encore faire mieux, en choisissant de toujours faire l’appel récursif sur le plus petit côté du tableau, ce qui donne :</p>
+<a class="reference internal image-reference" href="_images/algo_quick_sort_tce2.pdf"><img alt="_images/algo_quick_sort_tce2.pdf" class="align-center" src="_images/algo_quick_sort_tce2.pdf" style="width: 792px;" /></a>
+<p>Comme dernière optimisation, on peut cesser les appels récursifs lorsque le tableau est assez petit, disons de taille inférieure à 15,  et finir de le trier avec <code class="code docutils literal notranslate"><span class="pre">insertion_sort</span></code>.</p>
+<a class="reference internal image-reference" href="_images/algo_quick_sort_tce3.pdf"><img alt="_images/algo_quick_sort_tce3.pdf" class="align-center" src="_images/algo_quick_sort_tce3.pdf" style="width: 792px;" /></a>
+<p>Pour mémoire voici le code de la fonction de partition :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">l</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">r</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">:</span>
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">l</span><span class="p">)</span>
+
+        <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Exercice :</strong> Implémenter ces trois fonctions.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "julien-stiker/TP-PTSIB-21-22",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="TP4.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">TP4 : Récursivité</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="TP6.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">TP6 : Algorithmes gloutons</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By J.stiker<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
