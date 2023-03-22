@@ -140,7 +140,7 @@ Algorithmes de tri par décomposition en runs et fusions
     En pseudo-code cet type d'algorithmes peut se résumer à ce qui suit.
     
         
-    .. image:: strategy_run_merge.pdf
+    .. image:: generic_merge.pdf
         :align: center
         :width: 842px
 
