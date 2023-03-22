@@ -516,48 +516,34 @@ title="Print to PDF"
 <div class="dropdown tip admonition">
 <p class="admonition-title">Solution</p>
 <blockquote>
-<div><p>..code-block:: python</p>
-<blockquote>
-<div><dl>
-<dt>def bucket_sort(tab: list)-&gt; list:</dt><dd><p># Le nombre de bucket est le nombre d’éléments de tab
-num_buckets = len(tab)
-# On initialise des buckets vides
-buckets = [[] for _ in range(num_buckets)]
-# On range chaque valeur dans le bon bucket
-for val in tab:</p>
-<blockquote>
-<div><p>bucket_index = int(val * num_buckets)
-buckets[bucket_index].append(val)</p>
-</div></blockquote>
-<dl class="simple">
-<dt># On tri chaque bucket (ici avec insertion_sort)</dt><dd><dl class="simple">
-<dt>for bucket in buckets:</dt><dd><p>insertion_sort(bucket)</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p># On concatène les différents bucket
-sorted_tab = []
-for bucket in buckets:</p>
-<blockquote>
-<div><p>sorted_tab.extend(bucket)</p>
-</div></blockquote>
-<p>return sorted_tab</p>
-</dd>
-<dt>def insertion_sort(tab<span class="classifier">list)-&gt; None:</span></dt><dd><dl>
-<dt>for i in range(1, len(tab)):</dt><dd><p>key = tab[i]
-j = i - 1
-while j &gt;= 0 and tab[j] &gt; key:</p>
-<blockquote>
-<div><p>tab[j + 1] = tab[j]
-j -= 1</p>
-</div></blockquote>
-<p>tab[j + 1] = key</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</div></blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bucket_sort</span><span class="p">(</span><span class="n">tab</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="c1"># Le nombre de bucket est le nombre d&#39;éléments de tab</span>
+    <span class="n">num_buckets</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span>
+    <span class="c1"># On initialise des buckets vides</span>
+    <span class="n">buckets</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_buckets</span><span class="p">)]</span>
+    <span class="c1"># On range chaque valeur dans le bon bucket</span>
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">tab</span><span class="p">:</span>
+        <span class="n">bucket_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">val</span> <span class="o">*</span> <span class="n">num_buckets</span><span class="p">)</span>
+        <span class="n">buckets</span><span class="p">[</span><span class="n">bucket_index</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+    <span class="c1"># On tri chaque bucket (ici avec insertion_sort)</span>
+        <span class="k">for</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="n">buckets</span><span class="p">:</span>
+            <span class="n">insertion_sort</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span>
+    <span class="c1"># On concatène les différents bucket</span>
+    <span class="n">sorted_tab</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="n">buckets</span><span class="p">:</span>
+        <span class="n">sorted_tab</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sorted_tab</span>
+
+<span class="k">def</span> <span class="nf">insertion_sort</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">:</span>
+            <span class="n">tab</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">tab</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+</pre></div>
+</div>
 </div></blockquote>
 </div>
 <p><strong>Exercice :</strong> Déterminer la complexité au pire, et au meilleur de cet algorithme. Nous verrons plus tard dans l’année qu’en moyenne sa complexité est linéaire.</p>
