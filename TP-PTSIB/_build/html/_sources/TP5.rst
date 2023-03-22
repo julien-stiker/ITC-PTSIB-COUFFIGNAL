@@ -19,7 +19,7 @@ Un nouveau tri : le Bucket Sort
 
     * Tout d'abord, vous devez déterminer le nombre de buckets dont vous avez besoin. Dans ce cas, il est logique de choisir le nombre de buckets égal au nombre de valeurs à trier. Cela signifie que chaque bucket ne devrait contienir qu'une seule valeur, puisque les nombres sont supposés uniformément distribués.
 
-    * Ensuite, vous devez parcourir la liste des valeurs à trier et les placer dans les buckets appropriés en fonction de leur valeur. Pour cela, vous multipliez chaque valeur par le nombre de buckets et vous arrondissez à l'entier inférieur pour obtenir l'indice du bucket approprié. Par exemple, si vous avez la liste suivante de :math:`7` nombres entre :math:`0` et :math:`1` : :math:`[0.54, 0.23, 0.10, 0.72, 0.43, 0.99, 0.24]` et que vous avez décidé d'utiliser :math:`7` buckets, vous pouvez placer les éléments dans les buckets comme suit : :math:`[ [0.1], [0.23, 0.24], [0.43], [0.54], [0.72], [0.99], [] ]`.
+    * Ensuite, vous devez parcourir la liste des valeurs à trier et les placer dans les buckets appropriés en fonction de leur valeur. Pour cela, vous multipliez chaque valeur par le nombre de buckets et vous arrondissez à l'entier inférieur pour obtenir l'indice du bucket approprié. Par exemple, si vous avez la liste suivante de :math:`7` nombres entre :math:`0` et :math:`1` : :math:`[0.54, 0.23, 0.10, 0.72, 0.43, 0.99, 0.24]` et que vous avez décidé d'utiliser :math:`7` buckets, vous pouvez placer les éléments dans les buckets comme suit : :math:`[[0.1], [0.23, 0.24], [], [0.54, 0.43], [], [0.72], [0.99]]`.
 
     * Maintenant que les éléments sont répartis dans les buckets, vous pouvez trier chaque bucket individuellement en utilisant un autre algorithme de tri (par exemple, insertion sort). Une fois que chaque bucket a été trié, vous pouvez les concaténer pour obtenir la liste triée finale. 
 
@@ -70,9 +70,9 @@ Un nouveau tri : le Bucket Sort
 .. admonition:: Solution
    :class: dropdown; tip
     
-        Dans le meilleur cas, il y a une seule valeur par bucket. Et dans ce cas la complexité est linéaire. Notez que sur un tableau d'une case :code:ìnsertion_sort` se faite en :math:`O(1)`.
+        Dans le meilleur cas, il y a une seule valeur par bucket. Et dans ce cas la complexité est linéaire. Notez que sur un tableau d'une case :code:`insertion_sort` se faite en :math:`O(1)`.
         
-        Dans le pire cas, toutes les valeurs sont dans le même bucket, et dans ca cas le pire cas est celui d':code:ìnsertion_sort` soit un :math:`O(n^2`). 
+        Dans le pire cas, toutes les valeurs sont dans le même bucket, et dans ca cas le pire cas est celui d':code:`insertion_sort` soit un :math:`O(n^2`). 
 
 
 

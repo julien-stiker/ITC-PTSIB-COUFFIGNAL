@@ -501,7 +501,7 @@ title="Print to PDF"
 <p>Voici comment fonctionne le Bucket Sort pour trier des valeurs dans l’intervalle [0,1[:</p>
 <ul class="simple">
 <li><p>Tout d’abord, vous devez déterminer le nombre de buckets dont vous avez besoin. Dans ce cas, il est logique de choisir le nombre de buckets égal au nombre de valeurs à trier. Cela signifie que chaque bucket ne devrait contienir qu’une seule valeur, puisque les nombres sont supposés uniformément distribués.</p></li>
-<li><p>Ensuite, vous devez parcourir la liste des valeurs à trier et les placer dans les buckets appropriés en fonction de leur valeur. Pour cela, vous multipliez chaque valeur par le nombre de buckets et vous arrondissez à l’entier inférieur pour obtenir l’indice du bucket approprié. Par exemple, si vous avez la liste suivante de <span class="math notranslate nohighlight">\(7\)</span> nombres entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span> : <span class="math notranslate nohighlight">\([0.54, 0.23, 0.10, 0.72, 0.43, 0.99, 0.24]\)</span> et que vous avez décidé d’utiliser <span class="math notranslate nohighlight">\(7\)</span> buckets, vous pouvez placer les éléments dans les buckets comme suit : <span class="math notranslate nohighlight">\([ [0.1], [0.23, 0.24], [0.43], [0.54], [0.72], [0.99], [] ]\)</span>.</p></li>
+<li><p>Ensuite, vous devez parcourir la liste des valeurs à trier et les placer dans les buckets appropriés en fonction de leur valeur. Pour cela, vous multipliez chaque valeur par le nombre de buckets et vous arrondissez à l’entier inférieur pour obtenir l’indice du bucket approprié. Par exemple, si vous avez la liste suivante de <span class="math notranslate nohighlight">\(7\)</span> nombres entre <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span> : <span class="math notranslate nohighlight">\([0.54, 0.23, 0.10, 0.72, 0.43, 0.99, 0.24]\)</span> et que vous avez décidé d’utiliser <span class="math notranslate nohighlight">\(7\)</span> buckets, vous pouvez placer les éléments dans les buckets comme suit : <span class="math notranslate nohighlight">\([[0.1], [0.23, 0.24], [], [0.54, 0.43], [], [0.72], [0.99]]\)</span>.</p></li>
 <li><p>Maintenant que les éléments sont répartis dans les buckets, vous pouvez trier chaque bucket individuellement en utilisant un autre algorithme de tri (par exemple, insertion sort). Une fois que chaque bucket a été trié, vous pouvez les concaténer pour obtenir la liste triée finale.</p></li>
 </ul>
 </div>
@@ -550,8 +550,8 @@ title="Print to PDF"
 <div class="dropdown tip admonition">
 <p class="admonition-title">Solution</p>
 <blockquote>
-<div><p>Dans le meilleur cas, il y a une seule valeur par bucket. Et dans ce cas la complexité est linéaire. Notez que sur un tableau d’une case :code:ìnsertion_sort` se faite en <span class="math notranslate nohighlight">\(O(1)\)</span>.</p>
-<p>Dans le pire cas, toutes les valeurs sont dans le même bucket, et dans ca cas le pire cas est celui d’:code:ìnsertion_sort` soit un <span class="math notranslate nohighlight">\(O(n^2\)</span>).</p>
+<div><p>Dans le meilleur cas, il y a une seule valeur par bucket. Et dans ce cas la complexité est linéaire. Notez que sur un tableau d’une case <code class="code docutils literal notranslate"><span class="pre">insertion_sort</span></code> se faite en <span class="math notranslate nohighlight">\(O(1)\)</span>.</p>
+<p>Dans le pire cas, toutes les valeurs sont dans le même bucket, et dans ca cas le pire cas est celui d’<code class="code docutils literal notranslate"><span class="pre">insertion_sort</span></code> soit un <span class="math notranslate nohighlight">\(O(n^2\)</span>).</p>
 </div></blockquote>
 </div>
 </section>
