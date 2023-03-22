@@ -36,7 +36,7 @@ Un nouveau tri : le Bucket Sort
 .. admonition:: Solution
    :class: dropdown; tip
 
-        ..code-block:: python
+        .. code-block:: python
         
             def bucket_sort(tab: list)-> list:
                 # Le nombre de bucket est le nombre d'éléments de tab
