@@ -89,7 +89,7 @@ Décomposition en runs et fusion
 
 .. note:: Si :math:`\mathcal{S} = (s_1,\ldots,s_n)` est une suite de :math:`n` nombres, un *run* est une sous-suite :math:`(s_i,\ldots,s_j)` avec :math:`i\leq j` qui est croissante ou décroissante.
 
-    Une décomposition de :math:`S` en runs est une suite non vide :math:`\mathcal{R}=(R_1,\ldots,R_m)` de runs de :math:`\mathcal{S}`, telle que :math:`\mathcal{S}=R_1\cdot R_2\cdot\ldots\cdot R_m`, où le point signifie que l'on concatène les deus suites.
+    Une décomposition de :math:`S` en runs est une suite non vide :math:`\mathcal{R}=(R_1,\ldots,R_m)` de runs de :math:`\mathcal{S}`, telle que :math:`\mathcal{S}=R_1\cdot R_2\cdot\ldots\cdot R_m`, où le point signifie que l'on concatène les deux suites.
     
     Par exemple : si :math:`\mathcal{S} = (2, 3, 5, 7, 11, 10, 9, 8, 9, 10)` alors :math:`\mathcal{R}_1 = ((2,3,5,7,11), (10), (9), (8,9,10))` et :math:`\mathcal{R}_2 = ((2,3,5,7,11) · (10, 9, 8) · (9, 10))`  sont deux décompositions en runs de :math:`\mathcal{S}`.
 
@@ -140,7 +140,7 @@ Algorithmes de tri par décomposition en runs et fusions
     En pseudo-code cet type d'algorithmes peut se résumer à ce qui suit.
     
         
-    .. image:: strategy_run_merge.pdf
+    .. image:: generic_merge.pdf
         :align: center
         :width: 842px
 
