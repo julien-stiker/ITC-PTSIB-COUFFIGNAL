@@ -573,7 +573,7 @@ title="Print to PDF"
 <p>Si <span class="math notranslate nohighlight">\(R_1\)</span> sont deux runs d’une suite <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> on notera <span class="math notranslate nohighlight">\(R_1\oplus R_2\)</span> la suite croissante obtenues à partir des éléments de <span class="math notranslate nohighlight">\(R_1\)</span> et <span class="math notranslate nohighlight">\(R_2\)</span>. On dit qu’on a réalisé la <em>fusion</em> des deux runs.</p>
 <p>Comme nous tâcherons d’écrire des algorithmes de tri en place, dans la suite nous représenterons un run <span class="math notranslate nohighlight">\(R = (s_i,\ldots, s_j)\)</span> avec le tuple <span class="math notranslate nohighlight">\((i,j)\)</span>, pour ne pas à avoir à gérer des tableaux auxiliaires.</p>
 <p>Nous ne fusionnerons que des runs croissants. Nous pouvons donc réutiliser la procédure que nous avons vu en cours, dont je vous rappelle le pseudocode.</p>
-<a class="reference internal image-reference" href="_images/merge.pdf"><img alt="_images/merge.pdf" class="align-center" src="_images/merge.pdf" style="width: 792px;" /></a>
+<a class="reference internal image-reference" href="_images/merge.png"><img alt="_images/merge.png" class="align-center" src="_images/merge.png" style="width: 792px;" /></a>
 </div>
 <p><strong>Exercice :</strong> Implémenter la procédure <code class="code docutils literal notranslate"><span class="pre">merge(tab</span> <span class="pre">:</span> <span class="pre">list,</span> <span class="pre">i</span> <span class="pre">:int,</span> <span class="pre">j</span> <span class="pre">:int,</span> <span class="pre">k</span> <span class="pre">:</span> <span class="pre">int)-&gt;None</span></code> qui fusionne <code class="code docutils literal notranslate"><span class="pre">tab[i:j]</span></code> et <code class="code docutils literal notranslate"><span class="pre">tab[j:k]</span></code> directement dans le tableau <code class="code docutils literal notranslate"><span class="pre">tab</span></code>.</p>
 <div class="dropdown tip admonition">
@@ -603,7 +603,7 @@ title="Print to PDF"
 <p>Les algorithmes de tri qui utilisent une décomposition en runs de la liste à trier et qui utilisent ensuite des fusions de ces runs, sont appelés des algorithme de type <em>run-merge</em>.</p>
 <p>Par exemple l’algorithme <code class="code docutils literal notranslate"><span class="pre">merge_sort</span></code>, que nous avons étudier en cours est du type run-merge. Il consiste à réduire chaque run à des singletons, puis à les fusionner de manière récursive.</p>
 <p>En pseudo-code cet type d’algorithmes peut se résumer à ce qui suit.</p>
-<a class="reference internal image-reference" href="_images/generic_merge.pdf"><img alt="_images/generic_merge.pdf" class="align-center" src="_images/generic_merge.pdf" style="width: 842px;" /></a>
+<a class="reference internal image-reference" href="_images/generic_merge.png"><img alt="_images/generic_merge.png" class="align-center" src="_images/generic_merge.png" style="width: 842px;" /></a>
 <p>Comme dit plus haut, nous implémenterons des versions en place de ces algorithmes. Aussi, nous n’écrirons que des procédures.</p>
 </div>
 <section id="natural-merge-sort-de-knuth">
@@ -675,7 +675,7 @@ title="Print to PDF"
 <p>Dans cet exemple, lorsque <span class="math notranslate nohighlight">\(Z\)</span> est ajouté à la pile on vérifie si la condition <span class="math notranslate nohighlight">\(\rho_1\)</span>.</p>
 <p>Lorsqu’une régle porte sur plus d’éléments que la pile n’en contient on l’ignore. Dans notre exemple, si la pile ne contient que deux runs, on ignore <span class="math notranslate nohighlight">\(\rho_1\)</span> et on passe à <span class="math notranslate nohighlight">\(\rho_2\)</span>.</p>
 <p>Lorsque tous les runs ont été empilé, l’algorithme fusionne les runs restant deux à deux jusqu’à ce qu’il n’en reste qu’un. De tels algorithmes sont dits de type <em>stack run-merge sort</em>.</p>
-<a class="reference internal image-reference" href="_images/stack_run_merge.pdf"><img alt="_images/stack_run_merge.pdf" class="align-center" src="_images/stack_run_merge.pdf" style="width: 842px;" /></a>
+<a class="reference internal image-reference" href="_images/stack_run_merge.png"><img alt="_images/stack_run_merge.png" class="align-center" src="_images/stack_run_merge.png" style="width: 842px;" /></a>
 <p>Pour gagner du temps, on peut ne pas attendre d’avoir obtenu toute la décomposition en runs de la liste pour appliquer la stratégie de fusion. On peut le faire en même temps.</p>
 </div>
 <section id="la-detection-des-runs">
@@ -715,9 +715,9 @@ title="Print to PDF"
 <li><p><span class="math notranslate nohighlight">\(\rho:\textrm{size}(Y) \geq \alpha\cdot \textrm{size}(Z)\)</span> et <span class="math notranslate nohighlight">\(\mu :\)</span> fusionner <span class="math notranslate nohighlight">\(Y\)</span> et <span class="math notranslate nohighlight">\(Z\)</span>.</p></li>
 </ul>
 <p>L’algorithme peut donc s’écrire comme suit.</p>
-<a class="reference internal image-reference" href="_images/alpha_stack_sort.pdf"><img alt="_images/alpha_stack_sort.pdf" class="align-center" src="_images/alpha_stack_sort.pdf" style="width: 842px;" /></a>
+<a class="reference internal image-reference" href="_images/alpha_stack_sort.png"><img alt="_images/alpha_stack_sort.png" class="align-center" src="_images/alpha_stack_sort.png" style="width: 842px;" /></a>
 <p>La procédure <span class="math notranslate nohighlight">\(\mu\)</span> se charge d’opérer les fusions lorsque la règle <span class="math notranslate nohighlight">\(\rho\)</span> n’est pas vérifiée. On peut l’écrire en pseudo code comme suit :</p>
-<a class="reference internal image-reference" href="_images/mu_rho.pdf"><img alt="_images/mu_rho.pdf" class="align-center" src="_images/mu_rho.pdf" style="width: 842px;" /></a>
+<a class="reference internal image-reference" href="_images/mu_rho.png"><img alt="_images/mu_rho.png" class="align-center" src="_images/mu_rho.png" style="width: 842px;" /></a>
 </div>
 <p><strong>Exercice :</strong> Implémenter la fonction <code class="code docutils literal notranslate"><span class="pre">rho(runs:</span> <span class="pre">list)-&gt;bool</span></code> et la procédure <code class="code docutils literal notranslate"><span class="pre">mu(tab</span> <span class="pre">:</span> <span class="pre">list,</span> <span class="pre">runs</span> <span class="pre">:</span> <span class="pre">list)</span></code>.</p>
 <div class="dropdown tip admonition">
@@ -938,13 +938,13 @@ title="Print to PDF"
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Nous avons étudier en cours le <code class="code docutils literal notranslate"><span class="pre">quick_sort</span></code>, dont je vous rapelle le pseudo-code :</p>
-<a class="reference internal image-reference" href="_images/algo_quick_sort.pdf"><img alt="_images/algo_quick_sort.pdf" class="align-center" src="_images/algo_quick_sort.pdf" style="width: 792px;" /></a>
+<a class="reference internal image-reference" href="_images/algo_quick_sort.png"><img alt="_images/algo_quick_sort.png" class="align-center" src="_images/algo_quick_sort.png" style="width: 792px;" /></a>
 <p>Comme le second appel récursif est terminal, on peut procéder à une <strong>tail call elimination</strong>, il s’agit de transformer le dernier appel récursif en une boucle. Ce qui donne :</p>
-<a class="reference internal image-reference" href="_images/algo_quick_sort_tce.pdf"><img alt="_images/algo_quick_sort_tce.pdf" class="align-center" src="_images/algo_quick_sort_tce.pdf" style="width: 792px;" /></a>
+<a class="reference internal image-reference" href="_images/algo_quick_sort_tce.png"><img alt="_images/algo_quick_sort_tce.png" class="align-center" src="_images/algo_quick_sort_tce.png" style="width: 792px;" /></a>
 <p>Cette optimisation ne change rien à la complexité temporelle, mais diminue l’espace mémoire utilisé en soulageant la pile d’appels. On peut d’ailleurs encore faire mieux, en choisissant de toujours faire l’appel récursif sur le plus petit côté du tableau, ce qui donne :</p>
-<a class="reference internal image-reference" href="_images/algo_quick_sort_tce2.pdf"><img alt="_images/algo_quick_sort_tce2.pdf" class="align-center" src="_images/algo_quick_sort_tce2.pdf" style="width: 792px;" /></a>
+<a class="reference internal image-reference" href="_images/algo_quick_sort_tce2.png"><img alt="_images/algo_quick_sort_tce2.png" class="align-center" src="_images/algo_quick_sort_tce2.png" style="width: 792px;" /></a>
 <p>Comme dernière optimisation, on peut cesser les appels récursifs lorsque le tableau est assez petit, disons de taille inférieure à 15,  et finir de le trier avec <code class="code docutils literal notranslate"><span class="pre">insertion_sort</span></code>.</p>
-<a class="reference internal image-reference" href="_images/algo_quick_sort_tce3.pdf"><img alt="_images/algo_quick_sort_tce3.pdf" class="align-center" src="_images/algo_quick_sort_tce3.pdf" style="width: 792px;" /></a>
+<a class="reference internal image-reference" href="_images/algo_quick_sort_tce3.png"><img alt="_images/algo_quick_sort_tce3.png" class="align-center" src="_images/algo_quick_sort_tce3.png" style="width: 792px;" /></a>
 <p>Pour mémoire voici le code de la fonction de partition :</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="n">tab</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">l</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">r</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>

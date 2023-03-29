@@ -101,7 +101,7 @@ Décomposition en runs et fusion
     
     Nous ne fusionnerons que des runs croissants. Nous pouvons donc réutiliser la procédure que nous avons vu en cours, dont je vous rappelle le pseudocode.
 
-    .. image:: merge.pdf
+    .. image:: merge.png
         :align: center
         :width: 792px
 
@@ -140,7 +140,7 @@ Algorithmes de tri par décomposition en runs et fusions
     En pseudo-code cet type d'algorithmes peut se résumer à ce qui suit.
     
         
-    .. image:: generic_merge.pdf
+    .. image:: generic_merge.png
         :align: center
         :width: 842px
 
@@ -230,7 +230,7 @@ Algorithmes de tri par décomposition en runs et fusions utilisant une pile
     
     
            
-    .. image:: stack_run_merge.pdf
+    .. image:: stack_run_merge.png
         :align: center
         :width: 842px
 
@@ -278,13 +278,13 @@ Le tri :math:`\alpha`-stack_sort
     L'algorithme peut donc s'écrire comme suit.
  
          
-    .. image:: alpha_stack_sort.pdf
+    .. image:: alpha_stack_sort.png
         :align: center
         :width: 842px
 
     La procédure :math:`\mu` se charge d'opérer les fusions lorsque la règle :math:`\rho` n'est pas vérifiée. On peut l'écrire en pseudo code comme suit :
     
-    .. image:: mu_rho.pdf
+    .. image:: mu_rho.png
         :align: center
         :width: 842px
 
@@ -518,27 +518,27 @@ Optimiser Quick Sort
   
 .. note:: Nous avons étudier en cours le :code:`quick_sort`, dont je vous rapelle le pseudo-code :
   
-    .. image:: algo_quick_sort.pdf
+    .. image:: algo_quick_sort.png
         :align: center
         :width: 792px
 
     Comme le second appel récursif est terminal, on peut procéder à une **tail call elimination**, il s'agit de transformer le dernier appel récursif en une boucle. Ce qui donne :
 
 
-    .. image:: algo_quick_sort_tce.pdf
+    .. image:: algo_quick_sort_tce.png
         :align: center
         :width: 792px
 
 
     Cette optimisation ne change rien à la complexité temporelle, mais diminue l'espace mémoire utilisé en soulageant la pile d'appels. On peut d'ailleurs encore faire mieux, en choisissant de toujours faire l'appel récursif sur le plus petit côté du tableau, ce qui donne :
 
-    .. image:: algo_quick_sort_tce2.pdf
+    .. image:: algo_quick_sort_tce2.png
         :align: center
         :width: 792px
 
     Comme dernière optimisation, on peut cesser les appels récursifs lorsque le tableau est assez petit, disons de taille inférieure à 15,  et finir de le trier avec :code:`insertion_sort`.
 
-    .. image:: algo_quick_sort_tce3.pdf
+    .. image:: algo_quick_sort_tce3.png
         :align: center
         :width: 792px
 
