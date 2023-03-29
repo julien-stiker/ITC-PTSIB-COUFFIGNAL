@@ -82,7 +82,7 @@ Stratégies de fusion : de merge sort au Tim sort
 
 Cette partie est entièrement basée sur le travail de Nicolas Auger, notamment sur sa thèse intitulée `Analyse réaliste d'algorithme standard <https://www.theses.fr/2018PESC1110.pdf>`_ et son article `Merge Strategies : from Merge Sort to TimSort <https://hal.archives-ouvertes.fr/hal-01212839>`_ .
 
-L'idée des algorithmes présentés ici est d'essayer de tirer profit des sous-listes triée, dans l'ordre croissante ou ddécroissant, d'une liste pour la trier.
+L'idée des algorithmes présentés ici est d'essayer de tirer profit des sous-listes triées, dans l'ordre croissant ou ddécroissant, d'une liste pour la trier.
 
 Décomposition en runs et fusion
 ===============================
@@ -133,11 +133,11 @@ Décomposition en runs et fusion
 Algorithmes de tri par décomposition en runs et fusions
 =======================================================
 
-.. note:: Les algorithmes de tri qui utilisent une décomposition en runs de la liste à trier et qui utilisent ensuite des fusions de ces runs, sont appelés des algorithme de type *run-merge*.
+.. note:: Les algorithmes de tri qui utilisent une décomposition en runs de la liste à trier et qui utilisent ensuite des fusions de ces runs, sont appelés des algorithmes de type *run-merge*.
 
-    Par exemple l'algorithme :code:`merge_sort`, que nous avons étudier en cours est du type run-merge. Il consiste à réduire chaque run à des singletons, puis à les fusionner de manière récursive.
+    Par exemple l'algorithme :code:`merge_sort`, que nous avons étudié en cours est du type run-merge. Il consiste à réduire chaque run à des singletons, puis à les fusionner de manière récursive.
     
-    En pseudo-code cet type d'algorithmes peut se résumer à ce qui suit.
+    En pseudo-code ce type d'algorithme peut se résumer à ce qui suit.
     
         
     .. image:: generic_merge.png
