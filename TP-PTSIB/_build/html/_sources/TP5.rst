@@ -288,7 +288,7 @@ Le tri :math:`\alpha`-stack_sort
         :align: center
         :width: 842px
 
-
+    Nous allons l'implémenter pour :math:`alpha = 2`.
 
 
 
