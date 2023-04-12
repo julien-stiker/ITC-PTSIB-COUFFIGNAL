@@ -273,7 +273,7 @@ Le tri :math:`\alpha`-stack_sort
  
 .. note:: Ce tri est un tri de type stack run-merge. Sa stratégie ne contient qu'une régle et une action qui dépend d'un paramètre :math:`\alpha`, si les runs :math:`Y` et :math:`Z` sont au sommet de la pile :
  
-    * :math:`\rho:\textrm{size}(Y) \geq \alpha\cdot \textrm{size}(Z)` et :math:`\mu :` fusionner :math:`Y` et :math:`Z`.
+    * :math:`\rho:\textrm{size}(Y) > \alpha\cdot \textrm{size}(Z)` et :math:`\mu :` fusionner :math:`Y` et :math:`Z`.
         
     L'algorithme peut donc s'écrire comme suit.
  
