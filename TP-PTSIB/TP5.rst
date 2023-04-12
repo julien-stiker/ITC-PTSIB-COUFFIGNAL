@@ -305,8 +305,13 @@ Le tri :math:`\alpha`-stack_sort
                 return j - i + 1 > 2*(k - j)
 
 
-
-
+            def mu(tab : list, runs : list)->None:
+                if len(runs)>1:
+                    while len(runs)>1 and not rho(runs):
+                        r1, r2 = runs.pop(), runs.pop() 
+                        i, j, k = r2[0], r2[1], r1[1]
+                        merge(tab, i, j+1, k+1)
+                        runs.append([i,k])
 
 
 **Exercice :** Implémenter la procédure :code:`alpha_stack_sort(tab : list)->None`.
@@ -316,12 +321,25 @@ Le tri :math:`\alpha`-stack_sort
    
     .. code-block:: python
 
-        def mu(tab : list, runs : list)->None:
-            if len(runs)>1:
-                while len(runs)>1 and not rho(runs):
+            def alpha_stack_sort(t):
+                n = len(t)
+                runs = []
+                i = 0
+                while i < n:
+                    run = run_detect3(t, i, n)
+
+                    if not run[2]:
+                        t[run[0]:run[1]+1] = t[run[0]: run[1]+1][::-1]
+                    runs.append(run[:2])
+                    mu(t,runs)
+
+
+                    i = runs[-1][1] + 1
+
+                while len(runs)>1:
                     r1, r2 = runs.pop(), runs.pop() 
                     i, j, k = r2[0], r2[1], r1[1]
-                    merge(tab, i, j+1, k+1)
+                    merge(t, i, j+1, k+1)
                     runs.append([i,k])
 
 
