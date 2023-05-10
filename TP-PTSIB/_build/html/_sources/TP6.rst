@@ -125,7 +125,7 @@ Une version simplifiée
 
 
 
-**Exercice :** Ecrire une fonction :code:`is_solution(trajet: list[int], nb_villes: int)->bool` qui teste si notre trajet est complet (il contient toutes les villes et sont dernier élement est notre point de départ).
+**Exercice :** Ecrire une fonction :code:`is_solution(trajet: list[int], nb_villes: int)->bool` qui teste si notre trajet est complet (il contient toutes les villes et son dernier élement est notre point de départ).
 
 
 .. admonition:: Solution
@@ -134,7 +134,7 @@ Une version simplifiée
         .. code-block:: python
 
             def is_solution(trajet, nb_villes):
-                return len(trajet) == nb_villes+1 and trajet[0]==trajet[nb_villes-1]
+                return len(trajet) == nb_villes+1 and trajet[0]==trajet[nb_villes]
 
 
 
@@ -187,7 +187,7 @@ Une version simplifiée
                 return trajet, d_totale
 
 
-**Exercice à traiter à la maison :** Ecrire une fonction :code:`brute_force(villes: list[tuple[float, float]], start: int)->trajet` qui résoud le probblème du voyageur de commerce par *force brute*, c'est-à-dire en essayant toutes les permutations de l'ensemble des villes.
+**Exercice à traiter à la maison :** Ecrire une fonction :code:`brute_force(villes: list[tuple[float, float]], start: int)->trajet` qui résoud le problème du voyageur de commerce par *force brute*, c'est-à-dire en essayant toutes les permutations de l'ensemble des villes.
 
 **Exercice à traiter à la maison :** Utiliser le décorateur :code:`@timing` du TP2 pour comparer les temps d'exécution des deux algorithme sur des listes de villes tirées au hasard.
 
@@ -211,7 +211,7 @@ Rendu de monnaie
     
     Le but est de retourner un tuple constitué de la liste des pièces à utiliser pour rendre la monnaie et du code :math:`1`, ou de la liste vide et du code :math:`-1` si c'est imposssible.
     
-    Ce problème est NP-complet dans le cas général, c'est-à-dire avec un ensemble de pièces de valeurs quelqconques. Dans le cas d'un système monaitaire canonique notre algorithme sera optimal.
+    Ce problème est NP-complet dans le cas général, c'est-à-dire avec un ensemble de pièces de valeurs quelqconques. Dans le cas d'un système monétaire canonique notre algorithme sera optimal.
 
 .. warning:: Vous le savez Python nous réserve bien des surprises lorsque l'on travaille avec des flottants... Aussi je vous conseille de travailler en centimes pour pouvoir utiliser des :code:`int`...
 

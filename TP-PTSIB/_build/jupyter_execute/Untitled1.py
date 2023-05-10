@@ -14,7 +14,7 @@ get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'retina'")
 np.set_printoptions(precision=3, linewidth=150, suppress=True)
 
 
-# In[4]:
+# In[2]:
 
 
 tab = np.array([[5, 4, 2, 5, 4, 2, 3, 1, 0, 2, 1, 4, 3, 1, 2],
@@ -25,7 +25,7 @@ tab = np.array([[5, 4, 2, 5, 4, 2, 3, 1, 0, 2, 1, 4, 3, 1, 2],
        [1, 1, 2, 3, 2, 1, 4, 3, 0, 0, 1, 2, 3, 2, 2]])
 
 
-# In[5]:
+# In[3]:
 
 
 cov = np.cov(tab)
@@ -36,25 +36,25 @@ print("Valeurs propres de la matrice de covariance :", val,"\n")
 print("Vecteurs propres de la matrice de covariance :\n", vec)
 
 
-# In[17]:
+# In[4]:
 
 
 (1/2.383)*cov @ vec[:,1]
 
 
-# In[8]:
+# In[5]:
 
 
 print(vec[:,0])
 
 
-# In[10]:
+# In[6]:
 
 
 vec[:,0]@tab[:,0]
 
 
-# In[12]:
+# In[7]:
 
 
 for i in range(14):
@@ -62,7 +62,7 @@ for i in range(14):
     
 
 
-# In[13]:
+# In[8]:
 
 
 for i in range(14):
