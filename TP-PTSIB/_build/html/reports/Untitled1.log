@@ -30,7 +30,7 @@ np.set_printoptions(precision=3, linewidth=150, suppress=True)
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/q4/62k_q2795z10ch_9z56l9_wc0000gn/T/ipykernel_60814/966746193.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/var/folders/q4/62k_q2795z10ch_9z56l9_wc0000gn/T/ipykernel_1829/966746193.py[0m in [0;36m<module>[0;34m[0m
 [1;32m      1[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
 [1;32m      2[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
 [0;32m----> 3[0;31m [0;32mimport[0m [0mscipy[0m[0;34m.[0m[0mlinalg[0m [0;32mas[0m [0mlin[0m[0;34m[0m[0;34m[0m[0m
