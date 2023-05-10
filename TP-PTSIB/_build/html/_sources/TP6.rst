@@ -21,7 +21,7 @@ Il existe une famille de problèmes dits *d'optimisation*. Voici quelques exempl
 
 * Un distributeur automatique de boisson doit pouvoir rendre la monnaie aux clients. On souhaite **minimiser** le nombre de pièces utiliser.
     
-* Un gymnase doit acceuillir différentes activités, chacune avec une durée spécifique. Il s'agit ici de **maximiser** le nombre d'activités proposées.
+* Un gymnase doit accueillir différentes activités, chacune avec une durée spécifique. Il s'agit ici de **maximiser** le nombre d'activités proposées.
 
 Il existe plusieurs stratégies pour résoudre ce type de problème, parmi lesquelles : la programmation *dynamique* et les algorithmes *gloutons*. Nous traiterons la programmation dynamique plus tard et nous allons nous intéresser à la seconde stratégie.
 
@@ -49,11 +49,11 @@ Par exemple pour le problème de la loutre, imaginons que nous ayons le choix en
     * :math:`verify` vérifie que le la somme des poids des poissons sélectionnés est inférieur à :math:`10` kilos.
     * :math:`is\_solution` vérifie qu'il n'existe plus de poisson à ajouter à la sélection sans dépasser les dix kilos.
  
-Dans ca cas la solution construite ne sera pas optimale, en effet le premier poisson ajouté à la solution est le poisson :code:`(2,6)`, le second et dernier sera :code:`(4,10)`. La solution construite apportera :math:`16` Mcal, alors que la solution optimale est donnée par :code:`[(4, 10),(6, 12)]`, qui apporte :math:`22` Mcal. 
+Dans ce cas la solution construite ne sera pas optimale, en effet le premier poisson ajouté à la solution est le poisson :code:`(2,6)`, le second et dernier sera :code:`(4,10)`. La solution construite apportera :math:`16` Mcal, alors que la solution optimale est donnée par :code:`[(4, 10),(6, 12)]`, qui apporte :math:`22` Mcal. 
 
 Si la loutre peut découper les poissons, la statégie donne une solution optimale.
  
-Il faut bien comprendre que ces problèmes d'optimisation sont très compliqué à résoudre exactement. Pour beaucoup d'entre eux, ils sont NP-complets, voir NP-difficiles. Si bien que l'on de connait pas d'algorithmes capables de donner la solution exacte en un temps raissonable (ils sont tous de complexité exponentielle). Donc trouver une "bonne solution" même si ce n'est pas la meilleure en un temps raisonnable est déjà très satisfaisant.  
+Il faut bien comprendre que ces problèmes d'optimisation sont très compliqué à résoudre exactement. Pour beaucoup d'entre eux, ils sont NP-complets, voir NP-difficiles. Si bien que l'on ne connait pas d'algorithmes capables de donner la solution exacte en un temps raissonable (ils sont tous de complexité exponentielle). Donc trouver une "bonne solution" même si ce n'est pas la meilleure en un temps raisonnable est déjà très satisfaisant.  
 
 Le voyageur de commerce
 ==========================
