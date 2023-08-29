@@ -3,7 +3,7 @@
 """
 Created on Tue Jun  7 15:56:00 2022
 
-@author: darkwell-air
+@author: julien stiker
 """
 
 ### Graphe aléatoire

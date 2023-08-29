@@ -46,7 +46,7 @@ Variations autour de Dijkstra
         :align: center
         
 
-**Exercice :** Ecrire une fonction de signature :code:`dijkstra_set(G: dict, src: int)->tuple[list[int],list[int]]`, qui prend comme argument un graphe :code:`G` pondéré sous forme de dictionnaire de dictionnaires, et un sommet :code:`src`, et qui retourne les listes :code:`dict` et :code:`pred`, respectivement des distances à :code:`src` et des prédecesseurs dans le plus court chemin de :code:`src`à un sommet :code:`s` . L'algorithme utilisera une ensemble comme décrit dans le cours.
+**Exercice :** Ecrire une fonction de signature :code:`dijkstra_set(G: dict, src: int)->tuple[list[int],list[int]]`, qui prend comme argument un graphe :code:`G` pondéré sous forme de dictionnaire de dictionnaires, et un sommet :code:`src`, et qui retourne les listes :code:`dict` et :code:`pred`, respectivement des distances à :code:`src` et des prédecesseurs dans le plus court chemin de :code:`src` à un sommet :code:`s` . L'algorithme utilisera une ensemble comme décrit dans le cours.
 
 .. admonition:: Solution
    :class: dropdown; tip
@@ -91,7 +91,7 @@ Variations autour de Dijkstra
 
 
 
-**Exercice :** Ecrire une seconde fonction de signature :code:`dijkstra_heap(G: dict, src: int)->tuple[dict,dict]`, qui prend comme argument un graphe :code:`G` sous forme de dictionnaire de dictionnaires, et un sommet :code:`src`, et qui retourne les dictionnaires :code:`dist` et :code:`pred`, respectivement des distances à :code:`src` et des prédecesseurs dans le plus court chemin de :code:`src` à un sommet :code:`s`. L'algorithme utilisera un file de priorité comme décrit dans le cours. Vous utiliserez le module :code:`heap` fournit avec le TP.
+**Exercice :** Ecrire une seconde fonction de signature :code:`dijkstra_heap(G: dict, src: int)->tuple[dict,dict]`, qui prend comme argument un graphe :code:`G` sous forme de dictionnaire de dictionnaires, et un sommet :code:`src`, et qui retourne les dictionnaires :code:`dist` et :code:`pred`, respectivement des distances à :code:`src` et des prédecesseurs dans le plus court chemin de :code:`src` à un sommet :code:`s`. L'algorithme utilisera un file de priorité comme décrit dans le cours. Vous utiliserez le module :code:`heap` fourni avec le TP.
 
 
 .. admonition:: Solution
@@ -134,7 +134,7 @@ Variations autour de Dijkstra
 
 
 
-**Exercice :** Utiliser la fonction :code:`alea_directed_graphe`, qui se trouve dans le module :code:`TP9` pour générer des graphes orientés et pondérés de tailles :math:`100*2^k` pour :math:`1\leq k\leq 7`, et comparer les temps d'exécution des deux fontions :code:`dijkstra_set` et :code:`dijkstra_heap`. Que constatez-vous ?
+**Exercice :** Utiliser la fonction :code:`alea_directed_graph`, qui se trouve dans le module :code:`TP9` pour générer des graphes orientés et pondérés de tailles :math:`100*2^k` pour :math:`1\leq k\leq 7`, et comparer les temps d'exécution des deux fontions :code:`dijkstra_set` et :code:`dijkstra_heap`. Que constatez-vous ?
 
 **Exercice :** Ecrire une fonction de signature :code:`build_path(pred: dict, src, dst):->list` qui retourne la liste des sommets qui constituent le plus court chemin de :code:`src` à :code:`dst`.
 
@@ -153,7 +153,7 @@ Variations autour de Dijkstra
             path = [src] + path
             return path
 
-**Exercice :** Modifier le code la fonction :code:`dijkstra_heap`, pour écrire une nouvelle fonction de signature :code:`dijkstra(G: dict, src: int, dst: int)->float, list[int]`, qui retourne le plus court chemin de :code:`src` à :code:`dst` dans le graphe :code:`G`, s'il existe, ainsi que sa longueur, et :code:`None` sinon. Vous veuillerez à arrêter l'agorithme dès que la destination :code:`dst` est atteinte.
+**Exercice :** Modifier le code la fonction :code:`dijkstra_heap`, pour écrire une nouvelle fonction de signature :code:`dijkstra(G: dict, src: int, dst: int)->float, list[int]`, qui retourne le plus court chemin de :code:`src` à :code:`dst` dans le graphe :code:`G`, s'il existe, ainsi que sa longueur, et :code:`None` sinon. Vous veillerez à arrêter l'agorithme dès que la destination :code:`dst` est atteinte.
 
 **Exercice (bonus) :** Ecrice une fonction :code:`round_trip(G: dict, src: int, dst: int)->list[int]` qui retourne, s'il existe, le plus court chemin aller-retour de :code:`src` à :code:`dst` qui au retour ne passe pas par les mêmes sommets qu'à l'aller.
 
@@ -180,7 +180,7 @@ L'algorithme A*
     Si l'heuristique est la fonction identiquement nulle, on retombe sur Dijkstra.
     
     
-**Exercice :** Implémenter une fonction de signature :code:`A_star(G: dict, h: callable, src: tuple[int,int], dst:tuple[int,int])->list[int],int, int`, qui prend comme argument un graphe, une heuristique, un sommet source et un sommet destination et qui retourne le dictionnaire :code:`pred` des prédecesseurs dans le plus court chemin trouvé entre :code:`src` et :code:`dst`, s'il existe. Ainsi que le nombre de sommets visités lors de la recherche du chamin, et le nombre d'itération de la boucle principale effectuées pour déterminer le chemin.
+**Exercice :** Implémenter une fonction de signature :code:`A_star(G: dict, h: callable, src: tuple[int,int], dst:tuple[int,int])->list[int],int, int`, qui prend comme argument un graphe, une heuristique, un sommet source et un sommet destination et qui retourne le dictionnaire :code:`pred` des prédecesseurs dans le plus court chemin trouvé entre :code:`src` et :code:`dst`, s'il existe. Ainsi que le nombre de sommets visités lors de la recherche du chemin, et le nombre d'itération de la boucle principale effectuées pour déterminer le chemin.
 
 .. admonition:: Solution
    :class: dropdown; tip
@@ -276,11 +276,11 @@ L'algorithme A*
 
 L'argument :code:`w` agit ici comme un poids pour l'heuristique.
 
-En prenant différentes valeurs pour :code:`w` (prendre par exemple :math:`1`, :math:`10^4` et :math:`10^5`) observez les différents résultats obtenus avec le graphe G5 et toutes les heuristiques.
+En prenant différentes valeurs pour :code:`w` (prendre par exemple :math:`1`, :math:`10^4` et :math:`10^5`) observez les différents résultats obtenus avec le graphe :code:`G5` et toutes les heuristiques.
 
-Comparez la longueur des chemins trouvés, observez qu'ils ne sont pas toujours optimaux mais que dans certaines situations ils ont nécessité beaucoup moins de traitement.
+Comparer la longueur des chemins trouvés, observez qu'ils ne sont pas toujours optimaux mais que dans certaines situations ils ont nécessité beaucoup moins de traitement.
 
-On pourra par exemple enregistrer les résultats dans un fichier csv, dont les colones seraient : ['Fonctions','Poids w','Longueur','Sommets traités','Itérations'], puis ajouter une colone pour calculer le pourcentage que représente l'augmentation de la longueur du chemin par rapport à la longueur optimale, puis trier les données seulon le nombre de sommet traités.
+On pourra par exemple enregistrer les résultats dans un fichier csv, dont les colonnes seraient : ['Fonctions','Poids w','Longueur','Sommets traités','Itérations'], puis ajouter une colonne pour calculer le pourcentage que représente l'augmentation de la longueur du chemin par rapport à la longueur optimale, puis trier les données seulon le nombre de sommet traités.
 
 Quelques exemples de résultats :
 
