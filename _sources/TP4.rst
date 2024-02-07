@@ -258,6 +258,13 @@ De beaux dessins
                 def triangle(x1,y1,x2,y2,x3,y3):
                     liste = [[x1,y1],[x2,y2],[x3,y3]]
                     ax.add_patch(Polygon(liste, closed=True,fill=True, color='red'))
+        
+        Pour régler le cadre d'affichage vous pouvez utiliser :
+        
+        .. code-block:: python
+        
+                 ax.set_xlim(x_min, x_max)
+                 ax.set_ylim(y_min, y_max)
 
 
 **Exercice :** Écrire une fonction récursive :code:`bubble1(n)` qui prend comme argument un entier :math:`n`, et qui permet d'obtenir la figure suivante pour :math:`n=5` :
